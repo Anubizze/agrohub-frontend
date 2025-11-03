@@ -1,8 +1,8 @@
 import { AlertCircle, AlertTriangle, CheckCircle } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 import { Badge } from "@/shared/components/ui";
 import { Progress } from "@/shared/components/ui/progress";
-import { useTranslations } from "next-intl";
 interface RiskAnalysisCardProps {
   name: string;
   status: "low" | "medium" | "high";

@@ -1,5 +1,5 @@
-import { useMemo } from "react";
 import { useTranslations } from "next-intl";
+import { useMemo } from "react";
 
 import { mockRecommendationsData } from "../model/recommendations.mock-data";
 import type { RecommendationsData } from "../schemas/recommendation.schema";

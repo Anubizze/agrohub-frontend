@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import React from "react";
 
 import {
@@ -9,7 +10,6 @@ import {
   KeyStatsWidget,
   RecommendationsWidget,
 } from "@/modules/recommendations";
-import { useTranslations } from "next-intl";
 
 export default function Page() {
   const t = useTranslations("recommendation");

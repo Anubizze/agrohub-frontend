@@ -1,10 +1,10 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import React from "react";
 
 import { useRecommendations } from "../../../hooks/useRecommendations";
 import { KeyStatsCard } from "../../components/KeyStatsCard/KeyStatsCard";
-import { useTranslations } from "next-intl";
 
 /**
  * Пропсы для компонента KeyStatsWidget

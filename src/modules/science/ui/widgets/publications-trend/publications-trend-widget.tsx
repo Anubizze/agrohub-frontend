@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import React from "react";
 import { Area, AreaChart, CartesianGrid, XAxis, YAxis } from "recharts";
 import { Line } from "recharts";
@@ -16,7 +17,6 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "@/shared/components/ui/chart";
-import { useTranslations } from "next-intl";
 
 const makeData = (m: string[]) => [
   { month: m[0], publications: 18 },

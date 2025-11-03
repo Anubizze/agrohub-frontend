@@ -1,5 +1,6 @@
-import { SectorGrowthCard } from "../components/SectorGrowthCard";
 import { useTranslations } from "next-intl";
+
+import { SectorGrowthCard } from "../components/SectorGrowthCard";
 
 const mockdata = [
   {

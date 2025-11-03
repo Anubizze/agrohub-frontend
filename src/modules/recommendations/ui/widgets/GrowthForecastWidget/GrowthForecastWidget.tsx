@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import React from "react";
 import {
   CartesianGrid,
@@ -19,8 +20,6 @@ import {
   ChartTooltipContent,
 } from "@/shared/components/ui/chart";
 
-import { GROWTH_CHART_CONFIG } from "../../../constants/recommendation.constants";
-import { useTranslations } from "next-intl";
 import { useRecommendations } from "../../../hooks/useRecommendations";
 import { GrowthStatsCard } from "../../components/GrowthStatsCard/GrowthStatsCard";
 

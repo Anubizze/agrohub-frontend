@@ -1,5 +1,6 @@
-import { Button } from "@/shared/components/ui/button";
 import { useTranslations } from "next-intl";
+
+import { Button } from "@/shared/components/ui/button";
 
 import { ProjectCard } from "../components/ProjectCard";
 

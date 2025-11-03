@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import React from "react";
 import { Cell, Pie, PieChart } from "recharts";
 
@@ -16,7 +17,6 @@ import {
   ChartTooltipContent,
 } from "@/shared/components/ui/chart";
 import { Progress } from "@/shared/components/ui/progress";
-import { useTranslations } from "next-intl";
 
 const makeData = (t: (k: string) => string) => [
   { name: t("science.fields.crop"), value: 42, fill: "#10b981" },

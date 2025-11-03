@@ -1,5 +1,7 @@
 "use client";
 
+import { useTranslations } from "next-intl";
+
 import {
   CropPriceStructureView,
   Projects,
@@ -10,7 +12,6 @@ import {
   StatsView,
   YieldForecastByRegionView,
 } from "@/modules/investments/ui/widgets";
-import { useTranslations } from "next-intl";
 
 export default function InvestmentsPage() {
   const t = useTranslations("investments");

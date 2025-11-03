@@ -2,11 +2,11 @@
 
 import { Lock,Shield } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
 import { useState } from "react";
 
 import { Button } from "@/shared/components/ui";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/shared/components/ui/card";
-import { useTranslations } from "next-intl";
 
 /**
  * Страница входа для специалистов экологического мониторинга

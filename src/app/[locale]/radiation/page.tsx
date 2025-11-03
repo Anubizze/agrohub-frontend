@@ -1,8 +1,7 @@
 "use client";
 
 import { AlertTriangle, Calendar, Database, Leaf, LogOut, MapPin, Package,Settings, Shield, ShieldCheck, User, Users, Zap } from "lucide-react";
-import { useRouter } from "next/navigation";
-import { useLocale, useTranslations } from "next-intl";
+import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 import { Area, AreaChart, Bar, BarChart, CartesianGrid, Cell, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 
@@ -23,14 +22,15 @@ export default function RadiationPage() {
   const [user, setUser] = useState("");
   const [activeTab, setActiveTab] = useState("ecological");
   const [selectedCity, setSelectedCity] = useState<CityData | null>(null); // Selected city for chart updates
-  const router = useRouter();
 	const localeRouter = useLocaleRouter();
 	const t = useTranslations();
-  const locale = useLocale();
   const months = t.raw("science.months") as string[];
   const regionNames = t.raw("radiation.monitoring.products.regions") as string[];
   const avgLabel = t("radiation.monitoring.products.avg");
   const safetySuffixLabel = t("radiation.monitoring.products.safetySuffix");
+  
+  // Константа для русских названий месяцев (используется для локализации)
+  const RU_MONTHS = ['Янв','Фев','Мар','Апр','Май','Июн','Июл','Авг','Сен','Окт','Ноя','Дек'];
 
   // Данные для графиков по умолчанию
   const defaultMonthlyData = [
@@ -293,7 +293,7 @@ export default function RadiationPage() {
           {/* Предупреждение */}
           <div className="bg-yellow-100 border-l-4 border-yellow-500 p-2 sm:p-3 md:p-4">
             <div className="flex items-start sm:items-center">
-              <AlertTriangle className="h-3 w-3 sm:h-4 sm:w-4 md:h-5 md:w-5 text-yellow-500 mr-2 mt-0.5 sm:mt-0 flex-shrink-0" />
+              <AlertTriangle className="h-3 w-3 sm:h-4 sm:w-4 md:h-5 md:w-5 text-yellow-500 mr-2 mt-0.5 sm:mt-0 shrink-0" />
 						<p className="text-yellow-800 text-xs sm:text-sm md:text-base">{t("notice.text")}</p>
             </div>
           </div>
@@ -577,8 +577,7 @@ export default function RadiationPage() {
                               name,
                             ]}
                             labelFormatter={(label) => {
-                              const ruMonths = ['Янв','Фев','Мар','Апр','Май','Июн','Июл','Авг','Сен','Окт','Ноя','Дек'];
-                              const idx = ruMonths.indexOf(label as string);
+                              const idx = RU_MONTHS.indexOf(label as string);
                               const monthLocalized = idx !== -1 && months[idx] ? months[idx] : label;
                               return `${t("radiation.monitoring.month")}: ${monthLocalized}`;
                             }}

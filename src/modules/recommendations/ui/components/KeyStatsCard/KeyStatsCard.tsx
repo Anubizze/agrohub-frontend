@@ -6,12 +6,12 @@ import {
   Sprout,
   Syringe,
 } from "lucide-react";
+import { useTranslations } from "next-intl";
 import React from "react";
 
 import { Badge } from "@/shared/components/ui";
 
 import type { KeyStat } from "../../../schemas/recommendation.schema";
-import { useTranslations } from "next-intl";
 
 /**
  * Пропсы для компонента KeyStatsCard
@@ -31,6 +31,7 @@ export interface KeyStatsCardProps {
  * @param props - Пропсы компонента
  * @param props.stat - Объект со статистикой
  * @param props.className - Дополнительные CSS классы
+ * @param props.index - Порядковый номер карточки в списке для выбора иконки
  * @returns JSX элемент карточки статистики
  * @example
  * ```typescript
@@ -56,10 +57,10 @@ export const KeyStatsCard: React.FC<KeyStatsCardProps> = ({
 
   // Иконки по индексу — не зависят от языка
   const icons: React.ReactNode[] = [
-    <BarChart3 className="w-4 h-4" strokeWidth={2} />, // total animals
-    <Syringe className="w-4 h-4" strokeWidth={2} />, // vaccinated
-    <Package className="w-4 h-4" strokeWidth={2} />, // export
-    <Sprout className="w-4 h-4" strokeWidth={2} />, // sown area
+    <BarChart3 key="bar-chart" className="w-4 h-4" strokeWidth={2} />, // total animals
+    <Syringe key="syringe" className="w-4 h-4" strokeWidth={2} />, // vaccinated
+    <Package key="package" className="w-4 h-4" strokeWidth={2} />, // export
+    <Sprout key="sprout" className="w-4 h-4" strokeWidth={2} />, // sown area
   ];
   const fixedIcon = icons[index] ?? (
     <BarChart3 className="w-4 h-4" strokeWidth={2} />

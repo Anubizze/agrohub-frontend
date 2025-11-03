@@ -1,6 +1,6 @@
 import { BarChart3, Crosshair, LineChart } from "lucide-react";
-import React from "react";
 import { useTranslations } from "next-intl";
+import React from "react";
 
 import { Card } from "@/shared/components/ui";
 

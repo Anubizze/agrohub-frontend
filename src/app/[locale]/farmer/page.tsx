@@ -12,8 +12,8 @@ import {
   Wheat,
 } from "lucide-react";
 import Link from "next/link";
-import React from "react";
 import { useTranslations } from "next-intl";
+import React from "react";
 
 import {
   Button,

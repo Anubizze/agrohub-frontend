@@ -1,6 +1,7 @@
 "use client";
 
 import { HeartPulse, Sprout } from "lucide-react";
+import { useTranslations } from "next-intl";
 import React from "react";
 import {
   PolarAngleAxis,
@@ -10,7 +11,6 @@ import {
   RadarChart,
   ResponsiveContainer,
 } from "recharts";
-import { useTranslations } from "next-intl";
 
 import { Card } from "@/shared/components/ui";
 import {

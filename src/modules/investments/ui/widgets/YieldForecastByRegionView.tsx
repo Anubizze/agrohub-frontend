@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import React from "react";
 import {
   Bar,
@@ -17,7 +18,6 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "@/shared/components/ui/chart";
-import { useTranslations } from "next-intl";
 
 /**
  * Данные для графика прогноза урожайности по регионам

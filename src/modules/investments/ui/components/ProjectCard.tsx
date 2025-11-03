@@ -1,7 +1,7 @@
 import { CheckCircle } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 import { Badge, Button } from "@/shared/components/ui";
-import { useTranslations } from "next-intl";
 
 interface ProjectCardProps {
   risk: "low" | "medium" | "high";

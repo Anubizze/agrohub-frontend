@@ -1,4 +1,5 @@
 import { Calculator } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 import {
   Button,
@@ -10,7 +11,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/shared/components/ui";
-import { useTranslations } from "next-intl";
 
 export const ROICalculator = () => {
   const t = useTranslations();

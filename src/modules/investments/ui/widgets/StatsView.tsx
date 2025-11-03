@@ -1,5 +1,6 @@
-import { StatsCard } from "../components/StatsCard";
 import { useTranslations } from "next-intl";
+
+import { StatsCard } from "../components/StatsCard";
 
 const base = [
   {

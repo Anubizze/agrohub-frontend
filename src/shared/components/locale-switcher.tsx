@@ -17,12 +17,16 @@ export const LocaleSwitcher = () => {
 		router.replace(pathname || "/", { locale });
 	};
 
+	const baseButtonClass = "px-3 py-1 rounded-md text-sm";
+	const activeButtonClass = "bg-[#486284] text-white";
+	const inactiveButtonClass = "bg-white text-[#486284] border";
+
 	return (
 		<div className="flex items-center gap-2">
 			<button
 				type="button"
 				onClick={() => switchTo("ru")}
-				className={`px-3 py-1 rounded-md text-sm ${isRu ? "bg-[#486284] text-white" : "bg-white text-[#486284] border"}`}
+				className={`${baseButtonClass} ${isRu ? activeButtonClass : inactiveButtonClass}`}
 				aria-pressed={isRu}
 			>
 				RU
@@ -30,7 +34,7 @@ export const LocaleSwitcher = () => {
 			<button
 				type="button"
 				onClick={() => switchTo("kk")}
-				className={`px-3 py-1 rounded-md text-sm ${isKk ? "bg-[#486284] text-white" : "bg-white text-[#486284] border"}`}
+				className={`${baseButtonClass} ${isKk ? activeButtonClass : inactiveButtonClass}`}
 				aria-pressed={isKk}
 			>
 				KZ
@@ -38,7 +42,7 @@ export const LocaleSwitcher = () => {
 			<button
 				type="button"
 				onClick={() => switchTo("en")}
-				className={`px-3 py-1 rounded-md text-sm ${isEn ? "bg-[#486284] text-white" : "bg-white text-[#486284] border"}`}
+				className={`${baseButtonClass} ${isEn ? activeButtonClass : inactiveButtonClass}`}
 				aria-pressed={isEn}
 			>
 				EN

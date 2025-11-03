@@ -1,5 +1,6 @@
-import { CropPriceStructureCard } from "../components/CropPriceStructureCard";
 import { useTranslations } from "next-intl";
+
+import { CropPriceStructureCard } from "../components/CropPriceStructureCard";
 
 const mockCropPriceData = [
   {

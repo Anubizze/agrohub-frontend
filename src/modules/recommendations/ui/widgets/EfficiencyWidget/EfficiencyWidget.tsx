@@ -1,5 +1,5 @@
-import React from "react";
 import { useTranslations } from "next-intl";
+import React from "react";
 
 import { useRecommendations } from "../../../hooks/useRecommendations";
 import { EfficiencyCard } from "../../components/EfficiencyCard/EfficiencyCard";

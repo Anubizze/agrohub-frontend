@@ -1,6 +1,7 @@
 "use client";
 
 import { Star } from "lucide-react";
+import { useTranslations } from "next-intl";
 import React from "react";
 
 import { Badge } from "@/shared/components/ui";
@@ -8,7 +9,6 @@ import { Badge } from "@/shared/components/ui";
 import { researchListMock } from "../../../model/research.mock-data";
 import type { Research } from "../../../schemas/research.schema";
 import { ResearchCard } from "../../components/research-card";
-import { useTranslations } from "next-intl";
 
 /**
  * Пропсы виджета каталога исследований

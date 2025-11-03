@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import React from "react";
 
 import { KeyStatsWidget } from "@/modules/recommendations";
@@ -8,7 +9,6 @@ import {
   ResearchCatalogWidget,
   ResearchFieldsDistributionWidget,
 } from "@/modules/science/ui/widgets";
-import { useTranslations } from "next-intl";
 
 export default function Page() {
   const t = useTranslations();

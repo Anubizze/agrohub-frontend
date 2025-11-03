@@ -1,5 +1,6 @@
-import { Badge } from "@/shared/components/ui";
 import { useTranslations } from "next-intl";
+
+import { Badge } from "@/shared/components/ui";
 
 interface CropPriceStructureCardProps {
   name: string;

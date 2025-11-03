@@ -1,6 +1,6 @@
 import { AlertTriangle, Lightbulb, Siren } from "lucide-react";
-import React from "react";
 import { useTranslations } from "next-intl";
+import React from "react";
 
 import { useRecommendations } from "../../../hooks/useRecommendations";
 import type { Recommendation } from "../../../schemas/recommendation.schema";

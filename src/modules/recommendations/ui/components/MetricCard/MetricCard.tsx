@@ -1,6 +1,6 @@
 import { AlertTriangle, BarChart3, CheckCircle2, Zap } from "lucide-react";
-import React from "react";
 import { useTranslations } from "next-intl";
+import React from "react";
 
 import { Badge } from "@/shared/components/ui";
 

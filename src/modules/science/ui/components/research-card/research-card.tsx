@@ -1,13 +1,13 @@
 "use client";
 
 import { BarChart3, Clock, FileText, Lock, Mountain, Star } from "lucide-react";
+import { useLocale, useTranslations } from "next-intl";
 import React from "react";
 
 import { Button } from "@/shared/components/ui";
 import { Badge } from "@/shared/components/ui";
 
 import type { Research } from "../../../schemas/research.schema";
-import { useLocale, useTranslations } from "next-intl";
 
 /**
  * Иконки для категорий исследований

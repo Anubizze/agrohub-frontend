@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import { AlertTriangle, BarChart3, CheckCircle2, Info } from "lucide-react";
-import React from "react";
 import { useTranslations } from "next-intl";
+import React from "react";
 
 import type { EfficiencyData } from "../../../schemas/recommendation.schema";
 

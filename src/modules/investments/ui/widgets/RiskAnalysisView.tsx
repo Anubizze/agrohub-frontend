@@ -1,5 +1,6 @@
-import { RiskAnalysisCard } from "../components/RiskAnalysisCard";
 import { useTranslations } from "next-intl";
+
+import { RiskAnalysisCard } from "../components/RiskAnalysisCard";
 
 const mock: {
   name: string;
