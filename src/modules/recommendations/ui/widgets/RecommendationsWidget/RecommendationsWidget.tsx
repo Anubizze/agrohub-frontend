@@ -1,5 +1,6 @@
 import { AlertTriangle, Lightbulb, Siren } from "lucide-react";
 import React from "react";
+import { useTranslations } from "next-intl";
 
 import { useRecommendations } from "../../../hooks/useRecommendations";
 import type { Recommendation } from "../../../schemas/recommendation.schema";
@@ -34,6 +35,7 @@ export const RecommendationsWidget: React.FC<RecommendationsWidgetProps> = ({
   onViewDetails,
 }) => {
   const { data } = useRecommendations();
+  const t = useTranslations("recommendation.recommendations");
 
   // Группируем рекомендации по приоритету
   const groupedRecommendations = data.recommendations.reduce((acc, rec) => {
@@ -52,10 +54,10 @@ export const RecommendationsWidget: React.FC<RecommendationsWidgetProps> = ({
       {/* Заголовок секции */}
       <div className="space-y-2">
         <h2 className="text-3xl font-bold tracking-tight bg-gradient-to-r from-orange-900 to-red-600 bg-clip-text text-transparent">
-          Рекомендации для улучшения эффективности
+          {t("title")}
         </h2>
         <p className="text-gray-600 text-lg">
-          Персонализированные рекомендации на основе анализа вашего хозяйства
+          {t("subtitle")}
         </p>
       </div>
 
@@ -70,10 +72,10 @@ export const RecommendationsWidget: React.FC<RecommendationsWidgetProps> = ({
             </div>
             <div>
               <p className="text-sm font-medium text-red-700">
-                Высокий приоритет
+                {t("highPriority")}
               </p>
               <p className="text-xs text-red-600">
-                Требуют немедленного внимания
+                {t("highPriorityDesc")}
               </p>
             </div>
           </div>
@@ -88,10 +90,10 @@ export const RecommendationsWidget: React.FC<RecommendationsWidgetProps> = ({
             </div>
             <div>
               <p className="text-sm font-medium text-yellow-700">
-                Средний приоритет
+                {t("mediumPriority")}
               </p>
               <p className="text-xs text-yellow-600">
-                Планируйте в ближайшее время
+                {t("mediumPriorityDesc")}
               </p>
             </div>
           </div>
@@ -106,9 +108,9 @@ export const RecommendationsWidget: React.FC<RecommendationsWidgetProps> = ({
             </div>
             <div>
               <p className="text-sm font-medium text-gray-700">
-                Низкий приоритет
+                {t("lowPriority")}
               </p>
-              <p className="text-xs text-gray-600">Долгосрочные улучшения</p>
+              <p className="text-xs text-gray-600">{t("lowPriorityDesc")}</p>
             </div>
           </div>
         </div>
@@ -122,17 +124,17 @@ export const RecommendationsWidget: React.FC<RecommendationsWidgetProps> = ({
 
           const priorityLabels = {
             high: {
-              label: "Высокий приоритет",
+              label: t("highPriority"),
               icon: <Siren className="w-5 h-5 text-white" />,
               color: "red",
             },
             medium: {
-              label: "Средний приоритет",
+              label: t("mediumPriority"),
               icon: <AlertTriangle className="w-5 h-5 text-white" />,
               color: "yellow",
             },
             low: {
-              label: "Низкий приоритет",
+              label: t("lowPriority"),
               icon: <Lightbulb className="w-5 h-5 text-white" />,
               color: "gray",
             },
@@ -162,7 +164,7 @@ export const RecommendationsWidget: React.FC<RecommendationsWidgetProps> = ({
                     {config.label}
                   </h3>
                   <p className="text-sm text-gray-600">
-                    {recommendations.length} рекомендаций
+                    {recommendations.length} {t("prioritySuffix")}
                   </p>
                 </div>
               </div>
@@ -212,13 +214,10 @@ export const RecommendationsWidget: React.FC<RecommendationsWidgetProps> = ({
           </div>
           <div className="flex-1">
             <h3 className="text-lg font-semibold text-gray-900 mb-2">
-              Как использовать рекомендации
+              {t("howToUseTitle")}
             </h3>
             <p className="text-gray-600 text-sm leading-relaxed">
-              Начните с рекомендаций высокого приоритета для максимального
-              эффекта. Каждая рекомендация содержит подробный план действий,
-              сроки выполнения и ожидаемые результаты. Регулярно отслеживайте
-              прогресс для достижения поставленных целей.
+              {t("howToUseText")}
             </p>
           </div>
         </div>

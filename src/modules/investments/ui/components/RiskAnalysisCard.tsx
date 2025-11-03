@@ -2,6 +2,7 @@ import { AlertCircle, AlertTriangle, CheckCircle } from "lucide-react";
 
 import { Badge } from "@/shared/components/ui";
 import { Progress } from "@/shared/components/ui/progress";
+import { useTranslations } from "next-intl";
 interface RiskAnalysisCardProps {
   name: string;
   status: "low" | "medium" | "high";
@@ -14,6 +15,13 @@ export const RiskAnalysisCard = ({
   progress,
   note,
 }: RiskAnalysisCardProps) => {
+  const t = useTranslations();
+  const level =
+    status === "low"
+      ? t("investments.common.low")
+      : status === "medium"
+      ? t("investments.common.medium")
+      : t("investments.common.high");
   return (
     <section className="flex flex-col gap-2">
       <div className="flex justify-between items-center">
@@ -27,7 +35,7 @@ export const RiskAnalysisCard = ({
           {status === "high" && (
             <AlertCircle className="h-4 w-4 text-red-500" />
           )}
-          {{ low: "Низкий", medium: "Средний", high: "Высокий" }[status]} {name}
+          {level} {name}
         </h4>
         <Badge
           variant={
@@ -38,7 +46,7 @@ export const RiskAnalysisCard = ({
               : "destructive"
           }
         >
-          {{ low: "Низкий", medium: "Средний", high: "Высокий" }[status]}
+          {level}
         </Badge>
       </div>
       <Progress

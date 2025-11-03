@@ -20,6 +20,7 @@ import {
 } from "@/shared/components/ui/chart";
 
 import { GROWTH_CHART_CONFIG } from "../../../constants/recommendation.constants";
+import { useTranslations } from "next-intl";
 import { useRecommendations } from "../../../hooks/useRecommendations";
 import { GrowthStatsCard } from "../../components/GrowthStatsCard/GrowthStatsCard";
 
@@ -46,7 +47,15 @@ export const GrowthForecastWidget: React.FC<GrowthForecastWidgetProps> = ({
   className,
 }) => {
   const { getGrowthForecast } = useRecommendations();
-  const growthForecast = getGrowthForecast;
+  const t = useTranslations();
+  const growthForecastRaw = getGrowthForecast;
+  
+  // Локализуем месяцы
+  const months = t.raw("science.months") as string[];
+  const growthForecast = growthForecastRaw.map((point, index) => ({
+    ...point,
+    month: months[index] || point.month,
+  }));
 
   // Вычисляем статистику для карточек
   const currentEfficiency = growthForecast[5]?.actual || 0; // около июня
@@ -58,11 +67,9 @@ export const GrowthForecastWidget: React.FC<GrowthForecastWidgetProps> = ({
       {/* Заголовок секции */}
       <div className="space-y-2">
         <h2 className="text-3xl font-bold tracking-tight bg-gradient-to-r from-indigo-900 to-purple-600 bg-clip-text text-transparent">
-          Прогноз динамики роста эффективности
+          {t("recommendation.growth.title")}
         </h2>
-        <p className="text-gray-600 text-lg">
-          Прогнозируемые показатели при соблюдении рекомендаций
-        </p>
+        <p className="text-gray-600 text-lg">{t("recommendation.growth.subtitle")}</p>
       </div>
 
       {/* Основная диаграмма */}
@@ -87,10 +94,10 @@ export const GrowthForecastWidget: React.FC<GrowthForecastWidgetProps> = ({
             </div>
             <div>
               <h3 className="text-lg font-semibold text-gray-900">
-                Динамика эффективности
+                {t("recommendation.growth.chartTitle")}
               </h3>
               <p className="text-sm text-gray-600">
-                Текущие показатели и прогноз на 12 месяцев
+                {t("recommendation.growth.chartSubtitle")}
               </p>
             </div>
           </div>
@@ -99,7 +106,10 @@ export const GrowthForecastWidget: React.FC<GrowthForecastWidgetProps> = ({
           <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl p-4">
             <ChartContainer
               className="aspect-[16/7]"
-              config={GROWTH_CHART_CONFIG}
+              config={{
+                actual: { label: t("recommendation.growth.series.actual"), color: "hsl(221 83% 53%)" },
+                projected: { label: t("recommendation.growth.series.projected"), color: "hsl(262 83% 57%)" },
+              }}
             >
               <ResponsiveContainer>
                 <LineChart
@@ -193,13 +203,10 @@ export const GrowthForecastWidget: React.FC<GrowthForecastWidgetProps> = ({
           </div>
           <div className="flex-1">
             <h3 className="text-lg font-semibold text-gray-900 mb-2">
-              Методология прогнозирования
+              {t("recommendation.growth.methodologyTitle")}
             </h3>
             <p className="text-gray-600 text-sm leading-relaxed">
-              Прогноз основан на анализе текущих показателей эффективности и
-              предполагаемом влиянии рекомендаций. Учитываются сезонные факторы,
-              исторические данные и потенциальные риски. Регулярное обновление
-              данных обеспечивает точность прогноза.
+              {t("recommendation.growth.methodologyText")}
             </p>
           </div>
         </div>

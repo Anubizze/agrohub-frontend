@@ -1,3 +1,5 @@
+"use client";
+
 import {
   CropPriceStructureView,
   Projects,
@@ -8,15 +10,16 @@ import {
   StatsView,
   YieldForecastByRegionView,
 } from "@/modules/investments/ui/widgets";
+import { useTranslations } from "next-intl";
 
 export default function InvestmentsPage() {
+  const t = useTranslations("investments");
   return (
     <section className="max-w-7xl mx-auto mt-20 flex flex-col gap-16">
       <section className="text-center">
-        <h1 className="text-2xl font-bold">Инвестиционные возможности</h1>
+        <h1 className="text-2xl font-bold">{t("title")}</h1>
         <p className="text-gray-500">
-          Откройте для себя прибыльные инвестиционные проекты в агропромышленном
-          комплексе Абайской области
+          {t("subtitle")}
         </p>
       </section>
       <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-6 mb-8">
@@ -24,11 +27,10 @@ export default function InvestmentsPage() {
           <span className="text-yellow-600 text-xl">⚠️</span>
           <div>
             <h3 className="text-lg font-semibold text-yellow-800 mb-2">
-              Важное уведомление
+              {t("notice.title")}
             </h3>
             <p className="text-yellow-700">
-              Представленные ниже данные носят исключительно примерный и
-              демонстрационный характер. Они служат для иллюстрации.
+              {t("notice.text")}
             </p>
           </div>
         </div>

@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { useTranslations } from "next-intl";
 
 import { Badge, Button, Card } from "@/shared/components/ui";
 
@@ -50,9 +51,25 @@ export const RecommendationCard: React.FC<RecommendationCardProps> = ({
   onViewDetails,
 }) => {
   const priorityConfig = PRIORITY_MAP[recommendation.priority];
+  const t = useTranslations("recommendation");
+  const tCard = useTranslations("recommendation.card");
 
   const handleViewDetails = () => {
     onViewDetails?.(recommendation);
+  };
+  
+  // Get translated priority label
+  const getPriorityLabel = () => {
+    switch (recommendation.priority) {
+      case "high":
+        return t("priority.high");
+      case "medium":
+        return t("priority.medium");
+      case "low":
+        return t("priority.low");
+      default:
+        return priorityConfig.label;
+    }
   };
 
   return (
@@ -62,7 +79,7 @@ export const RecommendationCard: React.FC<RecommendationCardProps> = ({
           {recommendation.category}
         </p>
         <Badge className={priorityConfig.className}>
-          {priorityConfig.label}
+          {getPriorityLabel()}
         </Badge>
       </div>
       <h3 className="text-base font-semibold text-red-600">
@@ -79,7 +96,7 @@ export const RecommendationCard: React.FC<RecommendationCardProps> = ({
           className="gap-2"
           onClick={handleViewDetails}
         >
-          Подробный план
+          {tCard("viewDetails")}
         </Button>
       </div>
     </Card>

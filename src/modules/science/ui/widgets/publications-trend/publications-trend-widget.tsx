@@ -16,43 +16,59 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "@/shared/components/ui/chart";
+import { useTranslations } from "next-intl";
 
-const data = [
-  { month: "Янв", publications: 18 },
-  { month: "Фев", publications: 22 },
-  { month: "Мар", publications: 24 },
-  { month: "Апр", publications: 28 },
-  { month: "Май", publications: 30 },
-  { month: "Июн", publications: 27 },
-  { month: "Июл", publications: 25 },
-  { month: "Авг", publications: 29 },
-  { month: "Сен", publications: 35 },
-  { month: "Окт", publications: 38 },
-  { month: "Ноя", publications: 40 },
-  { month: "Дек", publications: 45 },
+const makeData = (m: string[]) => [
+  { month: m[0], publications: 18 },
+  { month: m[1], publications: 22 },
+  { month: m[2], publications: 24 },
+  { month: m[3], publications: 28 },
+  { month: m[4], publications: 30 },
+  { month: m[5], publications: 27 },
+  { month: m[6], publications: 25 },
+  { month: m[7], publications: 29 },
+  { month: m[8], publications: 35 },
+  { month: m[9], publications: 38 },
+  { month: m[10], publications: 40 },
+  { month: m[11], publications: 45 },
 ];
 
 const PRIMARY_COLOR = "#6366f1"; // indigo-500
 
-const chartConfig = {
+const chartConfig = (label: string) => ({
   publications: {
-    label: "Публикации",
+    label,
     color: PRIMARY_COLOR,
   },
-} as const;
+}) as const;
 
 export const PublicationsTrendWidget: React.FC = () => {
+  const t = useTranslations();
+  const months = [
+    t("science.months.0"),
+    t("science.months.1"),
+    t("science.months.2"),
+    t("science.months.3"),
+    t("science.months.4"),
+    t("science.months.5"),
+    t("science.months.6"),
+    t("science.months.7"),
+    t("science.months.8"),
+    t("science.months.9"),
+    t("science.months.10"),
+    t("science.months.11"),
+  ];
+  const data = makeData(months);
+  const label = t("science.publications.seriesLabel");
   return (
     <Card className="bg-gradient-to-b from-white to-sky-50/40">
       <CardHeader>
-        <CardTitle>Динамика публикаций (12 мес.)</CardTitle>
-        <CardDescription>
-          Количество научных публикаций по месяцам за последний год.
-        </CardDescription>
+        <CardTitle>{t("science.publications.title")}</CardTitle>
+        <CardDescription>{t("science.publications.description")}</CardDescription>
       </CardHeader>
       <CardContent>
         <ChartContainer
-          config={chartConfig}
+          config={chartConfig(label)}
           className="h-72 max-w-[760px] mx-auto"
         >
           <AreaChart data={data} margin={{ left: 12, right: 12 }}>
@@ -68,7 +84,7 @@ export const PublicationsTrendWidget: React.FC = () => {
               axisLine={false}
               width={36}
               label={{
-                value: "Публикации, шт.",
+                value: t("science.publications.yAxis"),
                 angle: -90,
                 position: "insideLeft",
               }}

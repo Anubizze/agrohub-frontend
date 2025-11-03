@@ -1,3 +1,4 @@
+"use client";
 import Image from "next/image";
 
 import { Menu } from "lucide-react";
@@ -11,6 +12,8 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "./ui/sheet";
+import { useLocale, useTranslations } from "next-intl";
+import { LocaleSwitcher } from "./locale-switcher";
 
 export const Header = () => {
   return (
@@ -28,51 +31,48 @@ export const Header = () => {
     </header>
   );
 };
-const navlinks = [
+const navlinks = (t: ReturnType<typeof useTranslations>) => [
   {
-    name: "Главная",
+    name: t("header.nav.home"),
     href: "/",
   },
   {
-    name: "Науке",
+    name: t("header.nav.science"),
     href: "/science",
   },
   {
-    name: "Инвестору",
+    name: t("header.nav.investments"),
     href: "/investments",
   },
   {
-    name: "Фермеру",
+    name: t("header.nav.farmer"),
     href: "/farmer",
   },
   {
-    name: "Радиационный фон",
+    name: t("header.nav.radiation"),
     href: "/radiation/login",
   },
-  // {
-  //   name: "О нас",
-  //   href: "/about",
-  // },
-  // {
-  //   name: "Контакты",
-  //   href: "/contacts",
-  // },
 ];
 export const Navbar = () => {
+  const t = useTranslations();
   return (
     <nav className="bg-slate-200 h-15  items-center hidden xl:flex">
       <section className="max-w-[1200px]  mx-auto flex gap-5  items-center justify-center">
-        {navlinks.map((l) => (
+        {navlinks(t).map((l) => (
           <Link key={l.name} href={l.href}>
             {l.name}
           </Link>
         ))}
+        <div className="ml-6">
+          <LocaleSwitcher />
+        </div>
       </section>
     </nav>
   );
 };
 
 const BurgerMenu = () => {
+  const t = useTranslations();
   return (
     <Sheet>
       <SheetTrigger className="xl:hidden flex items-center justify-center rounded-md w-10 h-10 bg-slate-100  ">
@@ -80,30 +80,30 @@ const BurgerMenu = () => {
       </SheetTrigger>
       <SheetContent>
         <SheetHeader className="opacity-0 h-0">
-          <SheetTitle>Are you absolutely sure?</SheetTitle>
-          <SheetDescription>
-            This action cannot be undone. This will permanently delete your
-            account and remove your data from our servers.
-          </SheetDescription>
+          <SheetTitle> </SheetTitle>
+          <SheetDescription> </SheetDescription>
         </SheetHeader>
         <section className="flex flex-col gap-4 px-2 h-full">
-          <h1 className="text-2xl font-semibold">Меню</h1>
+          <h1 className="text-2xl font-semibold">{t("header.menu")}</h1>
           <div>
-            <h2 className="text-lg font-semibold mb-5">Навигация</h2>
+            <h2 className="text-lg font-semibold mb-5">{t("header.navigation")}</h2>
             <div className="flex flex-col gap-2">
-              {navlinks.map((l) => (
+              {navlinks(t).map((l) => (
                 <Link key={l.name} href={l.href} className="text-gray-500">
                   {l.name}
                 </Link>
               ))}
             </div>
           </div>
+          <div className="pt-4">
+            <LocaleSwitcher />
+          </div>
           <div className="space-y-2 mt-20">
-            <h2>Социальные сети</h2>
+            <h2>{t("header.social")}</h2>
             <SocialLinkList />
           </div>
           <div className="space-y-2">
-            <h2>Контакты</h2>
+            <h2>{t("header.contacts")}</h2>
             <ContactUsList dir="column" />
           </div>
         </section>
@@ -144,6 +144,7 @@ const SocialLinkList = () => {
   );
 };
 const ContactUsList = ({ dir }: { dir: "row" | "column" }) => {
+  const t = useTranslations();
   return (
     <section
       className={cn("flex gap-3", dir === "column" ? "flex-col" : "flex-row")}
@@ -151,7 +152,7 @@ const ContactUsList = ({ dir }: { dir: "row" | "column" }) => {
       <div className="flex gap-2">
         <Image src="/header/phone.svg" alt="phone" width={24} height={24} />
         <div className="flex flex-col gap-.5">
-          <span className="text-xs text-gray-400">Контакты</span>
+          <span className="text-xs text-gray-400">{t("header.contact.labelPhone")}</span>
           <a href="tel:+77476219861" className="text-sm whitespace-nowrap">
             +7 747 621 98 61
           </a>
@@ -160,7 +161,7 @@ const ContactUsList = ({ dir }: { dir: "row" | "column" }) => {
       <div className="flex gap-2">
         <Image src="/header/mail.svg" alt="phone" width={24} height={24} />
         <div className="flex flex-col gap-.5">
-          <span className="text-xs text-gray-400">Почта</span>
+          <span className="text-xs text-gray-400">{t("header.contact.labelEmail")}</span>
           <a
             href="mailto:innovation@shakarim.kz"
             className="text-sm whitespace-nowrap"
@@ -172,10 +173,10 @@ const ContactUsList = ({ dir }: { dir: "row" | "column" }) => {
       <div className="flex gap-2">
         <Image src="/header/geo.svg" alt="phone" width={28} height={28} />
         <div className="flex flex-col gap-.5">
-          <span className="text-xs text-gray-400">Адрес</span>
+          <span className="text-xs text-gray-400">{t("header.contact.labelAddress")}</span>
           <div className="text-sm leading-tight">
-            <p>г. Семей, ул.Глинки 20А</p>
-            <p>Кабинет 504</p>
+            <p>{t("header.contact.addressLine1")}</p>
+            <p>{t("header.contact.addressLine2")}</p>
           </div>
         </div>
       </div>

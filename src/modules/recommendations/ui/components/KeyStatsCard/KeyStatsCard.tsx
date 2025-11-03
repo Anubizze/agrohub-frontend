@@ -11,6 +11,7 @@ import React from "react";
 import { Badge } from "@/shared/components/ui";
 
 import type { KeyStat } from "../../../schemas/recommendation.schema";
+import { useTranslations } from "next-intl";
 
 /**
  * Пропсы для компонента KeyStatsCard
@@ -20,6 +21,8 @@ export interface KeyStatsCardProps {
   stat: KeyStat;
   /** Дополнительные CSS классы */
   className?: string;
+  /** Порядковый номер карточки в списке для выбора иконки */
+  index?: number;
 }
 
 /**
@@ -39,7 +42,9 @@ export interface KeyStatsCardProps {
 export const KeyStatsCard: React.FC<KeyStatsCardProps> = ({
   stat,
   className,
+  index = 0,
 }) => {
+  const t = useTranslations();
   // Нейтральная тема карточки (сдержанная палитра)
   const theme = {
     border: "border-gray-200",
@@ -49,37 +54,37 @@ export const KeyStatsCard: React.FC<KeyStatsCardProps> = ({
     title: "text-gray-700",
   } as const;
 
-  // Фиксированные иконки по текущим карточкам (без includes)
-  const iconByTitle: Record<string, React.ReactNode> = {
-    "Всего животных": <BarChart3 className="w-4 h-4" strokeWidth={2} />,
-    "Привитые животные": <Syringe className="w-4 h-4" strokeWidth={2} />,
-    "Экспорт продукции": <Package className="w-4 h-4" strokeWidth={2} />,
-    "Посевные площади": <Sprout className="w-4 h-4" strokeWidth={2} />,
-  };
-  const fixedIcon = iconByTitle[stat.title] ?? (
+  // Иконки по индексу — не зависят от языка
+  const icons: React.ReactNode[] = [
+    <BarChart3 className="w-4 h-4" strokeWidth={2} />, // total animals
+    <Syringe className="w-4 h-4" strokeWidth={2} />, // vaccinated
+    <Package className="w-4 h-4" strokeWidth={2} />, // export
+    <Sprout className="w-4 h-4" strokeWidth={2} />, // sown area
+  ];
+  const fixedIcon = icons[index] ?? (
     <BarChart3 className="w-4 h-4" strokeWidth={2} />
   );
   let iconContainerClasses = "bg-gray-100 border-gray-200";
   let iconColorClass = "text-gray-600";
   let valueColorClass = `${theme.value}`;
 
-  switch (stat.title) {
-    case "Всего животных":
+  switch (index) {
+    case 0:
       iconContainerClasses = "bg-indigo-50 border-indigo-200";
       iconColorClass = "text-indigo-700";
       valueColorClass = "text-indigo-800";
       break;
-    case "Привитые животные":
+    case 1:
       iconContainerClasses = "bg-teal-50 border-teal-200";
       iconColorClass = "text-teal-700";
       valueColorClass = "text-teal-800";
       break;
-    case "Экспорт продукции":
+    case 2:
       iconContainerClasses = "bg-stone-50 border-stone-200";
       iconColorClass = "text-stone-700";
       valueColorClass = "text-stone-800";
       break;
-    case "Посевные площади":
+    case 3:
       iconContainerClasses = "bg-emerald-50 border-emerald-200";
       iconColorClass = "text-emerald-700";
       valueColorClass = "text-emerald-800";
@@ -163,7 +168,11 @@ export const KeyStatsCard: React.FC<KeyStatsCardProps> = ({
                 : "text-gray-500"
             }
           >
-            {isUp ? "рост" : isDown ? "снижение" : "изменение"}
+            {isUp
+              ? t("science.keyStats.change.up")
+              : isDown
+              ? t("science.keyStats.change.down")
+              : t("science.keyStats.change.neutral")}
           </span>
         </div>
       </div>

@@ -18,6 +18,8 @@ import {
   ChartTooltipContent,
 } from "@/shared/components/ui/chart";
 
+import { useTranslations } from "next-intl";
+
 export const description = "Динамика инвестиций";
 
 const chartData = [
@@ -30,11 +32,11 @@ const chartData = [
 
 const chartConfig = {
   baseInvestment: {
-    label: "Базовые инвестиции",
+    label: "",
     color: "#14b8a6", // teal-500
   },
   additionalInvestment: {
-    label: "Дополнительные инвестиции",
+    label: "",
     color: "#0ea5e9", // sky-500
   },
 } satisfies ChartConfig;
@@ -49,19 +51,22 @@ const chartConfig = {
  * ```
  */
 export function RegionAnalyticsView() {
+  const t = useTranslations();
+  const localizedConfig = {
+    baseInvestment: { ...chartConfig.baseInvestment, label: t("investments.region.base") },
+    additionalInvestment: { ...chartConfig.additionalInvestment, label: t("investments.region.additional") },
+  } as ChartConfig;
   return (
     <Card>
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
           <TrendingUp className="h-5 w-5" />
-          Динамика инвестиций
+          {t("investments.region.title")}
         </CardTitle>
-        <CardDescription>
-          Показывает рост инвестиций в АПК за последние 5 лет
-        </CardDescription>
+        <CardDescription>{t("investments.region.subtitle")}</CardDescription>
       </CardHeader>
       <CardContent>
-        <ChartContainer config={chartConfig} className="h-[300px] w-full">
+        <ChartContainer config={localizedConfig} className="h-[300px] w-full">
           <AreaChart
             accessibilityLayer
             data={chartData}
@@ -118,10 +123,10 @@ export function RegionAnalyticsView() {
         <div className="flex w-full items-start gap-2 text-sm">
           <div className="grid gap-2">
             <div className="flex items-center gap-2 leading-none font-medium">
-              Рост инвестиций на 57% за 5 лет <TrendingUp className="h-4 w-4" />
+              {t("investments.region.footerMain")} <TrendingUp className="h-4 w-4" />
             </div>
             <div className="text-muted-foreground flex items-center gap-2 leading-none">
-              2020 - 2024 гг.
+              {t("investments.region.footerRange")}
             </div>
           </div>
         </div>

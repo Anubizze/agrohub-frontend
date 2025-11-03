@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslations } from "next-intl";
 
 import { useRecommendations } from "../../../hooks/useRecommendations";
 import { EfficiencyCard } from "../../components/EfficiencyCard/EfficiencyCard";
@@ -26,16 +27,17 @@ export const EfficiencyWidget: React.FC<EfficiencyWidgetProps> = ({
   className,
 }) => {
   const { data } = useRecommendations();
+  const t = useTranslations("recommendation.efficiency");
 
   return (
     <section className={`space-y-8 ${className || ""}`}>
       {/* Заголовок секции */}
       <div className="space-y-2">
         <h2 className="text-3xl font-bold tracking-tight bg-gradient-to-r from-purple-900 to-indigo-600 bg-clip-text text-transparent">
-          Эффективность реализации продукции
+          {t("title")}
         </h2>
         <p className="text-gray-600 text-lg">
-          Анализ показателей эффективности и потенциала роста
+          {t("subtitle")}
         </p>
       </div>
 
@@ -79,12 +81,10 @@ export const EfficiencyWidget: React.FC<EfficiencyWidgetProps> = ({
           </div>
           <div className="flex-1">
             <h3 className="text-lg font-semibold text-gray-900 mb-2">
-              Аналитическая сводка
+              {t("summaryTitle")}
             </h3>
             <p className="text-gray-600 text-sm leading-relaxed">
-              Показатели эффективности рассчитываются на основе текущих данных о
-              производстве, продажах и рыночных условиях. Рекомендуется
-              регулярно отслеживать изменения для оптимизации бизнес-процессов.
+              {t("summaryText")}
             </p>
           </div>
         </div>

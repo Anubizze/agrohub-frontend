@@ -1,4 +1,5 @@
 import { Badge } from "@/shared/components/ui";
+import { useTranslations } from "next-intl";
 
 interface CropPriceStructureCardProps {
   name: string;
@@ -12,6 +13,7 @@ export const CropPriceStructureCard = ({
   exportPrice,
   exportPercentage,
 }: CropPriceStructureCardProps) => {
+  const t = useTranslations();
   return (
     <section className="border rounded-xl p-4">
       <div className="flex justify-between items-center">
@@ -20,11 +22,11 @@ export const CropPriceStructureCard = ({
       </div>
       <section className="flex   gap-[30%]">
         <div>
-          <span className="text-sm text-gray-500">Внутренний рынок</span>
+          <span className="text-sm text-gray-500">{t("investments.crops.inside")}</span>
           <p>{insidePrice}</p>
         </div>
         <div>
-          <span className="text-sm text-gray-500">Экспорт</span>
+          <span className="text-sm text-gray-500">{t("investments.crops.exportLabel")}</span>
           <p>{exportPrice}</p>
         </div>
       </section>

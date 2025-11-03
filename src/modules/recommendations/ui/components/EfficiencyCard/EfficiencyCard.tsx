@@ -1,6 +1,7 @@
 import clsx from "clsx";
 import { AlertTriangle, BarChart3, CheckCircle2, Info } from "lucide-react";
 import React from "react";
+import { useTranslations } from "next-intl";
 
 import type { EfficiencyData } from "../../../schemas/recommendation.schema";
 
@@ -37,6 +38,8 @@ export const EfficiencyCard = ({
   efficiencyData,
   className,
 }: EfficiencyCardProps) => {
+  const t = useTranslations("recommendation.status");
+  
   // Нейтральная тема карточки, статус влияет только на маленькую точку-индикатор
   const theme = {
     border: "border-gray-200",
@@ -55,46 +58,57 @@ export const EfficiencyCard = ({
     dot: string;
     label: string;
   };
+  
+  // Get translated label for status
+  const getStatusLabel = (status: string): string => {
+    switch (status) {
+      case "good":
+        return t("excellent");
+      case "warning":
+        return t("requiresAttention");
+      case "info":
+        return t("excellent");
+      case "error":
+        return t("requiresAttention");
+      default:
+        return "";
+    }
+  };
 
-  const statusStyles: Record<StatusKey | "default", StatusStyle> = {
+  const statusStyles: Record<StatusKey | "default", Omit<StatusStyle, "label">> = {
     good: {
       bgBorder: "bg-emerald-50 border-emerald-200",
       icon: "text-emerald-600",
       value: "text-emerald-800",
       dot: "bg-emerald-500",
-      label: "отлично",
     },
     warning: {
       bgBorder: "bg-amber-50 border-amber-200",
       icon: "text-amber-600",
       value: "text-amber-800",
       dot: "bg-amber-500",
-      label: "внимание",
     },
     info: {
       bgBorder: "bg-blue-50 border-blue-200",
       icon: "text-blue-600",
       value: "text-blue-800",
       dot: "bg-blue-500",
-      label: "инфо",
     },
     error: {
       bgBorder: "bg-red-50 border-red-200",
       icon: "text-red-600",
       value: "text-red-800",
       dot: "bg-red-500",
-      label: "ошибка",
     },
     default: {
       bgBorder: "bg-gray-100 border-gray-200",
       icon: "text-gray-500",
       value: theme.value,
       dot: "bg-gray-400",
-      label: "",
     },
   } as const;
 
-  const getStatusStyles = (status: string): StatusStyle =>
+  const getStatusStyles = (status: string): Omit<StatusStyle, "label"> =>
     statusStyles[(status as StatusKey) || "default"] || statusStyles.default;
 
   // Выбор Lucide-иконки по статусу (цвет задается контейнером)
@@ -169,7 +183,7 @@ export const EfficiencyCard = ({
               )}
             />
             <span className="text-xs text-gray-500 font-medium">
-              {getStatusStyles(efficiencyData.status).label}
+              {getStatusLabel(efficiencyData.status)}
             </span>
           </div>
         </div>

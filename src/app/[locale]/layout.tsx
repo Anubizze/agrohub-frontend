@@ -3,7 +3,6 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { notFound } from "next/navigation";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
-import { getMessages } from "next-intl/server";
 
 import { Footer, Header } from "@/shared/components";
 import { Toaster } from "@/shared/components/ui";
@@ -22,9 +21,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Create Next App with Crystal Architecture",
+  title: "AgroHub — платформа сельского хозяйства Абайской области",
   description:
-    "This is a starter template for Next.js with Crystal Architecture.",
+    "Цифровая платформа для развития сельского хозяйства Абайской области",
 };
 
 export async function generateStaticParams() {
@@ -36,28 +35,23 @@ export default async function LocaleLayout({
   params,
 }: {
   children: React.ReactNode;
-  params: Promise<{ locale: string }>;
+  params: { locale: string };
 }) {
-  const { locale } = await params;
+  const { locale } = params;
   if (!hasLocale(routing.locales, locale)) {
     notFound();
   }
-  const messages = await getMessages();
+  // Явно импортируем словари по параметру локали, чтобы исключить авто-детеκт
+  const messages = (await import("../../../messages/" + locale + ".json")).default;
 
   return (
-    <html lang={locale}>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        <NextIntlClientProvider locale={locale} messages={messages}>
+    <NextIntlClientProvider locale={locale} messages={messages}>
           <QueryProvider>
             <Header />
             <main>{children}</main>
             <Footer />
           </QueryProvider>
+      <Toaster richColors closeButton />
         </NextIntlClientProvider>
-        <Toaster richColors closeButton />
-      </body>
-    </html>
   );
 }

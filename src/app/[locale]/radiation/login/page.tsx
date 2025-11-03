@@ -6,6 +6,7 @@ import { useState } from "react";
 
 import { Button } from "@/shared/components/ui";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/shared/components/ui/card";
+import { useTranslations } from "next-intl";
 
 /**
  * Страница входа для специалистов экологического мониторинга
@@ -14,6 +15,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/sha
 export default function RadiationLoginPage() {
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
+  const t = useTranslations();
 
   const handleLogin = async () => {
     setIsLoading(true);
@@ -26,7 +28,7 @@ export default function RadiationLoginPage() {
     localStorage.setItem("radiation_user", "Специалист");
     
     // Перенаправляем на страницу мониторинга
-    router.push("/ru/radiation");
+    router.push("/radiation");
   };
 
   return (
@@ -38,10 +40,10 @@ export default function RadiationLoginPage() {
               <Shield className="h-5 w-5 sm:h-6 sm:w-6 text-red-600" />
             </div>
             <CardTitle className="text-xl sm:text-2xl font-bold text-gray-900">
-              Ограниченный доступ
+              {t("radiation.login.title")}
             </CardTitle>
             <CardDescription className="text-sm sm:text-base">
-              Данный раздел доступен только авторизованным специалистам службы экологического мониторинга
+              {t("radiation.login.description")}
             </CardDescription>
           </CardHeader>
           <CardContent className="text-center p-4 sm:p-6">
@@ -51,10 +53,10 @@ export default function RadiationLoginPage() {
               disabled={isLoading}
             >
               <Lock className="h-3 w-3 sm:h-4 sm:w-4 mr-2" />
-              {isLoading ? "Вход..." : "Войти как специалист"}
+              {isLoading ? t("radiation.login.loggingIn") : t("radiation.login.login")}
             </Button>
             <p className="mt-4 text-xs text-gray-500">
-              * Демонстрационный доступ для показа функционала
+              * {t("radiation.login.demoAccess")}
             </p>
           </CardContent>
         </Card>

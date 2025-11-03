@@ -14,8 +14,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "AgroHub - Абай облысының ауыл шаруашылығы платформасы",
-  description: "Абай облысының ауыл шаруашылығын дамытуға арналған цифрлық платформа",
+  title: "AgroHub — платформа сельского хозяйства Абайской области",
+  description: "Цифровая платформа для развития сельского хозяйства Абайской области",
 };
 
 export default function RootLayout({
@@ -24,7 +24,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="kk">
+    <html lang="ru">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >

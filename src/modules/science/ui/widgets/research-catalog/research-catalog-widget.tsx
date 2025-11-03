@@ -8,6 +8,7 @@ import { Badge } from "@/shared/components/ui";
 import { researchListMock } from "../../../model/research.mock-data";
 import type { Research } from "../../../schemas/research.schema";
 import { ResearchCard } from "../../components/research-card";
+import { useTranslations } from "next-intl";
 
 /**
  * Пропсы виджета каталога исследований
@@ -26,6 +27,7 @@ export interface ResearchCatalogWidgetProps {
 export const ResearchCatalogWidget: React.FC<ResearchCatalogWidgetProps> = ({
   className = "",
 }) => {
+  const t = useTranslations();
   const handlePurchase = (research: Research) => {
     // TODO: Реализовать логику покупки исследования
     // Здесь можно добавить интеграцию с платежной системой
@@ -40,10 +42,10 @@ export const ResearchCatalogWidget: React.FC<ResearchCatalogWidgetProps> = ({
         <div className="flex items-center justify-between">
           <div>
             <h1 className="text-3xl font-bold text-gray-900 mb-2">
-              Аналитические исследования
+              {t("science.catalog.title")}
             </h1>
             <p className="text-lg text-gray-600">
-              Экспертные отчеты и прогнозы для принятия решений
+              {t("science.catalog.subtitle")}
             </p>
           </div>
 
@@ -53,7 +55,7 @@ export const ResearchCatalogWidget: React.FC<ResearchCatalogWidgetProps> = ({
             className="flex items-center gap-2 bg-gradient-to-r from-orange-500 to-orange-600 text-white border-0 px-4 py-2"
           >
             <Star className="w-4 h-4" />
-            Премиум контент
+            {t("science.catalog.premium")}
           </Badge>
         </div>
       </div>
@@ -72,14 +74,10 @@ export const ResearchCatalogWidget: React.FC<ResearchCatalogWidgetProps> = ({
       {/* Дополнительная информация */}
       <div className="bg-gray-50 rounded-lg p-6 mt-8">
         <h3 className="text-lg font-semibold text-gray-900 mb-3">
-          О наших исследованиях
+          {t("science.catalog.aboutTitle")}
         </h3>
         <p className="text-gray-600 leading-relaxed">
-          Наши аналитические исследования создаются экспертами в области
-          сельского хозяйства и содержат актуальные данные, прогнозы и
-          рекомендации для принятия обоснованных решений в агробизнесе. Каждый
-          отчет проходит тщательную проверку и содержит практические
-          рекомендации для повышения эффективности вашего бизнеса.
+          {t("science.catalog.aboutText")}
         </p>
       </div>
     </div>

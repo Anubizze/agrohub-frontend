@@ -465,6 +465,7 @@ function RegionStats() {
 }
 
 function AnalyticsSection() {
+  const t = useTranslations();
   // Константы
   const CARD_CLASSES = "p-6 hover:shadow-lg transition-all duration-200";
   const ICON_BASE_CLASSES =
@@ -479,29 +480,29 @@ function AnalyticsSection() {
   const HEADER_MB_CLASSES = "flex items-center space-x-3 mb-4";
   const ITEMS_SPACE_CLASSES = "space-y-4";
 
-  // Данные (оставлены для будущего использования)
+  // Данные (локализованные названия)
   const productionData = [
-    { name: "Зерновые культуры", value: 37.9, color: "#8b5cf6" },
-    { name: "Масличные культуры", value: 43.4, color: "#10b981" },
-    { name: "Картофель", value: 1.0, color: "#f59e0b" },
-    { name: "Овощи и бахчевые", value: 1.0, color: "#eab308" },
-    { name: "Кормовые культуры", value: 17.2, color: "#6b7280" },
+    { name: t("home.analytics.structure.crops.grains"), value: 37.9, color: "#8b5cf6" },
+    { name: t("home.analytics.structure.crops.oilseeds"), value: 43.4, color: "#10b981" },
+    { name: t("home.analytics.structure.crops.potato"), value: 1.0, color: "#f59e0b" },
+    { name: t("home.analytics.structure.crops.vegetables"), value: 1.0, color: "#eab308" },
+    { name: t("home.analytics.structure.crops.forage"), value: 17.2, color: "#6b7280" },
   ];
 
   const harvestData = [
-    { name: "Бородулихинский", value: 2416045, color: "#1f2937" },
-    { name: "Урджарский", value: 903293, color: "#4b5563" },
-    { name: "Кокпектинский", value: 741251, color: "#6b7280" },
-    { name: "Бескарагайский", value: 141527, color: "#9ca3af" },
-    { name: "Ақсуат", value: 11865, color: "#d1d5db" },
+    { name: t("home.analytics.harvest.districts.borodulikha"), value: 2416045, color: "#1f2937" },
+    { name: t("home.analytics.harvest.districts.urdzhar"), value: 903293, color: "#4b5563" },
+    { name: t("home.analytics.harvest.districts.kokpekti"), value: 741251, color: "#6b7280" },
+    { name: t("home.analytics.harvest.districts.beskaragai"), value: 141527, color: "#9ca3af" },
+    { name: t("home.analytics.harvest.districts.aksuat"), value: 11865, color: "#d1d5db" },
   ];
 
   const meatSales = 67;
   const yieldByCropsData = [
-    { name: "Пшеница", value: 153.6, color: "#8b5cf6" },
-    { name: "Картофель", value: 53.9, color: "#10b981" },
-    { name: "Овощи и бахчевые", value: 66.0, color: "#f59e0b" },
-    { name: "Масличные культуры", value: 0.5, color: "#eab308" },
+    { name: t("home.analytics.yield.crops.wheat"), value: 153.6, color: "#8b5cf6" },
+    { name: t("home.analytics.yield.crops.potato"), value: 53.9, color: "#10b981" },
+    { name: t("home.analytics.yield.crops.vegetables"), value: 66.0, color: "#f59e0b" },
+    { name: t("home.analytics.yield.crops.oilseeds"), value: 0.5, color: "#eab308" },
   ];
 
   return (
@@ -509,11 +510,10 @@ function AnalyticsSection() {
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold bg-gradient-to-r from-emerald-900 to-teal-600 bg-clip-text text-transparent mb-4">
-            Аналитика производства
+            {t("home.analytics.title")}
           </h2>
           <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-            Комплексный анализ структуры производства, урожайности и реализации
-            продукции
+            {t("home.analytics.subtitle")}
           </p>
         </div>
 
@@ -540,10 +540,10 @@ function AnalyticsSection() {
               </div>
               <div>
                 <h3 className="text-lg font-semibold text-gray-900">
-                  Структура производства
+                  {t("home.analytics.structure.title")}
                 </h3>
                 <p className="text-sm text-gray-600">
-                  Распределение культур по площадям
+                  {t("home.analytics.structure.subtitle")}
                 </p>
               </div>
             </div>
@@ -600,10 +600,10 @@ function AnalyticsSection() {
               </div>
               <div>
                 <h3 className="text-lg font-semibold text-gray-900">
-                  Урожайность по культурам
+                  {t("home.analytics.yield.title")}
                 </h3>
                 <p className="text-sm text-gray-600">
-                  Сбор по видам культур (тысячи тонн)
+                  {t("home.analytics.yield.subtitle")}
                 </p>
               </div>
             </div>
@@ -631,7 +631,7 @@ function AnalyticsSection() {
                         }}
                       />
                     </div>
-                    <span className={VALUE_CLASSES}>{item.value}к т</span>
+                    <span className={VALUE_CLASSES}>{item.value}{t("home.analytics.yield.thousandTonsSuffix")}</span>
                   </div>
                 </div>
               ))}
@@ -658,10 +658,10 @@ function AnalyticsSection() {
               </div>
               <div>
                 <h3 className="text-lg font-semibold text-gray-900">
-                  Реализация мяса
+                  {t("home.analytics.meat.title")}
                 </h3>
                 <p className="text-sm text-gray-600">
-                  Процент от общего объема
+                  {t("home.analytics.meat.subtitle")}
                 </p>
               </div>
             </div>
@@ -682,12 +682,12 @@ function AnalyticsSection() {
                       endAngle={-270}
                       data={[
                         {
-                          name: "Реализовано",
+                          name: t("home.analytics.meat.sold"),
                           value: meatSales,
                           color: "#22c55e",
                         },
                         {
-                          name: "Остаток",
+                          name: t("home.analytics.meat.rest"),
                           value: 100 - meatSales,
                           color: "#e5e7eb",
                         },
@@ -706,10 +706,10 @@ function AnalyticsSection() {
                       outerRadius={70}
                       paddingAngle={2}
                       data={[
-                        { name: "Курица", value: 40, color: "#fb7185" },
-                        { name: "Говядина", value: 30, color: "#f43f5e" },
-                        { name: "Свинина", value: 20, color: "#f97316" },
-                        { name: "Баранина", value: 10, color: "#f59e0b" },
+                        { name: t("home.analytics.meat.categories.chicken"), value: 40, color: "#fb7185" },
+                        { name: t("home.analytics.meat.categories.beef"), value: 30, color: "#f43f5e" },
+                        { name: t("home.analytics.meat.categories.pork"), value: 20, color: "#f97316" },
+                        { name: t("home.analytics.meat.categories.mutton"), value: 10, color: "#f59e0b" },
                       ]}
                     >
                       <Cell fill="#fb7185" />
@@ -729,14 +729,14 @@ function AnalyticsSection() {
                       className="w-2.5 h-2.5 rounded-full"
                       style={{ background: "#22c55e" }}
                     />
-                    Реализовано: 67%
+                    {t("home.analytics.meat.sold")}: 67%
                   </div>
                   <div className="flex items-center gap-2 justify-end">
                     <span
                       className="w-2.5 h-2.5 rounded-full"
                       style={{ background: "#e5e7eb" }}
                     />
-                    Остаток: 33%
+                    {t("home.analytics.meat.rest")}: 33%
                   </div>
                 </div>
                 <div className="mt-2 grid grid-cols-2 gap-2 text-sm">
@@ -745,7 +745,7 @@ function AnalyticsSection() {
                       className="w-2.5 h-2.5 rounded-full"
                       style={{ background: "#fb7185" }}
                     />
-                    Курица
+                    {t("home.analytics.meat.categories.chicken")}
                   </div>
                   <div className="text-right font-semibold">40%</div>
                   <div className="flex items-center gap-2">
@@ -753,7 +753,7 @@ function AnalyticsSection() {
                       className="w-2.5 h-2.5 rounded-full"
                       style={{ background: "#f43f5e" }}
                     />
-                    Говядина
+                    {t("home.analytics.meat.categories.beef")}
                   </div>
                   <div className="text-right font-semibold">30%</div>
                   <div className="flex items-center gap-2">
@@ -761,7 +761,7 @@ function AnalyticsSection() {
                       className="w-2.5 h-2.5 rounded-full"
                       style={{ background: "#f97316" }}
                     />
-                    Свинина
+                    {t("home.analytics.meat.categories.pork")}
                   </div>
                   <div className="text-right font-semibold">20%</div>
                   <div className="flex items-center gap-2">
@@ -769,7 +769,7 @@ function AnalyticsSection() {
                       className="w-2.5 h-2.5 rounded-full"
                       style={{ background: "#f59e0b" }}
                     />
-                    Баранина
+                    {t("home.analytics.meat.categories.mutton")}
                   </div>
                   <div className="text-right font-semibold">10%</div>
                 </div>
@@ -799,9 +799,9 @@ function AnalyticsSection() {
               </div>
               <div>
                 <h3 className="text-lg font-semibold text-gray-900">
-                  Валовый сбор
+                  {t("home.analytics.harvest.title")}
                 </h3>
-                <p className="text-sm text-gray-600">Сбор по районам (тонны)</p>
+                <p className="text-sm text-gray-600">{t("home.analytics.harvest.subtitle")}</p>
               </div>
             </div>
 
@@ -819,7 +819,7 @@ function AnalyticsSection() {
                     <span className={LABEL_CLASSES}>{item.name}</span>
                   </div>
                   <span className="text-sm font-semibold text-gray-900">
-                    {(item.value / 1000).toFixed(0)}к т
+                    {(item.value / 1000).toFixed(0)}{t("home.analytics.harvest.thousandTonsSuffix")}
                   </span>
                 </div>
               ))}
@@ -1013,17 +1013,16 @@ function PartnersSection() {
         {/* Новый контент */}
         <div className="text-center py-4 ">
           <h3 className="text-xl sm:text-2xl font-semibold text-gray-800 mb-4">
-            Мы ждем ваших предложений
+            {t("partnersCallout.title")}
           </h3>
           <p className="text-gray-600 mb-6 max-w-2xl mx-auto">
-            Готовы к сотрудничеству и открыты для новых партнерских отношений.
-            Свяжитесь с нами, чтобы обсудить возможности совместной работы.
+            {t("partnersCallout.text")}
           </p>
           <button
             type="button"
             className="px-8 py-3 rounded-md bg-[#486284] text-white font-medium hover:opacity-90 transition"
           >
-            Связаться с нами
+            {t("partnersCallout.cta")}
           </button>
         </div>
       </div>

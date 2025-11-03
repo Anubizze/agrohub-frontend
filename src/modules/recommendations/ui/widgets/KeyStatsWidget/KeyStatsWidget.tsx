@@ -1,7 +1,10 @@
+"use client";
+
 import React from "react";
 
 import { useRecommendations } from "../../../hooks/useRecommendations";
 import { KeyStatsCard } from "../../components/KeyStatsCard/KeyStatsCard";
+import { useTranslations } from "next-intl";
 
 /**
  * Пропсы для компонента KeyStatsWidget
@@ -26,17 +29,16 @@ export const KeyStatsWidget: React.FC<KeyStatsWidgetProps> = ({
   className,
 }) => {
   const { data } = useRecommendations();
+  const t = useTranslations();
 
   return (
     <section className={`space-y-8 ${className || ""}`}>
       {/* Заголовок секции */}
       <div className="space-y-2">
         <h2 className="text-3xl font-bold tracking-tight bg-gradient-to-r from-gray-900 to-gray-600 bg-clip-text text-transparent">
-          Ключевые показатели
+          {t("science.keyStats.title")}
         </h2>
-        <p className="text-gray-600 text-lg">
-          Основные метрики эффективности вашего хозяйства
-        </p>
+        <p className="text-gray-600 text-lg">{t("science.keyStats.subtitle")}</p>
       </div>
 
       {/* Адаптивная сетка карточек */}
@@ -50,7 +52,7 @@ export const KeyStatsWidget: React.FC<KeyStatsWidgetProps> = ({
               animationFillMode: "both",
             }}
           >
-            <KeyStatsCard stat={stat} />
+            <KeyStatsCard stat={stat} index={index} />
           </div>
         ))}
       </div>
@@ -59,9 +61,7 @@ export const KeyStatsWidget: React.FC<KeyStatsWidgetProps> = ({
       <div className="mt-8 p-4 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl border border-blue-100">
         <div className="flex items-center space-x-3">
           <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
-          <p className="text-sm text-blue-700 font-medium">
-            Данные обновляются в реальном времени
-          </p>
+          <p className="text-sm text-blue-700 font-medium">{t("science.keyStats.liveNote")}</p>
         </div>
       </div>
     </section>

@@ -1,4 +1,5 @@
 import { SectorGrowthCard } from "../components/SectorGrowthCard";
+import { useTranslations } from "next-intl";
 
 const mockdata = [
   {
@@ -38,11 +39,20 @@ const mockdata = [
   },
 ];
 export const SectorAnalyticsView = () => {
+  const t = useTranslations();
+  const itemsNames = [
+    t("investments.sector.items.0"),
+    t("investments.sector.items.1"),
+    t("investments.sector.items.2"),
+    t("investments.sector.items.3"),
+    t("investments.sector.items.4"),
+  ];
+  const localized = mockdata.map((it, idx) => ({ ...it, name: itemsNames[idx] }));
   return (
     <section className="w-full">
-      <h2 className="text-2xl font-bold">Секторальная аналитика</h2>
+      <h2 className="text-2xl font-bold">{t("investments.sector.title")}</h2>
       <section className="space-y-4 w-full">
-        {mockdata.map((item) => (
+        {localized.map((item) => (
           <SectorGrowthCard key={item.name} {...item} />
         ))}
       </section>

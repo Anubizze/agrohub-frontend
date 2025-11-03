@@ -1,5 +1,6 @@
 import { AlertTriangle, BarChart3, CheckCircle2, Zap } from "lucide-react";
 import React from "react";
+import { useTranslations } from "next-intl";
 
 import { Badge } from "@/shared/components/ui";
 
@@ -40,6 +41,21 @@ export const MetricCard: React.FC<MetricCardProps> = ({
   className,
 }) => {
   const statusConfig = METRIC_STATUS_MAP[metric.status];
+  const t = useTranslations("recommendation.status");
+  
+  // Get translated status label
+  const getStatusLabel = () => {
+    switch (metric.status) {
+      case "ok":
+        return t("normal");
+      case "warn":
+        return t("requiresAttention");
+      case "good":
+        return t("excellent");
+      default:
+        return statusConfig.label;
+    }
+  };
 
   // Определяем цветовую схему на основе статуса
   const getCardTheme = (status: string) => {
@@ -130,7 +146,7 @@ export const MetricCard: React.FC<MetricCardProps> = ({
             shadow-sm group-hover:shadow-md transition-all
           `}
         >
-          {statusConfig.label}
+          {getStatusLabel()}
         </Badge>
       </div>
 

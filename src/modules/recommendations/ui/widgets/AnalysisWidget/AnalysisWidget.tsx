@@ -10,6 +10,7 @@ import {
   RadarChart,
   ResponsiveContainer,
 } from "recharts";
+import { useTranslations } from "next-intl";
 
 import { Card } from "@/shared/components/ui";
 import {
@@ -20,7 +21,6 @@ import {
   ChartTooltipContent,
 } from "@/shared/components/ui/chart";
 
-import { RADAR_CHART_CONFIG } from "../../../constants/recommendation.constants";
 import { useRecommendations } from "../../../hooks/useRecommendations";
 import { MetricCard } from "../../components/MetricCard/MetricCard";
 
@@ -47,6 +47,9 @@ export const AnalysisWidget: React.FC<AnalysisWidgetProps> = ({
   className,
 }) => {
   const { data } = useRecommendations();
+  const t = useTranslations("recommendation.analysis");
+  const tChartSoil = useTranslations("recommendation.mock.soilAnalysis.chartConfig");
+  const tChartAnimal = useTranslations("recommendation.mock.animalAnalysis.chartConfig");
 
   /**
    * Рендерит карточку с метриками и радарной диаграммой
@@ -67,6 +70,9 @@ export const AnalysisWidget: React.FC<AnalysisWidgetProps> = ({
     gradient: string,
     index: number
   ) => {
+    const isSoil = title.toLowerCase().includes("soil");
+    const tChart = isSoil ? tChartSoil : tChartAnimal;
+    
     return (
       <div
         className="animate-in fade-in-0 slide-in-from-bottom-4"
@@ -86,9 +92,9 @@ export const AnalysisWidget: React.FC<AnalysisWidgetProps> = ({
             <div>
               <h3 className="text-xl font-bold text-gray-900">{title}</h3>
               <p className="text-sm text-gray-600">
-                {title.includes("почвы")
-                  ? "Химический состав и свойства"
-                  : "Здоровье и продуктивность"}
+                {isSoil
+                  ? t("soilAnalysis.subtitle")
+                  : t("animalAnalysis.subtitle")}
               </p>
             </div>
           </div>
@@ -113,14 +119,18 @@ export const AnalysisWidget: React.FC<AnalysisWidgetProps> = ({
           <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl p-4">
             <div className="mb-3">
               <h4 className="text-sm font-semibold text-gray-700 mb-1">
-                Визуальный анализ
+                {isSoil ? t("soilAnalysis.visualAnalysisTitle") : t("animalAnalysis.visualAnalysisTitle")}
               </h4>
               <p className="text-xs text-gray-500">
-                Сравнение с нормативными показателями
+                {isSoil ? t("soilAnalysis.visualAnalysisSubtitle") : t("animalAnalysis.visualAnalysisSubtitle")}
               </p>
             </div>
             <ChartContainer
-              config={RADAR_CHART_CONFIG}
+              config={{
+                value: { label: tChart("value"), color: "hsl(221 83% 53%)" },
+                min: { label: tChart("min"), color: "hsl(0 84% 60%)" },
+                max: { label: tChart("max"), color: "hsl(142 76% 36%)" },
+              }}
               className="aspect-[4/3]"
             >
               <ResponsiveContainer>
@@ -135,7 +145,7 @@ export const AnalysisWidget: React.FC<AnalysisWidgetProps> = ({
                   />
                   {/* Фоновые нормы */}
                   <Radar
-                    name="Норма (макс)"
+                    name={tChart("max")}
                     dataKey="max"
                     stroke="var(--color-max)"
                     fill="var(--color-max)"
@@ -144,7 +154,7 @@ export const AnalysisWidget: React.FC<AnalysisWidgetProps> = ({
                     isAnimationActive={false}
                   />
                   <Radar
-                    name="Норма (мин)"
+                    name={tChart("min")}
                     dataKey="min"
                     stroke="var(--color-min)"
                     fill="transparent"
@@ -154,7 +164,7 @@ export const AnalysisWidget: React.FC<AnalysisWidgetProps> = ({
                   />
                   {/* Текущее значение поверх */}
                   <Radar
-                    name="value"
+                    name={tChart("value")}
                     dataKey="value"
                     stroke="var(--color-value)"
                     fill="var(--color-value)"
@@ -175,17 +185,17 @@ export const AnalysisWidget: React.FC<AnalysisWidgetProps> = ({
       {/* Заголовок секции */}
       <div className="space-y-2">
         <h2 className="text-3xl font-bold tracking-tight bg-gradient-to-r from-emerald-900 to-teal-600 bg-clip-text text-transparent">
-          Анализы
+          {t("title")}
         </h2>
         <p className="text-gray-600 text-lg">
-          Комплексный анализ состояния почвы и здоровья животных
+          {t("subtitle")}
         </p>
       </div>
 
       {/* Адаптивная сетка карточек анализа */}
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-8">
         {renderMetricsCard(
-          "Анализ почвы",
+          t("soilAnalysis.title"),
           data.soilAnalysis.metrics,
           data.soilAnalysis.radarData,
           <Sprout className="w-6 h-6 text-white" strokeWidth={2} />,
@@ -193,7 +203,7 @@ export const AnalysisWidget: React.FC<AnalysisWidgetProps> = ({
           0
         )}
         {renderMetricsCard(
-          "Анализ состояния животных",
+          t("animalAnalysis.title"),
           data.animalAnalysis.metrics,
           data.animalAnalysis.radarData,
           <HeartPulse className="w-6 h-6 text-white" strokeWidth={2} />,
@@ -224,13 +234,10 @@ export const AnalysisWidget: React.FC<AnalysisWidgetProps> = ({
           </div>
           <div className="flex-1">
             <h3 className="text-lg font-semibold text-gray-900 mb-2">
-              Рекомендации по анализу
+              {t("recommendationTitle")}
             </h3>
             <p className="text-gray-600 text-sm leading-relaxed">
-              Регулярный мониторинг показателей позволяет своевременно выявлять
-              отклонения и принимать корректирующие меры. Рекомендуется
-              проводить анализы ежемесячно для поддержания оптимальных условий
-              производства.
+              {t("recommendationText")}
             </p>
           </div>
         </div>

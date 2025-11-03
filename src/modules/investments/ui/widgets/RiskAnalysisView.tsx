@@ -1,4 +1,5 @@
 import { RiskAnalysisCard } from "../components/RiskAnalysisCard";
+import { useTranslations } from "next-intl";
 
 const mock: {
   name: string;
@@ -38,11 +39,27 @@ const mock: {
   },
 ];
 export const RiskAnalysisView = () => {
+  const t = useTranslations();
+  const names = [
+    t("investments.risk.items.0.name"),
+    t("investments.risk.items.1.name"),
+    t("investments.risk.items.2.name"),
+    t("investments.risk.items.3.name"),
+    t("investments.risk.items.4.name"),
+  ];
+  const notes = [
+    t("investments.risk.items.0.note"),
+    t("investments.risk.items.1.note"),
+    t("investments.risk.items.2.note"),
+    t("investments.risk.items.3.note"),
+    t("investments.risk.items.4.note"),
+  ];
+  const localized = mock.map((m, i) => ({ ...m, name: names[i], note: notes[i] }));
   return (
     <section>
-      <h2 className="text-2xl mb-4 font-bold">Анализ рисков</h2>
+      <h2 className="text-2xl mb-4 font-bold">{t("investments.risk.title")}</h2>
       <section>
-        {mock.map((item) => (
+        {localized.map((item) => (
           <RiskAnalysisCard key={item.name} {...item} />
         ))}
       </section>

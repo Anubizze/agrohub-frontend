@@ -1,29 +1,36 @@
 import { StatsCard } from "../components/StatsCard";
+import { useTranslations } from "next-intl";
 
-const mock = [
+const base = [
   {
-    title: "Общие инвестиции",
+    titleKey: "investments.stats.total",
     value: "45.8 млрд ₸",
-    tooltip: "+12,3% за год",
+    tooltipKey: "investments.stats.totalTooltip",
   },
   {
-    title: "Количество проектов",
+    titleKey: "investments.stats.projects",
     value: "23",
-    tooltip: "На стадии реализации",
+    tooltipKey: "investments.stats.projectsTooltip",
   },
   {
-    title: "Средний ROI",
+    titleKey: "investments.stats.avgRoi",
     value: "18.5%",
-    tooltip: "За последние 3 года",
+    tooltipKey: "investments.stats.avgRoiTooltip",
   },
   {
-    title: "Рабочие места",
+    titleKey: "investments.stats.jobs",
     value: "3 420",
-    tooltip: "Создано с 2020 года",
+    tooltipKey: "investments.stats.jobsTooltip",
   },
 ];
 
 export const StatsView = () => {
+  const t = useTranslations();
+  const mock = base.map((s) => ({
+    title: t(s.titleKey as any),
+    value: s.value,
+    tooltip: t(s.tooltipKey as any),
+  }));
   return (
     <section className="flex gap-2 flex-wrap">
       {mock.map((stat) => (

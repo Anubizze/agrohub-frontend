@@ -1,4 +1,5 @@
 import { useMemo } from "react";
+import { useTranslations } from "next-intl";
 
 import { mockRecommendationsData } from "../model/recommendations.mock-data";
 import type { RecommendationsData } from "../schemas/recommendation.schema";
@@ -13,10 +14,89 @@ import type { RecommendationsData } from "../schemas/recommendation.schema";
  * ```
  */
 export const useRecommendations = () => {
-  // В будущем здесь будет загрузка данных с API
-  const data: RecommendationsData = mockRecommendationsData;
+  const t = useTranslations("recommendation.mock");
   const isLoading = false;
   const error = null;
+  
+  // Локализуем данные
+  const data: RecommendationsData = useMemo(() => {
+    const localizedData = { ...mockRecommendationsData };
+    
+    // Локализуем ключевые показатели
+    localizedData.keyStats = mockRecommendationsData.keyStats.map((stat, index) => ({
+      ...stat,
+      title: [
+        t("keyStats.totalAnimals"),
+        t("keyStats.vaccinated"),
+        t("keyStats.export"),
+        t("keyStats.sownArea"),
+      ][index] || stat.title,
+    }));
+    
+    // Локализуем данные эффективности
+    localizedData.efficiencyData = {
+      currentEfficiency: {
+        ...mockRecommendationsData.efficiencyData.currentEfficiency,
+        title: t("efficiency.currentEfficiency.title"),
+        comment: t("efficiency.currentEfficiency.comment"),
+      },
+      regionalIndicator: {
+        ...mockRecommendationsData.efficiencyData.regionalIndicator,
+        title: t("efficiency.regionalIndicator.title"),
+        comment: t("efficiency.regionalIndicator.comment"),
+      },
+      growthPotential: {
+        ...mockRecommendationsData.efficiencyData.growthPotential,
+        title: t("efficiency.growthPotential.title"),
+        comment: t("efficiency.growthPotential.comment"),
+      },
+    };
+    
+    // Локализуем рекомендации
+    const recommendationsT = t.raw("recommendations") as any;
+    localizedData.recommendations = mockRecommendationsData.recommendations.map((rec, index) => ({
+      ...rec,
+      category: recommendationsT[index]?.category || rec.category,
+      title: recommendationsT[index]?.title || rec.title,
+      description: recommendationsT[index]?.description || rec.description,
+      deadline: recommendationsT[index]?.deadline || rec.deadline,
+      result: recommendationsT[index]?.result || rec.result,
+    }));
+    
+    // Локализуем анализ почвы
+    const soilMetrics = t.raw("soilAnalysis.metrics") as any;
+    const soilRadar = t.raw("soilAnalysis.radarData") as any;
+    localizedData.soilAnalysis = {
+      ...mockRecommendationsData.soilAnalysis,
+      metrics: mockRecommendationsData.soilAnalysis.metrics.map((metric, index) => ({
+        ...metric,
+        name: soilMetrics[index]?.name || metric.name,
+        note: soilMetrics[index]?.note || metric.note,
+      })),
+      radarData: mockRecommendationsData.soilAnalysis.radarData.map((radar, index) => ({
+        ...radar,
+        metric: soilRadar[index]?.metric || radar.metric,
+      })),
+    };
+    
+    // Локализуем анализ животных
+    const animalMetrics = t.raw("animalAnalysis.metrics") as any;
+    const animalRadar = t.raw("animalAnalysis.radarData") as any;
+    localizedData.animalAnalysis = {
+      ...mockRecommendationsData.animalAnalysis,
+      metrics: mockRecommendationsData.animalAnalysis.metrics.map((metric, index) => ({
+        ...metric,
+        name: animalMetrics[index]?.name || metric.name,
+        note: animalMetrics[index]?.note || metric.note,
+      })),
+      radarData: mockRecommendationsData.animalAnalysis.radarData.map((radar, index) => ({
+        ...radar,
+        metric: animalRadar[index]?.metric || radar.metric,
+      })),
+    };
+    
+    return localizedData;
+  }, [t]);
 
   /**
    * Получить рекомендации по приоритету

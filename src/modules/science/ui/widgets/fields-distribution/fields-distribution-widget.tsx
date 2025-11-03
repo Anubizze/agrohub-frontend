@@ -16,31 +16,32 @@ import {
   ChartTooltipContent,
 } from "@/shared/components/ui/chart";
 import { Progress } from "@/shared/components/ui/progress";
+import { useTranslations } from "next-intl";
 
-const data = [
-  { name: "Растениеводство", value: 42, fill: "#10b981" }, // emerald-500
-  { name: "Животноводство", value: 28, fill: "#f59e0b" }, // amber-500
-  { name: "Агротехнологии", value: 15, fill: "#3b82f6" }, // blue-500
-  { name: "Экология", value: 10, fill: "#14b8a6" }, // teal-500
-  { name: "Почвоведение", value: 5, fill: "#6b7280" }, // gray-500
+const makeData = (t: (k: string) => string) => [
+  { name: t("science.fields.crop"), value: 42, fill: "#10b981" },
+  { name: t("science.fields.livestock"), value: 28, fill: "#f59e0b" },
+  { name: t("science.fields.agrotech"), value: 15, fill: "#3b82f6" },
+  { name: t("science.fields.eco"), value: 10, fill: "#14b8a6" },
+  { name: t("science.fields.soil"), value: 5, fill: "#6b7280" },
 ];
 
 const chartConfig = {
-  crop: { label: "Растениеводство", color: "#10b981" },
-  livestock: { label: "Животноводство", color: "#f59e0b" },
-  agrotech: { label: "Агротехнологии", color: "#3b82f6" },
-  eco: { label: "Экология", color: "#14b8a6" },
-  soil: { label: "Почвоведение", color: "#6b7280" },
+  crop: { label: "crop", color: "#10b981" },
+  livestock: { label: "livestock", color: "#f59e0b" },
+  agrotech: { label: "agrotech", color: "#3b82f6" },
+  eco: { label: "eco", color: "#14b8a6" },
+  soil: { label: "soil", color: "#6b7280" },
 } as const;
 
 export const ResearchFieldsDistributionWidget: React.FC = () => {
+  const t = useTranslations();
+  const data = makeData(t);
   return (
     <Card className="bg-gradient-to-b from-white to-emerald-50/40">
       <CardHeader>
-        <CardTitle>Направления исследований</CardTitle>
-        <CardDescription>
-          Доля публикаций и проектов по основным научным направлениям, %.
-        </CardDescription>
+        <CardTitle>{t("science.fields.title")}</CardTitle>
+        <CardDescription>{t("science.fields.description")}</CardDescription>
       </CardHeader>
       <CardContent>
         <div className="grid grid-cols-1 lg:grid-cols-[360px_1fr] items-center gap-8">

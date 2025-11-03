@@ -2,6 +2,7 @@
 
 import { AlertTriangle, Calendar, Database, Leaf, LogOut, MapPin, Package,Settings, Shield, ShieldCheck, User, Users, Zap } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { useLocale, useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 import { Area, AreaChart, Bar, BarChart, CartesianGrid, Cell, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 
@@ -9,6 +10,7 @@ import { Button } from "@/shared/components/ui";
 import { Badge } from "@/shared/components/ui/badge";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/shared/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/shared/components/ui/tabs";
+import { useRouter as useLocaleRouter } from "@/shared/configs/i18/navigation";
 
 /**
  * Страница радиационного фона
@@ -22,6 +24,13 @@ export default function RadiationPage() {
   const [activeTab, setActiveTab] = useState("ecological");
   const [selectedCity, setSelectedCity] = useState<CityData | null>(null); // Selected city for chart updates
   const router = useRouter();
+	const localeRouter = useLocaleRouter();
+	const t = useTranslations();
+  const locale = useLocale();
+  const months = t.raw("science.months") as string[];
+  const regionNames = t.raw("radiation.monitoring.products.regions") as string[];
+  const avgLabel = t("radiation.monitoring.products.avg");
+  const safetySuffixLabel = t("radiation.monitoring.products.safetySuffix");
 
   // Данные для графиков по умолчанию
   const defaultMonthlyData = [
@@ -39,12 +48,13 @@ export default function RadiationPage() {
     { month: 'Дек', base: 0.10, middle: 0.05, top: 0.04 }
   ];
 
+  const comparisonRegions = t.raw("radiation.monitoring.comparisonRegions") as string[];
   const regionsComparisonData = [
-    { region: 'Алматинская область', level: 0.45, color: '#10b981', status: 'Норма' },
-    { region: 'Актюбинская область', level: 0.62, color: '#f59e0b', status: 'Повышенный' },
-    { region: 'Карагандинская область', level: 0.78, color: '#ef4444', status: 'Внимание' },
-    { region: 'Павлодарская область', level: 0.35, color: '#06b6d4', status: 'Норма' },
-    { region: 'Абайская область', level: 0.58, color: '#8b5cf6', status: 'Повышенный' }
+    { region: comparisonRegions[0], level: 0.45, color: '#10b981', status: t("radiation.monitoring.statuses.normalShort") },
+    { region: comparisonRegions[1], level: 0.62, color: '#f59e0b', status: t("radiation.monitoring.statuses.elevatedShort") },
+    { region: comparisonRegions[2], level: 0.78, color: '#ef4444', status: t("radiation.monitoring.statuses.attentionShort") },
+    { region: comparisonRegions[3], level: 0.35, color: '#06b6d4', status: t("radiation.monitoring.statuses.normalShort") },
+    { region: comparisonRegions[4], level: 0.58, color: '#8b5cf6', status: t("radiation.monitoring.statuses.elevatedShort") }
   ];
 
   // Данные городов с индивидуальными графиками
@@ -224,11 +234,11 @@ export default function RadiationPage() {
     localStorage.removeItem("radiation_user");
     setIsAuthorized(false);
     setUser("");
-    router.push("/ru/radiation/login");
+		localeRouter.push("/radiation/login");
   };
 
   const handleLogin = () => {
-    router.push("/ru/radiation/login");
+		localeRouter.push("/radiation/login");
   };
 
   const handleCityClick = (cityKey: CityKey) => {
@@ -241,7 +251,7 @@ export default function RadiationPage() {
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-red-600 mx-auto"></div>
-          <p className="mt-4 text-gray-600">Проверка доступа...</p>
+					<p className="mt-4 text-gray-600">{t("radiation.monitoring.loading")}</p>
         </div>
       </div>
     );
@@ -258,18 +268,18 @@ export default function RadiationPage() {
                 <Shield className="h-6 w-6 text-red-600" />
               </div>
               <CardTitle className="text-2xl font-bold text-gray-900">
-                Ограниченный доступ
+								{t("radiation.accessDenied.title")}
               </CardTitle>
               <CardDescription>
-                Данный раздел доступен только авторизованным специалистам службы экологического мониторинга
+								{t("radiation.accessDenied.description")}
               </CardDescription>
             </CardHeader>
             <CardContent className="text-center">
               <Button onClick={handleLogin} className="w-full bg-red-600 hover:bg-red-700">
-                Войти как специалист
+								{t("radiation.accessDenied.loginButton")}
               </Button>
               <p className="mt-4 text-xs text-gray-500">
-                * Демонстрационный доступ для показа функционала
+								* {t("radiation.accessDenied.demoNote")}
               </p>
             </CardContent>
           </Card>
@@ -284,9 +294,7 @@ export default function RadiationPage() {
           <div className="bg-yellow-100 border-l-4 border-yellow-500 p-2 sm:p-3 md:p-4">
             <div className="flex items-start sm:items-center">
               <AlertTriangle className="h-3 w-3 sm:h-4 sm:w-4 md:h-5 md:w-5 text-yellow-500 mr-2 mt-0.5 sm:mt-0 flex-shrink-0" />
-              <p className="text-yellow-800 text-xs sm:text-sm md:text-base">
-                Внимание: Представленные ниже данные носят исключительно примерный и демонстрационный характер.
-              </p>
+						<p className="text-yellow-800 text-xs sm:text-sm md:text-base">{t("notice.text")}</p>
             </div>
           </div>
 
@@ -295,27 +303,22 @@ export default function RadiationPage() {
           {/* Заголовок с кнопкой выхода */}
           <div className="flex flex-col lg:flex-row lg:justify-between lg:items-center mb-3 sm:mb-4 md:mb-6 gap-3 sm:gap-4">
             <div className="flex-1">
-              <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900">
-                Радиационный мониторинг
-              </h1>
+						<h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900">{t("radiation.monitoring.title")}</h1>
               <p className="text-gray-600 mt-1 text-xs sm:text-sm md:text-base">
-                {activeTab === "ecological" 
-                  ? "Система контроля радиационного фона Республики Казахстан"
-                  : "Контроль радиации в сельскохозяйственной продукции"
-                }
+							{activeTab === "ecological" ? t("radiation.monitoring.subtitleEcology") : t("radiation.monitoring.subtitleProducts")}
               </p>
             </div>
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-3 md:gap-4">
               <div className="flex flex-wrap items-center gap-1 sm:gap-2 text-xs">
                 <Badge variant="destructive" className="flex items-center gap-1 text-xs px-2 py-1">
                   <User className="h-3 w-3" />
-                  <span className="hidden md:inline">Только для специалистов</span>
-                  <span className="md:hidden">Специалисты</span>
+								<span className="hidden md:inline">{t("radiation.monitoring.badge.specialistsFull")}</span>
+								<span className="md:hidden">{t("radiation.monitoring.badge.specialistsShort")}</span>
                 </Badge>
                 <Badge variant="default" className="bg-green-600 flex items-center gap-1 text-xs px-2 py-1">
                   <Zap className="h-3 w-3" />
-                  <span className="hidden md:inline">Онлайн мониторинг</span>
-                  <span className="md:hidden">Онлайн</span>
+								<span className="hidden md:inline">{t("radiation.monitoring.badge.onlineFull")}</span>
+								<span className="md:hidden">{t("radiation.monitoring.badge.onlineShort")}</span>
                 </Badge>
               </div>
               <div className="flex items-center gap-2 text-xs sm:text-sm text-gray-600">
@@ -324,8 +327,8 @@ export default function RadiationPage() {
               </div>
               <Button variant="outline" onClick={handleLogout} size="sm" className="text-xs sm:text-sm w-full sm:w-auto">
                 <LogOut className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
-                <span className="hidden sm:inline">Выйти</span>
-                <span className="sm:hidden">Выход</span>
+							<span className="hidden sm:inline">{t("radiation.monitoring.logoutFull")}</span>
+							<span className="sm:hidden">{t("radiation.monitoring.logoutShort")}</span>
               </Button>
             </div>
           </div>
@@ -335,13 +338,13 @@ export default function RadiationPage() {
             <TabsList className="grid w-full grid-cols-2 mb-3 sm:mb-4 md:mb-6 h-10 sm:h-12">
               <TabsTrigger value="ecological" className="flex items-center gap-1 sm:gap-2 text-xs sm:text-sm md:text-base px-2 sm:px-4">
                 <Settings className="h-3 w-3 sm:h-4 sm:w-4 md:h-5 md:w-5" />
-                <span className="hidden md:inline">Экологический мониторинг</span>
-                <span className="md:hidden">Экология</span>
+							<span className="hidden md:inline">{t("radiation.monitoring.tabs.ecologyFull")}</span>
+							<span className="md:hidden">{t("radiation.monitoring.tabs.ecologyShort")}</span>
               </TabsTrigger>
               <TabsTrigger value="products" className="flex items-center gap-1 sm:gap-2 text-xs sm:text-sm md:text-base px-2 sm:px-4">
                 <Database className="h-3 w-3 sm:h-4 sm:w-4 md:h-5 md:w-5" />
-                <span className="hidden md:inline">Мониторинг продукции</span>
-                <span className="md:hidden">Продукция</span>
+							<span className="hidden md:inline">{t("radiation.monitoring.tabs.productsFull")}</span>
+							<span className="md:hidden">{t("radiation.monitoring.tabs.productsShort")}</span>
               </TabsTrigger>
             </TabsList>
 
@@ -353,7 +356,7 @@ export default function RadiationPage() {
                   <CardContent className="p-2 sm:p-3 md:p-6">
                     <div className="flex items-center justify-between">
                       <div>
-                        <p className="text-xs sm:text-sm font-medium text-gray-600">Средний уровень</p>
+										<p className="text-xs sm:text-sm font-medium text-gray-600">{t("radiation.monitoring.kpi.avgLevel")}</p>
                         <p className="text-base sm:text-lg md:text-2xl font-bold text-blue-600">0.16 мР/ч</p>
                       </div>
                       <Users className="h-5 w-5 sm:h-6 sm:w-6 md:h-8 md:w-8 text-blue-600" />
@@ -365,7 +368,7 @@ export default function RadiationPage() {
                   <CardContent className="p-2 sm:p-3 md:p-6">
                     <div className="flex items-center justify-between">
                       <div>
-                        <p className="text-xs sm:text-sm font-medium text-gray-600">Станций мониторинга</p>
+										<p className="text-xs sm:text-sm font-medium text-gray-600">{t("radiation.monitoring.kpi.stations")}</p>
                         <p className="text-base sm:text-lg md:text-2xl font-bold text-green-600">15</p>
                       </div>
                       <MapPin className="h-5 w-5 sm:h-6 sm:w-6 md:h-8 md:w-8 text-green-600" />
@@ -377,7 +380,7 @@ export default function RadiationPage() {
                   <CardContent className="p-2 sm:p-3 md:p-6">
                     <div className="flex items-center justify-between">
                       <div>
-                        <p className="text-xs sm:text-sm font-medium text-gray-600">Районов в норме</p>
+										<p className="text-xs sm:text-sm font-medium text-gray-600">{t("radiation.monitoring.kpi.districtsOk")}</p>
                         <p className="text-base sm:text-lg md:text-2xl font-bold text-emerald-600">3/5</p>
                       </div>
                       <ShieldCheck className="h-5 w-5 sm:h-6 sm:w-6 md:h-8 md:w-8 text-emerald-600" />
@@ -389,7 +392,7 @@ export default function RadiationPage() {
                   <CardContent className="p-2 sm:p-3 md:p-6">
                     <div className="flex items-center justify-between">
                       <div>
-                        <p className="text-xs sm:text-sm font-medium text-gray-600">Последнее обновление</p>
+										<p className="text-xs sm:text-sm font-medium text-gray-600">{t("radiation.monitoring.kpi.lastUpdate")}</p>
                         <p className="text-base sm:text-lg md:text-2xl font-bold text-purple-600">14:30</p>
                       </div>
                       <Calendar className="h-5 w-5 sm:h-6 sm:w-6 md:h-8 md:w-8 text-purple-600" />
@@ -401,7 +404,7 @@ export default function RadiationPage() {
               {/* Карта радиационного фона */}
               <Card>
                 <CardHeader className="pb-2 sm:pb-3 md:pb-6">
-                  <CardTitle className="text-sm sm:text-lg md:text-xl">Карта радиационного фона Абайской области</CardTitle>
+							<CardTitle className="text-sm sm:text-lg md:text-xl">{t("radiation.monitoring.mapTitle")}</CardTitle>
                 </CardHeader>
                 <CardContent className="p-2 sm:p-3 md:p-6">
                   <div className="bg-white rounded-lg h-48 sm:h-64 md:h-96 flex items-center justify-center relative border-2 border-gray-200 overflow-hidden">
@@ -415,7 +418,7 @@ export default function RadiationPage() {
                       loading="lazy"
                       referrerPolicy="no-referrer-when-downgrade"
                       className="rounded-lg"
-                      title="Карта радиационного мониторинга Абайской области"
+										title={t("radiation.monitoring.mapIframeTitle")}
                     ></iframe>
                     
                         {/* НАМЕРТВО прикрепленные маркеры к Google Maps */}
@@ -495,41 +498,41 @@ export default function RadiationPage() {
                   </div>
                   
                   <div className="mt-2 sm:mt-4 md:mt-6">
-                    <h4 className="text-xs sm:text-sm font-medium text-gray-700 mb-1 sm:mb-2 md:mb-3">Уровни радиации (мР/ч)</h4>
+									<h4 className="text-xs sm:text-sm font-medium text-gray-700 mb-1 sm:mb-2 md:mb-3">{t("radiation.monitoring.levelsTitle")}</h4>
                     <div className="grid grid-cols-2 sm:grid-cols-4 gap-1 sm:gap-2 md:gap-3 text-xs">
                       <div className="flex items-center gap-1 sm:gap-2">
                         <div className="w-2 h-2 sm:w-3 sm:h-3 bg-green-500 rounded-full"></div>
-                        <span className="text-xs">0.10-0.15 (норма)</span>
+											<span className="text-xs">{t("radiation.monitoring.levels.normal")}</span>
                       </div>
                       <div className="flex items-center gap-1 sm:gap-2">
                         <div className="w-2 h-2 sm:w-3 sm:h-3 bg-yellow-500 rounded-full"></div>
-                        <span className="text-xs">0.16-0.20 (повышенный)</span>
+											<span className="text-xs">{t("radiation.monitoring.levels.elevated")}</span>
                       </div>
                       <div className="flex items-center gap-1 sm:gap-2">
                         <div className="w-2 h-2 sm:w-3 sm:h-3 bg-orange-500 rounded-full"></div>
-                        <span className="text-xs">0.21-0.25 (внимание)</span>
+											<span className="text-xs">{t("radiation.monitoring.levels.attention")}</span>
                       </div>
                       <div className="flex items-center gap-1 sm:gap-2">
                         <div className="w-2 h-2 sm:w-3 sm:h-3 bg-red-500 rounded-full"></div>
-                        <span className="text-xs">&gt;0.25 (критический)</span>
+											<span className="text-xs">{t("radiation.monitoring.levels.critical")}</span>
                       </div>
                     </div>
                   </div>
                   
                   <div className="mt-4 p-3 bg-blue-50 rounded-lg">
-                    <h5 className="text-xs sm:text-sm font-medium text-blue-800 mb-2">Мониторинг Абайской области</h5>
+									<h5 className="text-xs sm:text-sm font-medium text-blue-800 mb-2">{t("radiation.monitoring.panel.title")}</h5>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-4 text-xs text-blue-700">
                       <div>
-                        <span className="font-medium">Населенные пункты:</span> 7
+											<span className="font-medium">{t("radiation.monitoring.panel.localities")}:</span> 7
                       </div>
                       <div>
-                        <span className="font-medium">Станций мониторинга:</span> 12
+											<span className="font-medium">{t("radiation.monitoring.panel.stations")}:</span> 12
                       </div>
                       <div>
-                        <span className="font-medium">В норме:</span> 6 из 7
+											<span className="font-medium">{t("radiation.monitoring.panel.ok")}:</span> 6 из 7
                       </div>
                       <div>
-                        <span className="font-medium">Последнее обновление:</span> 14:30
+											<span className="font-medium">{t("radiation.monitoring.panel.updated")}:</span> 14:30
                       </div>
                     </div>
                   </div>
@@ -542,7 +545,7 @@ export default function RadiationPage() {
                   <CardHeader className="pb-2 sm:pb-3 md:pb-6">
                     <CardTitle className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
                       <span className="text-xs sm:text-sm md:text-base">
-                        Динамика по месяцам
+                        {t("radiation.monitoring.monthDynamics")}
                         {selectedCity && (
                           <span className="text-xs sm:text-sm font-normal text-gray-600 ml-1 sm:ml-2">
                             - {selectedCity.name}
@@ -556,7 +559,7 @@ export default function RadiationPage() {
                           onClick={() => setSelectedCity(null)}
                           className="text-xs w-full sm:w-auto"
                         >
-                          Сбросить выбор
+											{t("radiation.monitoring.resetSelection")}
                         </Button>
                       )}
                     </CardTitle>
@@ -569,8 +572,16 @@ export default function RadiationPage() {
                           <XAxis dataKey="month" />
                           <YAxis domain={[-0.02, 0.26]} />
                           <Tooltip 
-                            formatter={(value, name) => [`${value} мР/ч`, name]}
-                            labelFormatter={(label) => `Месяц: ${label}`}
+                            formatter={(value, name) => [
+                              `${value} ${t("radiation.monitoring.unit")}`,
+                              name,
+                            ]}
+                            labelFormatter={(label) => {
+                              const ruMonths = ['Янв','Фев','Мар','Апр','Май','Июн','Июл','Авг','Сен','Окт','Ноя','Дек'];
+                              const idx = ruMonths.indexOf(label as string);
+                              const monthLocalized = idx !== -1 && months[idx] ? months[idx] : label;
+                              return `${t("radiation.monitoring.month")}: ${monthLocalized}`;
+                            }}
                           />
                           <Area 
                             type="monotone" 
@@ -578,7 +589,7 @@ export default function RadiationPage() {
                             stackId="1"
                             stroke="#14b8a6" 
                             fill="#14b8a6"
-                            name="Базовый уровень"
+                            name={t("radiation.monitoring.series.base")}
                           />
                           <Area 
                             type="monotone" 
@@ -586,7 +597,7 @@ export default function RadiationPage() {
                             stackId="1"
                             stroke="#3b82f6" 
                             fill="#3b82f6"
-                            name="Средний уровень"
+                            name={t("radiation.monitoring.series.middle")}
                           />
                           <Area 
                             type="monotone" 
@@ -594,7 +605,7 @@ export default function RadiationPage() {
                             stackId="1"
                             stroke="#ef4444" 
                             fill="#ef4444"
-                            name="Пиковый уровень"
+                            name={t("radiation.monitoring.series.top")}
                           />
                         </AreaChart>
                       </ResponsiveContainer>
@@ -604,7 +615,7 @@ export default function RadiationPage() {
 
                 <Card>
                   <CardHeader className="pb-2 sm:pb-3 md:pb-6">
-                    <CardTitle className="text-xs sm:text-sm md:text-base">Сравнение с другими областями</CardTitle>
+                    <CardTitle className="text-xs sm:text-sm md:text-base">{t("radiation.monitoring.compareTitle")}</CardTitle>
                   </CardHeader>
                   <CardContent className="p-2 sm:p-3 md:p-6">
                     <div className="h-40 sm:h-48 md:h-64">
@@ -620,11 +631,11 @@ export default function RadiationPage() {
                           />
                           <YAxis 
                             domain={[0, 1]} 
-                            tickFormatter={(value) => `${value} мР/ч`}
+											tickFormatter={(value) => `${value} ${t("radiation.monitoring.unit")}`}
                           />
                           <Tooltip 
-                            formatter={(value) => [`${value} мР/ч`, 'Уровень радиации']}
-                            labelFormatter={(label) => `Область: ${label}`}
+											formatter={(value) => [`${value} ${t("radiation.monitoring.unit")}`, t("radiation.monitoring.tooltip.level")]}
+											labelFormatter={(label) => `${t("radiation.monitoring.tooltip.region")}: ${label}`}
                           />
                           <Bar dataKey="level" fill="#8884d8">
                             {regionsComparisonData.map((entry, index) => (
@@ -637,19 +648,19 @@ export default function RadiationPage() {
                     
                     {/* Легенда */}
                     <div className="mt-4">
-                      <h4 className="text-xs sm:text-sm font-medium text-gray-700 mb-2">Статусы радиации</h4>
+									<h4 className="text-xs sm:text-sm font-medium text-gray-700 mb-2">{t("radiation.monitoring.statuses.title")}</h4>
                       <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs">
                         <div className="flex items-center gap-2">
                           <div className="w-3 h-3 bg-green-500 rounded"></div>
-                          <span>Норма (0.3-0.5 мР/ч)</span>
+										<span>{t("radiation.monitoring.statuses.normal")}</span>
                         </div>
                         <div className="flex items-center gap-2">
                           <div className="w-3 h-3 bg-yellow-500 rounded"></div>
-                          <span>Повышенный (0.5-0.7 мР/ч)</span>
+										<span>{t("radiation.monitoring.statuses.elevated")}</span>
                         </div>
                         <div className="flex items-center gap-2">
                           <div className="w-3 h-3 bg-red-500 rounded"></div>
-                          <span>Внимание (&gt;0.7 мР/ч)</span>
+										<span>{t("radiation.monitoring.statuses.attention")}</span>
                         </div>
                       </div>
                     </div>
@@ -666,7 +677,7 @@ export default function RadiationPage() {
                   <CardContent className="p-2 sm:p-3 md:p-6">
                     <div className="flex items-center justify-between">
                       <div>
-                        <p className="text-xs sm:text-sm font-medium text-gray-600">Всего проб</p>
+										<p className="text-xs sm:text-sm font-medium text-gray-600">{t("radiation.monitoring.products.total")}</p>
                         <p className="text-base sm:text-lg md:text-2xl font-bold text-blue-600">662</p>
                       </div>
                       <Package className="h-5 w-5 sm:h-6 sm:w-6 md:h-8 md:w-8 text-blue-600" />
@@ -678,7 +689,7 @@ export default function RadiationPage() {
                   <CardContent className="p-2 sm:p-3 md:p-6">
                     <div className="flex items-center justify-between">
                       <div>
-                        <p className="text-xs sm:text-sm font-medium text-gray-600">Безопасные пробы</p>
+										<p className="text-xs sm:text-sm font-medium text-gray-600">{t("radiation.monitoring.products.safe")}</p>
                         <p className="text-base sm:text-lg md:text-2xl font-bold text-green-600">660</p>
                       </div>
                       <ShieldCheck className="h-5 w-5 sm:h-6 sm:w-6 md:h-8 md:w-8 text-green-600" />
@@ -690,7 +701,7 @@ export default function RadiationPage() {
                   <CardContent className="p-2 sm:p-3 md:p-6">
                     <div className="flex items-center justify-between">
                       <div>
-                        <p className="text-xs sm:text-sm font-medium text-gray-600">Превышения нормы</p>
+										<p className="text-xs sm:text-sm font-medium text-gray-600">{t("radiation.monitoring.products.exceeded")}</p>
                         <p className="text-base sm:text-lg md:text-2xl font-bold text-red-600">2</p>
                       </div>
                       <AlertTriangle className="h-5 w-5 sm:h-6 sm:w-6 md:h-8 md:w-8 text-red-600" />
@@ -702,7 +713,7 @@ export default function RadiationPage() {
                   <CardContent className="p-2 sm:p-3 md:p-6">
                     <div className="flex items-center justify-between">
                       <div>
-                        <p className="text-xs sm:text-sm font-medium text-gray-600">Уровень безопасности</p>
+										<p className="text-xs sm:text-sm font-medium text-gray-600">{t("radiation.monitoring.products.safety")}</p>
                         <p className="text-base sm:text-lg md:text-2xl font-bold text-green-600">99.7%</p>
                       </div>
                       <Shield className="h-5 w-5 sm:h-6 sm:w-6 md:h-8 md:w-8 text-green-600" />
@@ -716,50 +727,50 @@ export default function RadiationPage() {
                 <CardHeader className="pb-2 sm:pb-3 md:pb-6">
                   <CardTitle className="flex items-center gap-2 text-xs sm:text-sm md:text-base">
                     <Leaf className="h-3 w-3 sm:h-4 sm:w-4 md:h-5 md:w-5" />
-                    <span className="hidden md:inline">Рейтинг безопасности районов по продукции</span>
-                    <span className="md:hidden">Рейтинг безопасности</span>
+										<span className="hidden md:inline">{t("radiation.monitoring.products.ratingFull")}</span>
+										<span className="md:hidden">{t("radiation.monitoring.products.ratingShort")}</span>
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="p-2 sm:p-3 md:p-6">
                   <div className="space-y-2 sm:space-y-3 md:space-y-4">
                     <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center p-2 sm:p-3 md:p-4 bg-green-50 rounded-lg gap-2">
                       <div>
-                        <h4 className="font-medium text-xs sm:text-sm md:text-base">1. Аксуский район</h4>
-                        <p className="text-xs sm:text-sm text-gray-600">Средний уровень: 18.4 Бк/кг</p>
+                        <h4 className="font-medium text-xs sm:text-sm md:text-base">1. {regionNames[0]}</h4>
+                        <p className="text-xs sm:text-sm text-gray-600">{avgLabel}: 18.4 Бк/кг</p>
                       </div>
-                      <Badge className="bg-green-100 text-green-800 text-xs w-fit">98.2% Безопасность</Badge>
+                      <Badge className="bg-green-100 text-green-800 text-xs w-fit">98.2% {safetySuffixLabel}</Badge>
                     </div>
 
                     <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center p-2 sm:p-3 md:p-4 bg-green-50 rounded-lg gap-2">
                       <div>
-                        <h4 className="font-medium text-xs sm:text-sm md:text-base">2. Абайский район</h4>
-                        <p className="text-xs sm:text-sm text-gray-600">Средний уровень: 22.4 Бк/кг</p>
+                        <h4 className="font-medium text-xs sm:text-sm md:text-base">2. {regionNames[1]}</h4>
+                        <p className="text-xs sm:text-sm text-gray-600">{avgLabel}: 22.4 Бк/кг</p>
                       </div>
-                      <Badge className="bg-green-100 text-green-800 text-xs w-fit">95.8% Безопасность</Badge>
+                      <Badge className="bg-green-100 text-green-800 text-xs w-fit">95.8% {safetySuffixLabel}</Badge>
                     </div>
 
                     <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center p-3 sm:p-4 bg-green-50 rounded-lg gap-2">
                       <div>
-                        <h4 className="font-medium text-sm sm:text-base">3. Шетский район</h4>
-                        <p className="text-xs sm:text-sm text-gray-600">Средний уровень: 29 Бк/кг</p>
+                        <h4 className="font-medium text-sm sm:text-base">3. {regionNames[2]}</h4>
+                        <p className="text-xs sm:text-sm text-gray-600">{avgLabel}: 29 Бк/кг</p>
                       </div>
-                      <Badge className="bg-green-100 text-green-800 text-xs w-fit">92.1% Безопасность</Badge>
+                      <Badge className="bg-green-100 text-green-800 text-xs w-fit">92.1% {safetySuffixLabel}</Badge>
                     </div>
 
                     <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center p-3 sm:p-4 bg-yellow-50 rounded-lg gap-2">
                       <div>
-                        <h4 className="font-medium text-sm sm:text-base">4. Карагандинский район</h4>
-                        <p className="text-xs sm:text-sm text-gray-600">Средний уровень: 66 Бк/кг</p>
+                        <h4 className="font-medium text-sm sm:text-base">4. {regionNames[3]}</h4>
+                        <p className="text-xs sm:text-sm text-gray-600">{avgLabel}: 66 Бк/кг</p>
                       </div>
-                      <Badge className="bg-yellow-100 text-yellow-800 text-xs w-fit">78.5% Безопасность</Badge>
+                      <Badge className="bg-yellow-100 text-yellow-800 text-xs w-fit">78.5% {safetySuffixLabel}</Badge>
                     </div>
 
                     <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center p-3 sm:p-4 bg-orange-50 rounded-lg gap-2">
                       <div>
-                        <h4 className="font-medium text-sm sm:text-base">5. Темиртауский район</h4>
-                        <p className="text-xs sm:text-sm text-gray-600">Средний уровень: 99.8 Бк/кг</p>
+                        <h4 className="font-medium text-sm sm:text-base">5. {regionNames[4]}</h4>
+                        <p className="text-xs sm:text-sm text-gray-600">{avgLabel}: 99.8 Бк/кг</p>
                       </div>
-                      <Badge className="bg-orange-100 text-orange-800 text-xs w-fit">65.2% Безопасность</Badge>
+                      <Badge className="bg-orange-100 text-orange-800 text-xs w-fit">65.2% {safetySuffixLabel}</Badge>
                     </div>
                   </div>
                 </CardContent>

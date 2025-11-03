@@ -17,6 +17,7 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "@/shared/components/ui/chart";
+import { useTranslations } from "next-intl";
 
 /**
  * Данные для графика прогноза урожайности по регионам
@@ -37,15 +38,15 @@ interface YieldForecastData {
  */
 const chartConfig: ChartConfig = {
   mainMetric: {
-    label: "Основной показатель",
+    label: "",
     color: "#22c55e", // Зеленый цвет для линии
   },
   secondaryMetric: {
-    label: "Вторичный показатель",
+    label: "",
     color: "#9ca3af", // Серый цвет для столбцов
   },
   additionalMetric: {
-    label: "Дополнительный показатель",
+    label: "",
     color: "#3b82f6", // Синий цвет для столбцов
   },
 };
@@ -98,16 +99,25 @@ const mockData: YieldForecastData[] = [
  * ```
  */
 export const YieldForecastByRegionView: React.FC = () => {
+  const t = useTranslations();
+  const regions = t.raw("investments.yield.regions") as string[];
+  const localizedData = mockData.map((d, i) => ({
+    ...d,
+    region: regions[i] || d.region,
+  }));
+  const localizedConfig: ChartConfig = {
+    mainMetric: { ...chartConfig.mainMetric, label: t("investments.yield.main") },
+    secondaryMetric: { ...chartConfig.secondaryMetric, label: t("investments.yield.secondary") },
+    additionalMetric: { ...chartConfig.additionalMetric, label: t("investments.yield.additional") },
+  };
   return (
     <div className="w-full">
-      <h3 className="text-lg font-semibold mb-4">
-        Прогноз урожайности по регионам
-      </h3>
+      <h3 className="text-lg font-semibold mb-4">{t("investments.yield.title")}</h3>
 
-      <ChartContainer config={chartConfig} className="h-[400px] w-full">
+      <ChartContainer config={localizedConfig} className="h-[400px] w-full">
         <ResponsiveContainer width="100%" height="100%">
           <ComposedChart
-            data={mockData}
+            data={localizedData}
             margin={{
               top: 20,
               right: 30,
@@ -136,10 +146,10 @@ export const YieldForecastByRegionView: React.FC = () => {
             <ChartTooltip
               content={
                 <ChartTooltipContent
-                  labelFormatter={(value) => `Регион: ${value}`}
+                  labelFormatter={(value) => `${t("investments.yield.regionLabel")}: ${value}`}
                   formatter={(value, name) => [
                     `${value}%`,
-                    chartConfig[name as keyof typeof chartConfig]?.label ||
+                    localizedConfig[name as keyof typeof chartConfig]?.label ||
                       name,
                   ]}
                 />

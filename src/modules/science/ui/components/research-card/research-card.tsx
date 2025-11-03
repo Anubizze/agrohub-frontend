@@ -7,6 +7,7 @@ import { Button } from "@/shared/components/ui";
 import { Badge } from "@/shared/components/ui";
 
 import type { Research } from "../../../schemas/research.schema";
+import { useLocale, useTranslations } from "next-intl";
 
 /**
  * Иконки для категорий исследований
@@ -41,16 +42,34 @@ export const ResearchCard: React.FC<ResearchCardProps> = ({
   onPurchase,
   className = "",
 }) => {
+  const t = useTranslations();
+  const locale = useLocale();
   const CategoryIcon =
     categoryIcons[research.category as keyof typeof categoryIcons] || FileText;
 
   const formatPrice = (price: number): string => {
-    return new Intl.NumberFormat("ru-RU", {
+    const nfLocale = locale === "kk" ? "kk-KZ" : "ru-RU";
+    return new Intl.NumberFormat(nfLocale, {
       style: "currency",
       currency: "KZT",
       minimumFractionDigits: 0,
     }).format(price);
   };
+
+  // Локализуем заголовок/категорию/описание по id, если есть ключи
+  const titleKey = `science.research.${research.id}.title` as const;
+  const categoryKey = `science.research.${research.id}.category` as const;
+  const descriptionKey = `science.research.${research.id}.description` as const;
+  const localizedTitle = t(titleKey);
+  const localizedCategory = t(categoryKey);
+  const localizedDescription = t(descriptionKey);
+  const finalTitle = localizedTitle !== titleKey ? localizedTitle : research.title;
+  const finalCategory =
+    localizedCategory !== categoryKey ? localizedCategory : research.category;
+  const finalDescription =
+    localizedDescription !== descriptionKey
+      ? localizedDescription
+      : research.description;
 
   const handlePurchase = () => {
     onPurchase?.(research);
@@ -65,7 +84,7 @@ export const ResearchCard: React.FC<ResearchCardProps> = ({
         <div className="flex items-center gap-2">
           <Badge variant="secondary" className="flex items-center gap-1">
             <CategoryIcon className="w-3 h-3" />
-            {research.category}
+            {finalCategory}
           </Badge>
         </div>
         {research.isPremium && (
@@ -74,7 +93,7 @@ export const ResearchCard: React.FC<ResearchCardProps> = ({
             className="flex items-center gap-1 bg-orange-100 text-orange-800 border-orange-200"
           >
             <Star className="w-3 h-3" />
-            Премиум
+            {t("science.catalog.premium")}
           </Badge>
         )}
       </div>
@@ -84,29 +103,29 @@ export const ResearchCard: React.FC<ResearchCardProps> = ({
         <div className="text-2xl font-semibold text-green-600 mb-1">
           {formatPrice(research.price)}
         </div>
-        <div className="text-sm text-gray-500">{research.pages} страниц</div>
+        <div className="text-sm text-gray-500">{research.pages} {t("science.catalog.pages", { count: research.pages })}</div>
       </div>
 
       {/* Заголовок исследования */}
       <h3 className="text-lg font-semibold text-gray-900 mb-3 line-clamp-2">
-        {research.title}
+        {finalTitle}
       </h3>
 
       {/* Описание */}
       <p className="text-gray-600 text-sm mb-4 line-clamp-3">
-        {research.description}
+        {finalDescription}
       </p>
 
       {/* Дата публикации */}
       <div className="text-sm text-gray-500 mb-4">
-        Опубликовано: {research.publishedAt}
+        {t("science.catalog.published")}: {research.publishedAt}
       </div>
 
       {/* Статус покупки */}
       {research.requiresPurchases && (
         <div className="flex items-center gap-2 text-sm text-gray-600 mb-4">
           <Lock className="w-4 h-4" />
-          Требует покупки
+          {t("science.catalog.requiresPurchase")}
         </div>
       )}
 
@@ -117,7 +136,7 @@ export const ResearchCard: React.FC<ResearchCardProps> = ({
         disabled={!research.requiresPurchases}
       >
         <Lock className="w-4 h-4" />
-        Купить исследование за {formatPrice(research.price)}
+        {t("science.catalog.buyFor", { price: formatPrice(research.price) })}
       </Button>
     </div>
   );

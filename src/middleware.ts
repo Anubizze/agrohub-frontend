@@ -18,7 +18,7 @@ export function middleware(request: NextRequest) {
   }
   
   // Если это путь без локали (например /farmer), добавляем дефолтную локаль
-  if (!pathname.startsWith("/ru") && !pathname.startsWith("/kk") && !pathname.startsWith("/_next") && !pathname.startsWith("/favicon")) {
+  if (!pathname.startsWith("/ru") && !pathname.startsWith("/kk") && !pathname.startsWith("/en") && !pathname.startsWith("/_next") && !pathname.startsWith("/favicon")) {
     return NextResponse.redirect(new URL(`/${defaultLocale}${pathname}`, request.url));
   }
   

@@ -1,4 +1,5 @@
 import { CropPriceStructureCard } from "../components/CropPriceStructureCard";
+import { useTranslations } from "next-intl";
 
 const mockCropPriceData = [
   {
@@ -28,11 +29,23 @@ const mockCropPriceData = [
 ];
 
 export const CropPriceStructureView = () => {
+  const t = useTranslations();
+  const cropNames = [
+    t("investments.crops.items.0"),
+    t("investments.crops.items.1"),
+    t("investments.crops.items.2"),
+    t("investments.crops.items.3"),
+  ];
+  const localized = mockCropPriceData.map((c, i) => ({
+    ...c,
+    name: cropNames[i],
+    exportPercentage: c.exportPercentage.replace("экспорт", t("investments.crops.export")),
+  }));
   return (
     <section>
-      <h2 className="text-lg font-bold mb-4">Структура цен на зерновые</h2>
+      <h2 className="text-lg font-bold mb-4">{t("investments.crops.title")}</h2>
       <section className="space-y-4">
-        {mockCropPriceData.map((item) => (
+        {localized.map((item) => (
           <CropPriceStructureCard key={item.name} {...item} />
         ))}
       </section>

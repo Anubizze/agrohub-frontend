@@ -1,0 +1,673 @@
+{
+  "header": {
+    "menu": "Menu",
+    "navigation": "Navigation",
+    "social": "Social",
+    "contacts": "Contacts",
+    "contact": {
+      "labelPhone": "Contacts",
+      "labelEmail": "Email",
+      "labelAddress": "Address",
+      "addressLine1": "Semey, Glinki st. 20A",
+      "addressLine2": "Office 504"
+    },
+    "nav": {
+      "home": "Home",
+      "science": "Science",
+      "investments": "Investor",
+      "farmer": "Farmer",
+      "radiation": "Radiation"
+    }
+  },
+  "hero": {
+    "title": "Digital platform for the development of agriculture in Abai region",
+    "text": "We connect farmers, government, universities and business to provide transparent management, analytics and support for the agro‑industrial complex.",
+    "btnStats": "Statistics",
+    "btnService": "Order service"
+  },
+  "service": {
+    "title": "Recommendation service for farmers",
+    "text": "Are you a farm owner and want to increase production? Order our consulting service and we will help you!",
+    "primary": "Order recommendation",
+    "secondary": "Try for free"
+  },
+  "solutions": {
+    "title": "Solutions for everyone",
+    "subtitle": "Our platform provides specialized tools for different participants in the agro‑industrial complex",
+    "more": "Learn more",
+    "cards": {
+      "scientists": {
+        "title": "For researchers",
+        "desc": "Aggregated data, analytics tools and API for research",
+        "item1": "Anonymized data",
+        "item2": "API access",
+        "item3": "Export of reports"
+      },
+      "investors": {
+        "title": "For investors",
+        "desc": "Market analytics, investment opportunities and project evaluation",
+        "item1": "ROI calculators",
+        "item2": "Risk analysis",
+        "item3": "Investment projects"
+      },
+      "farmers": {
+        "title": "For farm owners",
+        "desc": "Production management, planning and personalized recommendations",
+        "item1": "Sowing planning",
+        "item2": "Yield forecasts",
+        "item3": "Expert consulting"
+      },
+      "producers": {
+        "title": "For producers",
+        "desc": "B2B marketplace, logistics solutions and demand analytics",
+        "item1": "B2B marketplace",
+        "item2": "Logistics solutions",
+        "item3": "Direct contracts"
+      }
+    }
+  },
+  "region": {
+    "title": "Key indicators of the Abai region",
+    "text": "Agrosector collects and analyzes data for all districts of the Abai region, helping farmers, government and producers make decisions based on real statistics.",
+    "cta": "View full statistics",
+    "yield": { "value": "3500 kg/ha", "title": "Yield", "desc": "Average yield in the region." },
+    "export": { "value": "248 500", "title": "Livestock", "desc": "Total number of animals." },
+    "herd": { "value": "56 000 t", "title": "Export", "desc": "Volume of exported products." },
+    "vacc": { "value": "98%", "title": "Vaccinations", "desc": "Animals with preventive vaccinations." }
+  },
+  "home": {
+    "analytics": {
+      "title": "Production analytics",
+      "subtitle": "Comprehensive analysis of production structure, yields and sales",
+      "structure": {
+        "title": "Production structure",
+        "subtitle": "Distribution of crops by area",
+        "crops": {
+          "grains": "Grains",
+          "oilseeds": "Oilseeds",
+          "potato": "Potatoes",
+          "vegetables": "Vegetables & melons",
+          "forage": "Forage crops"
+        }
+      },
+      "yield": {
+        "title": "Yield by crop",
+        "subtitle": "Harvest by crop (thousand tons)",
+        "crops": {
+          "wheat": "Wheat",
+          "potato": "Potatoes",
+          "vegetables": "Vegetables & melons",
+          "oilseeds": "Oilseeds"
+        },
+        "thousandTonsSuffix": "k t"
+      },
+      "meat": {
+        "title": "Meat sales",
+        "subtitle": "Share of total volume",
+        "sold": "Sold",
+        "rest": "Left",
+        "categories": {
+          "chicken": "Chicken",
+          "beef": "Beef",
+          "pork": "Pork",
+          "mutton": "Mutton"
+        }
+      },
+      "harvest": {
+        "title": "Gross harvest",
+        "subtitle": "Harvest by districts (tons)",
+        "districts": {
+          "borodulikha": "Borodulikha district",
+          "urdzhar": "Urdzhar district",
+          "kokpekti": "Kokpekti district",
+          "beskaragai": "Beskaragai district",
+          "aksuat": "Aksuat"
+        },
+        "thousandTonsSuffix": "k t"
+      }
+    }
+  },
+  "partners": { "title": "Our partners" },
+  "partnersCallout": {
+    "title": "We are waiting for your proposals",
+    "text": "We are ready to cooperate and open to new partnerships. Contact us to discuss collaboration opportunities.",
+    "cta": "Contact us"
+  },
+  "farmer": {
+    "hero": {
+      "title": "Personalized recommendations for your farm",
+      "subtitle": "Every farm is unique, and universal tips rarely yield the desired result. That's why we offer a personalized approach:"
+    },
+    "cta": {
+      "order": "Order recommendation",
+      "example": "Show recommendation example",
+      "title": "Ready to get started?",
+      "subtitle": "Get personalized recommendations for your farm today"
+    },
+    "services": {
+      "title": "Our approach",
+      "subtitle": "Comprehensive analysis of your farm for maximum efficiency",
+      "items": [
+        { "title": "Specialists on site", "desc": "Our specialists visit your farm" },
+        { "title": "Soil and water analysis", "desc": "We take samples of soil, water and feed" },
+        { "title": "Animal assessment", "desc": "We assess animals and their housing conditions" },
+        { "title": "Practical recommendations", "desc": "Based on data we develop clear and practical recommendations" }
+      ]
+    },
+    "benefits": {
+      "title": "What you get",
+      "subtitle": "Concrete results for your farm",
+      "items": [
+        { "title": "Higher yields", "desc": "Higher yields and improved product quality" },
+        { "title": "Healthy animals", "desc": "Healthy and productive animals" },
+        { "title": "Resource saving", "desc": "Save on feed and fertilizers through optimal use" },
+        { "title": "Profitability", "desc": "Increase the profitability of your farm" }
+      ],
+      "note": "We don't just analyze — we provide concrete steps to help your farm grow and develop."
+    }
+  },
+  "recommendation": {
+    "notice": {
+      "title": "Important notice",
+      "text": "The data below is illustrative and for demonstration purposes only."
+    },
+    "growth": {
+      "title": "Efficiency growth forecast",
+      "subtitle": "Projected indicators subject to recommendations",
+      "chartTitle": "Efficiency dynamics",
+      "chartSubtitle": "Current indicators and 12‑month forecast",
+      "series": { "actual": "Current efficiency", "projected": "Projected efficiency" },
+      "methodologyTitle": "Forecast methodology",
+      "methodologyText": "The forecast is based on analysis of current efficiency indicators and the expected impact of recommendations. Seasonal factors, historical data and potential risks are taken into account. Regular data updates ensure forecast accuracy."
+    },
+    "analysis": {
+      "title": "Analysis",
+      "subtitle": "Comprehensive analysis of soil condition and animal health",
+      "soilAnalysis": {
+        "title": "Soil analysis",
+        "subtitle": "Chemical composition and properties",
+        "visualAnalysisTitle": "Visual analysis",
+        "visualAnalysisSubtitle": "Comparison with regulatory indicators"
+      },
+      "animalAnalysis": {
+        "title": "Animal condition analysis",
+        "subtitle": "Health and productivity",
+        "visualAnalysisTitle": "Visual analysis",
+        "visualAnalysisSubtitle": "Comparison with regulatory indicators"
+      },
+      "recommendationTitle": "Analysis recommendations",
+      "recommendationText": "Regular monitoring of indicators allows timely detection of deviations and taking corrective measures. It is recommended to conduct analyzes monthly to maintain optimal production conditions."
+    },
+    "efficiency": {
+      "title": "Product sales efficiency",
+      "subtitle": "Analysis of efficiency indicators and growth potential",
+      "summaryTitle": "Analytical summary",
+      "summaryText": "Efficiency indicators are calculated based on current data on production, sales and market conditions. It is recommended to regularly track changes to optimize business processes."
+    },
+    "recommendations": {
+      "title": "Recommendations for improving efficiency",
+      "subtitle": "Personalized recommendations based on your farm analysis",
+      "highPriority": "High priority",
+      "highPriorityDesc": "Requires immediate attention",
+      "mediumPriority": "Medium priority",
+      "mediumPriorityDesc": "Plan in the near future",
+      "lowPriority": "Low priority",
+      "lowPriorityDesc": "Long-term improvements",
+      "prioritySuffix": "recommendations",
+      "howToUseTitle": "How to use recommendations",
+      "howToUseText": "Start with high-priority recommendations for maximum impact. Each recommendation contains a detailed action plan, implementation deadlines and expected results. Regularly track progress to achieve your goals."
+    },
+    "card": {
+      "viewDetails": "View details"
+    },
+    "statsCard": {
+      "currentEfficiency": "Current efficiency",
+      "target12Months": "Target in 12 months",
+      "expectedGrowth": "Expected growth"
+    },
+    "status": {
+      "normal": "Normal",
+      "requiresAttention": "Requires attention",
+      "excellent": "Excellent"
+    },
+    "priority": {
+      "high": "High priority",
+      "medium": "Medium priority",
+      "low": "Low analysis"
+    },
+    "mock": {
+      "keyStats": {
+        "totalAnimals": "Total animals",
+        "vaccinated": "Vaccinated animals",
+        "export": "Product export",
+        "sownArea": "Sown area"
+      },
+      "efficiency": {
+        "currentEfficiency": {
+          "title": "Current efficiency",
+          "comment": "Good result"
+        },
+        "regionalIndicator": {
+          "title": "Regional indicator",
+          "comment": "Below average"
+        },
+        "growthPotential": {
+          "title": "Growth potential",
+          "comment": "If recommendations are followed"
+        }
+      },
+      "recommendations": [
+        {
+          "category": "Soil & Fertilizers",
+          "title": "Problem: Low phosphorus level",
+          "description": "Apply phosphorus fertilizers (superphosphate) at 40–50 kg/ha in spring",
+          "deadline": "Deadline: 2–3 weeks",
+          "result": "Result: +15% grain yield"
+        },
+        {
+          "category": "Livestock",
+          "title": "Problem: Low feed quality",
+          "description": "Include premixes with vitamins A, D, E and trace elements in the diet",
+          "deadline": "Deadline: 1–2 months",
+          "result": "Result: +8% milk productivity"
+        },
+        {
+          "category": "Sales efficiency",
+          "title": "Problem: Suboptimal sales channels",
+          "description": "Enter direct contracts with processors, bypassing intermediaries",
+          "deadline": "Deadline: 1 month",
+          "result": "Result: +12% of selling price"
+        },
+        {
+          "category": "Technology",
+          "title": "Problem: Outdated equipment",
+          "description": "Modernize milking installation to increase productivity",
+          "deadline": "Deadline: 3–6 months",
+          "result": "Result: +20% labor productivity"
+        }
+      ],
+      "soilAnalysis": {
+        "metrics": [
+          { "name": "Soil pH", "note": "Norm: 6-7.5" },
+          { "name": "Nitrogen (mg/kg)", "note": "Norm: 20-40" },
+          { "name": "Phosphorus (mg/kg)", "note": "Norm: 15-30" },
+          { "name": "Potassium (mg/kg)", "note": "Norm: 100-200" },
+          { "name": "Organic matter (%)", "note": "Norm: 2.5-4" },
+          { "name": "Moisture (%)", "note": "Norm: 15-25" }
+        ],
+        "radarData": [
+          { "metric": "Soil pH" },
+          { "metric": "Nitrogen" },
+          { "metric": "Phosphorus" },
+          { "metric": "Potassium" },
+          { "metric": "Org. matter" },
+          { "metric": "Moisture" }
+        ],
+        "chartConfig": {
+          "value": "Value",
+          "min": "Norm (min)",
+          "max": "Norm (max)"
+        }
+      },
+      "animalAnalysis": {
+        "metrics": [
+          { "name": "Health index", "note": "Norm: 85-100%" },
+          { "name": "Productivity index", "note": "Norm: 80-100%" },
+          { "name": "Feed quality", "note": "Norm: 75-100%" },
+          { "name": "Vaccination coverage (%)", "note": "Norm: 95-100%" },
+          { "name": "Milk quality", "note": "Norm: 85-100%" },
+          { "name": "Reproductive health", "note": "Norm: 80-100%" }
+        ],
+        "radarData": [
+          { "metric": "Health" },
+          { "metric": "Productivity" },
+          { "metric": "Feed quality" },
+          { "metric": "Milk quality" },
+          { "metric": "Reproduction" },
+          { "metric": "Vaccination" }
+        ],
+        "chartConfig": {
+          "value": "Value",
+          "min": "Norm (min)",
+          "max": "Norm (max)"
+        }
+      }
+    }
+  },
+  "science": {
+    "months": ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],
+    "keyStats": {
+      "title": "Key indicators",
+      "subtitle": "Core efficiency metrics of your farm",
+      "liveNote": "Data updates in real time",
+      "cards": {
+        "totalAnimals": "Total animals",
+        "vaccinated": "Vaccinated animals",
+        "export": "Product export",
+        "sownArea": "Sown area"
+      },
+      "change": { "up": "growth", "down": "decline", "neutral": "change" }
+    },
+    "publications": {
+      "title": "Publications trend (12 months)",
+      "description": "Number of scientific publications by month for the last year.",
+      "yAxis": "Publications, pcs.",
+      "seriesLabel": "Publications"
+    },
+    "fields": {
+      "title": "Research directions",
+      "description": "Share of publications and projects by main research areas, %.",
+      "crop": "Crop production",
+      "livestock": "Livestock",
+      "agrotech": "Agrotechnologies",
+      "eco": "Ecology",
+      "soil": "Soil science"
+    },
+    "catalog": {
+      "title": "Analytical research",
+      "subtitle": "Expert reports and forecasts for decision making",
+      "premium": "Premium content",
+      "pages": "pages",
+      "published": "Published",
+      "requiresPurchase": "Requires purchase",
+      "buyFor": "Buy research for {price}",
+      "aboutTitle": "About our research",
+      "aboutText": "Our analytical research is created by experts in agriculture and contains current data, forecasts and recommendations for making informed decisions in agribusiness. Each report undergoes thorough verification and contains practical recommendations for improving the efficiency of your business."
+    },
+    "research": {
+      "1": {
+        "category": "Crop production",
+        "title": "Abai region yield analysis 2024",
+        "description": "Comprehensive study of yield of main agricultural crops with forecast for 2025."
+      },
+      "2": {
+        "category": "Livestock",
+        "title": "Livestock development trends",
+        "description": "Detailed analysis of the livestock sector development, including dairy and meat directions."
+      },
+      "3": {
+        "category": "Marketing",
+        "title": "Agricultural products price forecast 2025",
+        "description": "Expert forecast of price situation for main types of agricultural products."
+      },
+      "4": {
+        "category": "Analytics",
+        "title": "Farm efficiency benchmarks",
+        "description": "Comparative analysis of efficiency of agricultural enterprises of various types."
+      }
+    }
+  },
+  "footer": {
+    "solutions": {
+      "title": "Solutions",
+      "scientists": "For researchers",
+      "investors": "For investors",
+      "farmers": "For farmers"
+    },
+    "info": {
+      "title": "Information",
+      "faq": "Frequently asked questions",
+      "blog": "Blog",
+      "courses": "Courses"
+    },
+    "contacts": {
+      "title": "Contacts",
+      "phone": "+7 747 621 98 61",
+      "email": "innovation@shakarim.kz",
+      "address": "Semey, Glinki st. 20A, Office 504",
+      "about": "About company",
+      "partners": "For partners"
+    },
+    "rights": "All rights reserved."
+  },
+  "notice": {
+    "title": "Important notice",
+    "text": "The data presented below is for example and demonstration only. It is provided for illustration purposes."
+  },
+  "investments": {
+    "title": "Investment opportunities",
+    "subtitle": "Discover profitable investment projects in the agro-industrial complex of Abai region",
+    "notice": {
+      "title": "Important notice",
+      "text": "The data presented below is for example and demonstration only. It is provided for illustration purposes."
+    },
+    "stats": {
+      "total": "Total investments",
+      "totalTooltip": "+12.3% per year",
+      "projects": "Number of projects",
+      "projectsTooltip": "In implementation phase",
+      "avgRoi": "Average ROI",
+      "avgRoiTooltip": "Over the last 3 years",
+      "jobs": "Jobs",
+      "jobsTooltip": "Created since 2020"
+    },
+    "sector": {
+      "title": "Sector analytics",
+      "items": ["Crop production", "Livestock", "Processing", "Logistics", "Technologies"]
+    },
+    "region": {
+      "title": "Investment dynamics",
+      "subtitle": "Shows the growth of investments in the agro-industrial complex over the last 5 years",
+      "base": "Base investments",
+      "additional": "Additional investments",
+      "footerMain": "57% investment growth over 5 years",
+      "footerRange": "2020 - 2024"
+    },
+    "risk": {
+      "title": "Risk analysis",
+      "items": [
+        { "name": "Weather conditions", "note": "Crop insurance" },
+        { "name": "Market volatility", "note": "Diversification" },
+        { "name": "Currency risks", "note": "Hedging" },
+        { "name": "Regulatory changes", "note": "Law monitoring" },
+        { "name": "Technological risks", "note": "Phased implementation" }
+      ]
+    },
+    "roi": {
+      "title": "ROI Calculator",
+      "amount": "Investment amount (tenge)",
+      "period": "Investment period (years)",
+      "choosePeriod": "Choose period",
+      "y1": "1 year",
+      "y3": "3 years",
+      "y5": "5 years",
+      "y10": "10 years",
+      "sector": "Sector",
+      "chooseSector": "Choose sector",
+      "risk": "Risk tolerance",
+      "chooseRisk": "Choose risk tolerance",
+      "low": "Low",
+      "medium": "Medium",
+      "high": "High",
+      "calculate": "Calculate",
+      "results": "Calculation results",
+      "hint": "Enter parameters and click \"Calculate\""
+    },
+    "crops": {
+      "title": "Grain price structure",
+      "items": ["Wheat", "Corn", "Sunflower", "Barley"],
+      "export": "export",
+      "inside": "Domestic market",
+      "exportLabel": "Export"
+    },
+    "yield": {
+      "title": "Yield forecast by region",
+      "regionLabel": "Region",
+      "main": "Main indicator",
+      "secondary": "Secondary indicator",
+      "additional": "Additional indicator",
+      "regions": ["Abai", "Aksu", "Temirtau", "Shet", "Karaganda"]
+    },
+    "projects": {
+      "title": "Projects",
+      "subtitle": "Ready-to-finance projects with high growth potential",
+      "ctaTitle": "Ready to start financing?",
+      "ctaText": "Join successful investors who are already profiting from projects in Abai region",
+      "ctaButton": "Contact an expert",
+      "items": [
+        {
+          "sector": "Processing",
+          "name": "Agrotechnopark «Abai»",
+          "description": "Modern grain processing complex using advanced technologies",
+          "advantages": ["Government support", "Export potential", "Creation of 250 jobs"]
+        },
+        {
+          "sector": "Livestock",
+          "name": "Digital farm of the future",
+          "description": "High-tech livestock complex with automated systems",
+          "advantages": ["IoT monitoring", "Organic products", "Eco-friendliness"]
+        },
+        {
+          "sector": "Logistics",
+          "name": "Agro-industrial logistics hub",
+          "description": "Multimodal logistics center serving agricultural producers in the region",
+          "advantages": ["Strategic location", "Government guarantees", "Fast payback"]
+        }
+      ],
+      "required": "Required investments",
+      "roi": "Expected ROI",
+      "payback": "Expected payback period",
+      "advantages": "Key advantages:",
+      "statusLabel": "Status:",
+      "status": {
+        "search": "Looking for investor",
+        "partial": "Partial financing",
+        "ready": "Ready for launch"
+      },
+      "more": "More details",
+      "contact": "Contact"
+    },
+    "common": {
+      "low": "Low",
+      "medium": "Medium",
+      "high": "High"
+    }
+  },
+  "radiation": {
+    "title": "Radiation background",
+    "description": "Monitoring of radiation background in agricultural regions",
+    "currentLevel": "Current level",
+    "averageMonth": "Average per month",
+    "maximum": "Maximum",
+    "normalLevel": "Normal radiation level",
+    "withinNorm": "Within normal range",
+    "last30Days": "Last 30 days",
+    "mapTitle": "Radiation background map",
+    "regionsData": "Regional data",
+    "region": "Region",
+    "currentLevelCol": "Current level",
+    "averageMonthCol": "Average per month",
+    "status": "Status",
+    "normal": "Normal",
+    "accessDenied": {
+      "title": "Restricted access",
+      "description": "This section is available only to authorized specialists of the environmental monitoring service",
+      "loginButton": "Login as specialist",
+      "demoNote": "Demo access to demonstrate functionality"
+    },
+    "monitoring": {
+      "loading": "Checking access...",
+      "title": "Radiation monitoring",
+      "subtitleEcology": "Radiation background control system of the Republic of Kazakhstan",
+      "subtitleProducts": "Radiation control in agricultural products",
+      "badge": {
+        "specialistsFull": "For specialists only",
+        "specialistsShort": "Specialists",
+        "onlineFull": "Online monitoring",
+        "onlineShort": "Online"
+      },
+      "logoutFull": "Logout",
+      "logoutShort": "Logout",
+      "tabs": {
+        "ecologyFull": "Environmental monitoring",
+        "ecologyShort": "Ecology",
+        "productsFull": "Product monitoring",
+        "productsShort": "Products"
+      },
+      "kpi": {
+        "avgLevel": "Average level",
+        "stations": "Monitoring stations",
+        "districtsOk": "Districts within norm",
+        "lastUpdate": "Last update"
+      },
+      "mapTitle": "Radiation background map of Abai region",
+      "mapIframeTitle": "Radiation monitoring map of Abai region",
+      "levelsTitle": "Radiation levels (mR/h)",
+      "levels": {
+        "normal": "0.10-0.15 (normal)",
+        "elevated": "0.16-0.20 (elevated)",
+        "attention": "0.21-0.25 (attention)",
+        "critical": ">0.25 (critical)"
+      },
+      "panel": {
+        "title": "Abai region monitoring",
+        "localities": "Localities",
+        "stations": "Monitoring stations",
+        "ok": "Normal",
+        "updated": "Last update"
+      },
+      "resetSelection": "Reset selection",
+      "unit": "mR/h",
+      "month": "Month",
+      "series": {
+        "base": "Base level",
+        "middle": "Average level",
+        "top": "Peak level"
+      },
+      "monthDynamics": "Monthly dynamics",
+      "compareTitle": "Comparison with other regions",
+      "tooltip": {
+        "level": "Radiation level",
+        "region": "Region"
+      },
+      "statuses": {
+        "title": "Radiation statuses",
+        "normal": "Normal (0.3-0.5 mR/h)",
+        "elevated": "Elevated (0.5-0.7 mR/h)",
+        "attention": "Attention (>0.7 mR/h)",
+        "normalShort": "Normal",
+        "elevatedShort": "Elevated",
+        "attentionShort": "Attention"
+      },
+      "comparisonRegions": [
+        "Almaty region",
+        "Aktobe region",
+        "Karaganda region",
+        "Pavlodar region",
+        "Abai region"
+      ],
+      "products": {
+        "total": "Total samples",
+        "safe": "Safe samples",
+        "exceeded": "Exceeded norm",
+        "safety": "Safety level",
+        "ratingFull": "District safety rating by products",
+        "ratingShort": "Safety rating",
+        "avg": "Average level",
+        "safetySuffix": "Safety",
+        "regions": [
+          "Aksu district",
+          "Abai district",
+          "Shet district",
+          "Karaganda district",
+          "Temirtau district"
+        ]
+      }
+    },
+    "login": {
+      "title": "Restricted access",
+      "description": "This section is available only to authorized specialists of the environmental monitoring service",
+      "loginTitle": "Login",
+      "loginDescription": "Enter credentials to access the monitoring system",
+      "username": "Username",
+      "usernamePlaceholder": "Enter username",
+      "password": "Password",
+      "passwordPlaceholder": "Enter password",
+      "login": "Login as specialist",
+      "loggingIn": "Logging in...",
+      "demoAccess": "Demo access",
+      "demoButton": "Quick access",
+      "demoCredentials": "Demo: specialist / monitoring2024"
+    }
+  }
+}
