@@ -3,6 +3,7 @@ import createNextIntlPlugin from "next-intl/plugin";
 
 const nextConfig: NextConfig = {
   // Для Vercel используем обычную сборку без статического экспорта
+	output: "standalone",
   trailingSlash: true,
   images: {
     unoptimized: true
