@@ -2,6 +2,7 @@ import type { NextConfig } from "next";
 import createNextIntlPlugin from "next-intl/plugin";
 
 const nextConfig: NextConfig = {
+  standalone: true,
   // Для Vercel используем обычную сборку без статического экспорта
 	output: "standalone",
   trailingSlash: true,
