@@ -31,7 +31,13 @@ export const Header = () => {
     </header>
   );
 };
-const navlinks = (t: ReturnType<typeof useTranslations>) => [
+type NavLink = {
+  name: string;
+  href: string;
+  children?: NavLink[];
+};
+
+const navlinks = (t: ReturnType<typeof useTranslations>): NavLink[] => [
   {
     name: t("header.nav.home"),
     href: "/",
@@ -49,6 +55,16 @@ const navlinks = (t: ReturnType<typeof useTranslations>) => [
     href: "/farmer",
   },
   {
+    name: t("header.nav.statistics"),
+    href: "/statistics/meteorology",
+    children: [
+      {
+        name: t("header.nav.statisticsMeteorology"),
+        href: "/statistics/meteorology",
+      },
+    ],
+  },
+  {
     name: t("header.nav.radiation"),
     href: "/radiation/login",
   },
@@ -58,11 +74,34 @@ export const Navbar = () => {
   return (
     <nav className="bg-slate-200 h-15  items-center hidden xl:flex">
       <section className="max-w-[1200px]  mx-auto flex gap-5  items-center justify-center">
-        {navlinks(t).map((l) => (
-          <Link key={l.name} href={l.href}>
-            {l.name}
-          </Link>
-        ))}
+        {navlinks(t).map((link) => {
+          if (!link.children) {
+            return (
+              <Link key={link.href} href={link.href}>
+                {link.name}
+              </Link>
+            );
+          }
+
+          return (
+            <div key={link.href} className="relative group">
+              <Link href={link.href}>{link.name}</Link>
+              <div className="absolute left-1/2 z-10 mt-2 hidden -translate-x-1/2 rounded-md border border-slate-200 bg-white py-2 shadow-md group-hover:flex group-focus-within:flex">
+                <div className="flex flex-col">
+                  {link.children.map((child) => (
+                    <Link
+                      key={child.href}
+                      href={child.href}
+                      className="whitespace-nowrap px-4 py-2 text-sm hover:bg-slate-100"
+                    >
+                      {child.name}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            </div>
+          );
+        })}
         <div className="ml-6">
           <LocaleSwitcher />
         </div>
@@ -88,11 +127,30 @@ const BurgerMenu = () => {
           <div>
             <h2 className="text-lg font-semibold mb-5">{t("header.navigation")}</h2>
             <div className="flex flex-col gap-2">
-              {navlinks(t).map((l) => (
-                <Link key={l.name} href={l.href} className="text-gray-500">
-                  {l.name}
-                </Link>
-              ))}
+              {navlinks(t).map((link) => {
+                if (!link.children) {
+                  return (
+                    <Link key={link.href} href={link.href} className="text-gray-500">
+                      {link.name}
+                    </Link>
+                  );
+                }
+
+                return (
+                  <div key={link.href} className="flex flex-col gap-2">
+                    <Link href={link.href} className="text-gray-500 font-medium">
+                      {link.name}
+                    </Link>
+                    <div className="ml-4 flex flex-col gap-1">
+                      {link.children.map((child) => (
+                        <Link key={child.href} href={child.href} className="text-gray-500 text-sm">
+                          {child.name}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                );
+              })}
             </div>
           </div>
           <div className="pt-4">

@@ -269,7 +269,70 @@
       "science": "Науке",
       "investments": "Инвестору",
       "farmer": "Фермеру",
+      "statistics": "Общая статистика",
+      "statisticsMeteorology": "Метеоданные",
       "radiation": "Радиационный фон"
+    }
+  },
+  "statistics": {
+    "nav": {
+      "title": "Общая статистика",
+      "meteorology": "Метеоданные"
+    },
+    "meteorology": {
+      "title": "Метеорологический анализ",
+      "subtitle": "Актуальные показатели по ключевым сельскохозяйственным регионам.",
+      "yearTag": "Метеоданные за 2022 год",
+      "labels": {
+        "temperature": "Температура",
+        "precipitation": "Осадки",
+        "airHumidity": "Влажность воздуха",
+        "soilMoisture": "Влажность почвы",
+        "optimal": "Опт.",
+        "lastYear": "Прошлый год"
+      },
+      "units": {
+        "temperature": "°C",
+        "precipitation": "мм",
+        "humidity": "%"
+      },
+      "regions": [
+        {
+          "name": "Абайский район",
+          "temperature": { "value": 22.5, "optimal": 23, "lastYear": 21.8 },
+          "precipitation": { "value": 450, "optimal": 480, "lastYear": 420 },
+          "airHumidity": 62,
+          "soilMoisture": 18.5
+        },
+        {
+          "name": "Аксуский район",
+          "temperature": { "value": 23.1, "optimal": 24, "lastYear": 23 },
+          "precipitation": { "value": 380, "optimal": 420, "lastYear": 350 },
+          "airHumidity": 58,
+          "soilMoisture": 16.2
+        },
+        {
+          "name": "Карагандинский район",
+          "temperature": { "value": 22.8, "optimal": 23, "lastYear": 22.1 },
+          "precipitation": { "value": 410, "optimal": 450, "lastYear": 390 },
+          "airHumidity": 60,
+          "soilMoisture": 17.8
+        },
+        {
+          "name": "Темиртауский район",
+          "temperature": { "value": 24.2, "optimal": 24.5, "lastYear": 23.8 },
+          "precipitation": { "value": 320, "optimal": 360, "lastYear": 340 },
+          "airHumidity": 55,
+          "soilMoisture": 14.5
+        },
+        {
+          "name": "Шетский район",
+          "temperature": { "value": 23.5, "optimal": 24, "lastYear": 22.9 },
+          "precipitation": { "value": 360, "optimal": 430, "lastYear": 340 },
+          "airHumidity": 57,
+          "soilMoisture": 15.8
+        }
+      ]
     }
   },
   "investments": {
