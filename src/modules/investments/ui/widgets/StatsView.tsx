@@ -2,39 +2,50 @@ import { useTranslations } from "next-intl";
 
 import { StatsCard } from "../components/StatsCard";
 
-const base = [
+type StatKey = "total" | "projects" | "avgRoi" | "jobs";
+type TooltipKey = `${StatKey}Tooltip`;
+
+type StatConfig = {
+  titleKey: StatKey;
+  value: string;
+  tooltipKey: TooltipKey;
+};
+
+const statsConfig: StatConfig[] = [
   {
-    titleKey: "investments.stats.total",
+    titleKey: "total",
     value: "45.8 млрд ₸",
-    tooltipKey: "investments.stats.totalTooltip",
+    tooltipKey: "totalTooltip",
   },
   {
-    titleKey: "investments.stats.projects",
+    titleKey: "projects",
     value: "23",
-    tooltipKey: "investments.stats.projectsTooltip",
+    tooltipKey: "projectsTooltip",
   },
   {
-    titleKey: "investments.stats.avgRoi",
+    titleKey: "avgRoi",
     value: "18.5%",
-    tooltipKey: "investments.stats.avgRoiTooltip",
+    tooltipKey: "avgRoiTooltip",
   },
   {
-    titleKey: "investments.stats.jobs",
+    titleKey: "jobs",
     value: "3 420",
-    tooltipKey: "investments.stats.jobsTooltip",
+    tooltipKey: "jobsTooltip",
   },
 ];
 
 export const StatsView = () => {
-  const t = useTranslations();
-  const mock = base.map((s) => ({
-    title: t(s.titleKey as any),
-    value: s.value,
-    tooltip: t(s.tooltipKey as any),
+  const t = useTranslations("investments.stats");
+
+  const stats = statsConfig.map((config) => ({
+    title: t(config.titleKey),
+    value: config.value,
+    tooltip: t(config.tooltipKey),
   }));
+
   return (
     <section className="flex gap-2 flex-wrap">
-      {mock.map((stat) => (
+      {stats.map((stat) => (
         <StatsCard key={stat.title} stats={stat} />
       ))}
     </section>

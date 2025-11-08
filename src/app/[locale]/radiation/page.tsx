@@ -28,6 +28,10 @@ export default function RadiationPage() {
   const regionNames = t.raw("radiation.monitoring.products.regions") as string[];
   const avgLabel = t("radiation.monitoring.products.avg");
   const safetySuffixLabel = t("radiation.monitoring.products.safetySuffix");
+  const unitLabel = t("radiation.monitoring.unit");
+  const tooltipLevelLabel = t("radiation.monitoring.tooltip.level");
+  const tooltipRegionLabel = t("radiation.monitoring.tooltip.region");
+  const monthLabel = t("radiation.monitoring.month");
   
   // Константа для русских названий месяцев (используется для локализации)
   const RU_MONTHS = ['Янв','Фев','Мар','Апр','Май','Июн','Июл','Авг','Сен','Окт','Ноя','Дек'];
@@ -573,13 +577,13 @@ export default function RadiationPage() {
                           <YAxis domain={[-0.02, 0.26]} />
                           <Tooltip 
                             formatter={(value, name) => [
-                              `${value} ${t("radiation.monitoring.unit")}`,
+                              `${value} ${unitLabel}`,
                               name,
                             ]}
                             labelFormatter={(label) => {
                               const idx = RU_MONTHS.indexOf(label as string);
                               const monthLocalized = idx !== -1 && months[idx] ? months[idx] : label;
-                              return `${t("radiation.monitoring.month")}: ${monthLocalized}`;
+                              return `${monthLabel}: ${monthLocalized}`;
                             }}
                           />
                           <Area 
@@ -630,11 +634,11 @@ export default function RadiationPage() {
                           />
                           <YAxis 
                             domain={[0, 1]} 
-											tickFormatter={(value) => `${value} ${t("radiation.monitoring.unit")}`}
+                            tickFormatter={(value) => `${value} ${unitLabel}`}
                           />
                           <Tooltip 
-											formatter={(value) => [`${value} ${t("radiation.monitoring.unit")}`, t("radiation.monitoring.tooltip.level")]}
-											labelFormatter={(label) => `${t("radiation.monitoring.tooltip.region")}: ${label}`}
+                            formatter={(value) => [`${value} ${unitLabel}`, tooltipLevelLabel]}
+                            labelFormatter={(label) => `${tooltipRegionLabel}: ${label}`}
                           />
                           <Bar dataKey="level" fill="#8884d8">
                             {regionsComparisonData.map((entry, index) => (

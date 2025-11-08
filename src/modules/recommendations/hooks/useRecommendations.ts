@@ -2,7 +2,87 @@ import { useTranslations } from "next-intl";
 import { useMemo } from "react";
 
 import { mockRecommendationsData } from "../model/recommendations.mock-data";
-import type { RecommendationsData } from "../schemas/recommendation.schema";
+import type {
+  Metric,
+  RadarDatum,
+  Recommendation,
+  RecommendationsData,
+} from "../schemas/recommendation.schema";
+
+const keyStatsOrder = [
+  "totalAnimals",
+  "vaccinated",
+  "export",
+  "sownArea",
+] as const;
+
+type RecommendationTranslation = Pick<
+  Recommendation,
+  "category" | "title" | "description" | "deadline" | "result"
+>;
+type MetricTranslation = Pick<Metric, "name" | "note">;
+type RadarTranslation = Pick<RadarDatum, "metric">;
+
+const isRecommendationTranslationArray = (
+  value: unknown,
+): value is RecommendationTranslation[] => {
+  if (!Array.isArray(value)) {
+    return false;
+  }
+
+  return value.every((item) => {
+    if (typeof item !== "object" || item === null) {
+      return false;
+    }
+
+    const record = item as Record<string, unknown>;
+
+    return (
+      typeof record.category === "string" &&
+      typeof record.title === "string" &&
+      typeof record.description === "string" &&
+      typeof record.deadline === "string" &&
+      typeof record.result === "string"
+    );
+  });
+};
+
+const isMetricTranslationArray = (
+  value: unknown,
+): value is MetricTranslation[] => {
+  if (!Array.isArray(value)) {
+    return false;
+  }
+
+  return value.every((item) => {
+    if (typeof item !== "object" || item === null) {
+      return false;
+    }
+
+    const record = item as Record<string, unknown>;
+
+    return (
+      typeof record.name === "string" &&
+      (typeof record.note === "string" || typeof record.note === "undefined")
+    );
+  });
+};
+
+const isRadarTranslationArray = (
+  value: unknown,
+): value is RadarTranslation[] => {
+  if (!Array.isArray(value)) {
+    return false;
+  }
+
+  return value.every((item) => {
+    if (typeof item !== "object" || item === null) {
+      return false;
+    }
+
+    return typeof (item as Record<string, unknown>).metric === "string";
+  });
+};
 
 /**
  * Хук для получения данных рекомендаций
@@ -17,22 +97,28 @@ export const useRecommendations = () => {
   const t = useTranslations("recommendation.mock");
   const isLoading = false;
   const error = null;
-  
+
   // Локализуем данные
   const data: RecommendationsData = useMemo(() => {
-    const localizedData = { ...mockRecommendationsData };
-    
+    const localizedData: RecommendationsData = {
+      ...mockRecommendationsData,
+    };
+
     // Локализуем ключевые показатели
-    localizedData.keyStats = mockRecommendationsData.keyStats.map((stat, index) => ({
-      ...stat,
-      title: [
-        t("keyStats.totalAnimals"),
-        t("keyStats.vaccinated"),
-        t("keyStats.export"),
-        t("keyStats.sownArea"),
-      ][index] || stat.title,
-    }));
-    
+    localizedData.keyStats = mockRecommendationsData.keyStats.map(
+      (stat, index) => {
+        const key = keyStatsOrder[index];
+        if (!key) {
+          return stat;
+        }
+
+        return {
+          ...stat,
+          title: t(`keyStats.${key}`),
+        } satisfies RecommendationsData["keyStats"][number];
+      },
+    );
+
     // Локализуем данные эффективности
     localizedData.efficiencyData = {
       currentEfficiency: {
@@ -50,51 +136,110 @@ export const useRecommendations = () => {
         title: t("efficiency.growthPotential.title"),
         comment: t("efficiency.growthPotential.comment"),
       },
-    };
-    
+    } satisfies RecommendationsData["efficiencyData"];
+
     // Локализуем рекомендации
-    const recommendationsT = t.raw("recommendations") as any;
-    localizedData.recommendations = mockRecommendationsData.recommendations.map((rec, index) => ({
-      ...rec,
-      category: recommendationsT[index]?.category || rec.category,
-      title: recommendationsT[index]?.title || rec.title,
-      description: recommendationsT[index]?.description || rec.description,
-      deadline: recommendationsT[index]?.deadline || rec.deadline,
-      result: recommendationsT[index]?.result || rec.result,
-    }));
-    
+    const recommendationsRaw = t.raw("recommendations");
+    const recommendationTranslations = isRecommendationTranslationArray(
+      recommendationsRaw,
+    )
+      ? recommendationsRaw
+      : [];
+
+    localizedData.recommendations = mockRecommendationsData.recommendations.map(
+      (rec, index) => {
+        const translation = recommendationTranslations[index];
+        if (!translation) {
+          return rec;
+        }
+
+        return {
+          ...rec,
+          ...translation,
+        } satisfies RecommendationsData["recommendations"][number];
+      },
+    );
+
     // Локализуем анализ почвы
-    const soilMetrics = t.raw("soilAnalysis.metrics") as any;
-    const soilRadar = t.raw("soilAnalysis.radarData") as any;
+    const soilMetricsRaw = t.raw("soilAnalysis.metrics");
+    const soilMetricsTranslations = isMetricTranslationArray(soilMetricsRaw)
+      ? soilMetricsRaw
+      : [];
+    const soilRadarRaw = t.raw("soilAnalysis.radarData");
+    const soilRadarTranslations = isRadarTranslationArray(soilRadarRaw)
+      ? soilRadarRaw
+      : [];
+
     localizedData.soilAnalysis = {
       ...mockRecommendationsData.soilAnalysis,
-      metrics: mockRecommendationsData.soilAnalysis.metrics.map((metric, index) => ({
-        ...metric,
-        name: soilMetrics[index]?.name || metric.name,
-        note: soilMetrics[index]?.note || metric.note,
-      })),
-      radarData: mockRecommendationsData.soilAnalysis.radarData.map((radar, index) => ({
-        ...radar,
-        metric: soilRadar[index]?.metric || radar.metric,
-      })),
-    };
-    
+      metrics: mockRecommendationsData.soilAnalysis.metrics.map(
+        (metric, index) => {
+          const translation = soilMetricsTranslations[index];
+          if (!translation) {
+            return metric;
+          }
+
+          return {
+            ...metric,
+            ...translation,
+          } satisfies RecommendationsData["soilAnalysis"]["metrics"][number];
+        },
+      ),
+      radarData: mockRecommendationsData.soilAnalysis.radarData.map(
+        (radar, index) => {
+          const translation = soilRadarTranslations[index];
+          if (!translation) {
+            return radar;
+          }
+
+          return {
+            ...radar,
+            ...translation,
+          } satisfies RecommendationsData["soilAnalysis"]["radarData"][number];
+        },
+      ),
+    } satisfies RecommendationsData["soilAnalysis"];
+
     // Локализуем анализ животных
-    const animalMetrics = t.raw("animalAnalysis.metrics") as any;
-    const animalRadar = t.raw("animalAnalysis.radarData") as any;
+    const animalMetricsRaw = t.raw("animalAnalysis.metrics");
+    const animalMetricsTranslations = isMetricTranslationArray(animalMetricsRaw)
+      ? animalMetricsRaw
+      : [];
+    const animalRadarRaw = t.raw("animalAnalysis.radarData");
+    const animalRadarTranslations = isRadarTranslationArray(animalRadarRaw)
+      ? animalRadarRaw
+      : [];
+
     localizedData.animalAnalysis = {
       ...mockRecommendationsData.animalAnalysis,
-      metrics: mockRecommendationsData.animalAnalysis.metrics.map((metric, index) => ({
-        ...metric,
-        name: animalMetrics[index]?.name || metric.name,
-        note: animalMetrics[index]?.note || metric.note,
-      })),
-      radarData: mockRecommendationsData.animalAnalysis.radarData.map((radar, index) => ({
-        ...radar,
-        metric: animalRadar[index]?.metric || radar.metric,
-      })),
-    };
-    
+      metrics: mockRecommendationsData.animalAnalysis.metrics.map(
+        (metric, index) => {
+          const translation = animalMetricsTranslations[index];
+          if (!translation) {
+            return metric;
+          }
+
+          return {
+            ...metric,
+            ...translation,
+          } satisfies RecommendationsData["animalAnalysis"]["metrics"][number];
+        },
+      ),
+      radarData: mockRecommendationsData.animalAnalysis.radarData.map(
+        (radar, index) => {
+          const translation = animalRadarTranslations[index];
+          if (!translation) {
+            return radar;
+          }
+
+          return {
+            ...radar,
+            ...translation,
+          } satisfies RecommendationsData["animalAnalysis"]["radarData"][number];
+        },
+      ),
+    } satisfies RecommendationsData["animalAnalysis"];
+
     return localizedData;
   }, [t]);
 

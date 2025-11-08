@@ -1,7 +1,6 @@
-import { memo } from "react";
-
-import { CloudRain, Thermometer } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
+import { CloudRain, Thermometer } from "lucide-react";
+import { memo } from "react";
 
 export interface MeteorologyOverviewLabels {
   temperature: string;

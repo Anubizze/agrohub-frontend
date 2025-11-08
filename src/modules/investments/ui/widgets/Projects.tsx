@@ -4,17 +4,24 @@ import { Button } from "@/shared/components/ui/button";
 
 import { ProjectCard } from "../components/ProjectCard";
 
-const mockProjectData: {
-  risk: "low" | "medium" | "high";
+type ProjectStatus = "search" | "partial" | "ready";
+type ProjectRisk = "low" | "medium" | "high";
+
+type ProjectBase = {
+  risk: ProjectRisk;
   sector: string;
   name: string;
   description: string;
   investment: string;
   roi: string;
   advantages: string[];
-  status: "search" | "partial" | "ready";
+  status: ProjectStatus;
   time: string;
-}[] = [
+};
+
+type ProjectTranslation = Pick<ProjectBase, "sector" | "name" | "description" | "advantages">;
+
+const mockProjectData: ProjectBase[] = [
   {
     risk: "medium",
     sector: "Переработка",
@@ -60,33 +67,68 @@ const mockProjectData: {
     status: "ready",
   },
 ];
+
+const isProjectTranslationArray = (
+  value: unknown,
+): value is ProjectTranslation[] => {
+  if (!Array.isArray(value)) {
+    return false;
+  }
+
+  return value.every((item) => {
+    if (typeof item !== "object" || item === null) {
+      return false;
+    }
+
+    const record = item as Record<string, unknown>;
+
+    const advantages = record.advantages;
+
+    return (
+      typeof record.sector === "string" &&
+      typeof record.name === "string" &&
+      typeof record.description === "string" &&
+      Array.isArray(advantages) &&
+      advantages.every((advantage) => typeof advantage === "string")
+    );
+  });
+};
+
 export const Projects = () => {
-  const t = useTranslations();
-  const localizedProjects = mockProjectData.map((p, idx) => ({
-    ...p,
-    sector: t(`investments.projects.items.${idx}.sector` as any),
-    name: t(`investments.projects.items.${idx}.name` as any),
-    description: t(`investments.projects.items.${idx}.description` as any),
-    advantages: [
-      t(`investments.projects.items.${idx}.advantages.0` as any),
-      t(`investments.projects.items.${idx}.advantages.1` as any),
-      t(`investments.projects.items.${idx}.advantages.2` as any),
-    ],
-  }));
+  const t = useTranslations("investments.projects");
+
+  const translationsRaw = t.raw("items");
+  const projectTranslations = isProjectTranslationArray(translationsRaw)
+    ? translationsRaw
+    : [];
+
+  const localizedProjects = mockProjectData.map((project, idx) => {
+    const translation = projectTranslations[idx];
+
+    if (!translation) {
+      return project;
+    }
+
+    return {
+      ...project,
+      ...translation,
+    } satisfies ProjectBase;
+  });
+
   return (
     <section className="space-y-5">
-      <h2 className="text-2xl font-bold ">{t("investments.projects.title")}</h2>
-      <p className="text-gray-500 mb-4">{t("investments.projects.subtitle")}</p>
+      <h2 className="text-2xl font-bold ">{t("title")}</h2>
+      <p className="text-gray-500 mb-4">{t("subtitle")}</p>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {localizedProjects.map((project) => (
           <ProjectCard key={project.name} {...project} />
         ))}
       </div>
       <section className="bg-gradient-to-r from-blue-600 to-purple-700 text-white flex flex-col gap-4 items-center rounded-lg p-5">
-        <h2 className="text-2xl font-bold">{t("investments.projects.ctaTitle")}</h2>
-        <p className="text-lg ">{t("investments.projects.ctaText")}</p>
+        <h2 className="text-2xl font-bold">{t("ctaTitle")}</h2>
+        <p className="text-lg ">{t("ctaText")}</p>
         <div>
-          <Button variant={"secondary"}>{t("investments.projects.ctaButton")}</Button>
+          <Button variant="secondary">{t("ctaButton")}</Button>
         </div>
       </section>
     </section>
