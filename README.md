@@ -75,6 +75,20 @@ pnpm orval
 
 ---
 
+### Пример рабочего цикла (feature-ветка)
+
+```bash
+git checkout -b feature/add-login
+# ... делаете изменения
+git add .
+git commit -m "feat: add login form"
+git push -u origin feature/add-login
+```
+
+После пуша создайте Pull Request на GitHub (в `develop` или `main`), пройдите ревью и смержите изменения.
+
+---
+
 ## Структура проекта
 
 ```
