@@ -93,6 +93,38 @@ const isRadarTranslationArray = (
  * const { data, isLoading, error } = useRecommendations();
  * ```
  */
+const translateWithFallback = (
+  translator: ReturnType<typeof useTranslations>,
+  key: string,
+  fallback: string,
+): string => {
+  try {
+    const translated = translator(key);
+    if (typeof translated === "string" && translated.trim() && translated !== key) {
+      return translated;
+    }
+  } catch (error) {
+    // ignore, fallback
+  }
+  return fallback;
+};
+
+const getRawValue = <T>(
+  translator: ReturnType<typeof useTranslations>,
+  key: string,
+): T | undefined => {
+  const rawFn = (translator as unknown as { raw?: (path: string) => unknown }).raw;
+  if (typeof rawFn !== "function") {
+    return undefined;
+  }
+
+  try {
+    return rawFn(key) as T;
+  } catch (error) {
+    return undefined;
+  }
+};
+
 export const useRecommendations = () => {
   const t = useTranslations("recommendation.mock");
   const isLoading = false;
@@ -114,7 +146,7 @@ export const useRecommendations = () => {
 
         return {
           ...stat,
-          title: t(`keyStats.${key}`),
+          title: translateWithFallback(t, `keyStats.${key}`, stat.title),
         } satisfies RecommendationsData["keyStats"][number];
       },
     );
@@ -123,23 +155,47 @@ export const useRecommendations = () => {
     localizedData.efficiencyData = {
       currentEfficiency: {
         ...mockRecommendationsData.efficiencyData.currentEfficiency,
-        title: t("efficiency.currentEfficiency.title"),
-        comment: t("efficiency.currentEfficiency.comment"),
+        title: translateWithFallback(
+          t,
+          "efficiency.currentEfficiency.title",
+          mockRecommendationsData.efficiencyData.currentEfficiency.title,
+        ),
+        comment: translateWithFallback(
+          t,
+          "efficiency.currentEfficiency.comment",
+          mockRecommendationsData.efficiencyData.currentEfficiency.comment,
+        ),
       },
       regionalIndicator: {
         ...mockRecommendationsData.efficiencyData.regionalIndicator,
-        title: t("efficiency.regionalIndicator.title"),
-        comment: t("efficiency.regionalIndicator.comment"),
+        title: translateWithFallback(
+          t,
+          "efficiency.regionalIndicator.title",
+          mockRecommendationsData.efficiencyData.regionalIndicator.title,
+        ),
+        comment: translateWithFallback(
+          t,
+          "efficiency.regionalIndicator.comment",
+          mockRecommendationsData.efficiencyData.regionalIndicator.comment,
+        ),
       },
       growthPotential: {
         ...mockRecommendationsData.efficiencyData.growthPotential,
-        title: t("efficiency.growthPotential.title"),
-        comment: t("efficiency.growthPotential.comment"),
+        title: translateWithFallback(
+          t,
+          "efficiency.growthPotential.title",
+          mockRecommendationsData.efficiencyData.growthPotential.title,
+        ),
+        comment: translateWithFallback(
+          t,
+          "efficiency.growthPotential.comment",
+          mockRecommendationsData.efficiencyData.growthPotential.comment,
+        ),
       },
     } satisfies RecommendationsData["efficiencyData"];
 
     // Локализуем рекомендации
-    const recommendationsRaw = t.raw("recommendations");
+    const recommendationsRaw = getRawValue<unknown[]>(t, "recommendations");
     const recommendationTranslations = isRecommendationTranslationArray(
       recommendationsRaw,
     )
@@ -161,11 +217,11 @@ export const useRecommendations = () => {
     );
 
     // Локализуем анализ почвы
-    const soilMetricsRaw = t.raw("soilAnalysis.metrics");
+    const soilMetricsRaw = getRawValue<unknown[]>(t, "soilAnalysis.metrics");
     const soilMetricsTranslations = isMetricTranslationArray(soilMetricsRaw)
       ? soilMetricsRaw
       : [];
-    const soilRadarRaw = t.raw("soilAnalysis.radarData");
+    const soilRadarRaw = getRawValue<unknown[]>(t, "soilAnalysis.radarData");
     const soilRadarTranslations = isRadarTranslationArray(soilRadarRaw)
       ? soilRadarRaw
       : [];
@@ -201,11 +257,11 @@ export const useRecommendations = () => {
     } satisfies RecommendationsData["soilAnalysis"];
 
     // Локализуем анализ животных
-    const animalMetricsRaw = t.raw("animalAnalysis.metrics");
+    const animalMetricsRaw = getRawValue<unknown[]>(t, "animalAnalysis.metrics");
     const animalMetricsTranslations = isMetricTranslationArray(animalMetricsRaw)
       ? animalMetricsRaw
       : [];
-    const animalRadarRaw = t.raw("animalAnalysis.radarData");
+    const animalRadarRaw = getRawValue<unknown[]>(t, "animalAnalysis.radarData");
     const animalRadarTranslations = isRadarTranslationArray(animalRadarRaw)
       ? animalRadarRaw
       : [];

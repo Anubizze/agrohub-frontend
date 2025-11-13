@@ -1,0 +1,852 @@
+[
+  {
+    "id": 3418,
+    "region": {
+      "id": 1,
+      "name": "Бескарагайский район"
+    },
+    "observation_datetime": "2023-01-01T02:00:00+06:00",
+    "temperature_c": -3.8,
+    "cloudiness_percent": 100.0,
+    "pressure_mm": 754.0,
+    "humidity_percent": 83.0,
+    "wind_direction": "южный",
+    "wind_speed_ms": 4.0,
+    "precipitation_mm": null,
+    "weather_phenomenon": "",
+    "visibility_km": 2.0
+  },
+  {
+    "id": 3417,
+    "region": {
+      "id": 1,
+      "name": "Бескарагайский район"
+    },
+    "observation_datetime": "2023-01-01T05:00:00+06:00",
+    "temperature_c": -3.7,
+    "cloudiness_percent": 100.0,
+    "pressure_mm": 754.0,
+    "humidity_percent": 85.0,
+    "wind_direction": "южный",
+    "wind_speed_ms": 4.0,
+    "precipitation_mm": 0.3,
+    "weather_phenomenon": "",
+    "visibility_km": 2.0
+  },
+  {
+    "id": 3416,
+    "region": {
+      "id": 1,
+      "name": "Бескарагайский район"
+    },
+    "observation_datetime": "2023-01-01T08:00:00+06:00",
+    "temperature_c": -6.9,
+    "cloudiness_percent": 100.0,
+    "pressure_mm": 755.0,
+    "humidity_percent": 86.0,
+    "wind_direction": "юго-западный",
+    "wind_speed_ms": 4.0,
+    "precipitation_mm": null,
+    "weather_phenomenon": "",
+    "visibility_km": 1.0
+  },
+  {
+    "id": 3415,
+    "region": {
+      "id": 1,
+      "name": "Бескарагайский район"
+    },
+    "observation_datetime": "2023-01-01T11:00:00+06:00",
+    "temperature_c": -8.2,
+    "cloudiness_percent": 70.0,
+    "pressure_mm": 757.0,
+    "humidity_percent": 75.0,
+    "wind_direction": "юго-западный",
+    "wind_speed_ms": 5.0,
+    "precipitation_mm": null,
+    "weather_phenomenon": "",
+    "visibility_km": 2.0
+  },
+  {
+    "id": 3414,
+    "region": {
+      "id": 1,
+      "name": "Бескарагайский район"
+    },
+    "observation_datetime": "2023-01-01T14:00:00+06:00",
+    "temperature_c": -8.1,
+    "cloudiness_percent": 100.0,
+    "pressure_mm": 757.0,
+    "humidity_percent": 68.0,
+    "wind_direction": "южный",
+    "wind_speed_ms": 2.0,
+    "precipitation_mm": null,
+    "weather_phenomenon": "",
+    "visibility_km": 2.0
+  },
+  {
+    "id": 3413,
+    "region": {
+      "id": 1,
+      "name": "Бескарагайский район"
+    },
+    "observation_datetime": "2023-01-01T17:00:00+06:00",
+    "temperature_c": -10.1,
+    "cloudiness_percent": 70.0,
+    "pressure_mm": 757.0,
+    "humidity_percent": 76.0,
+    "wind_direction": "юго-восточный",
+    "wind_speed_ms": 2.0,
+    "precipitation_mm": null,
+    "weather_phenomenon": "",
+    "visibility_km": 2.0
+  },
+  {
+    "id": 3412,
+    "region": {
+      "id": 1,
+      "name": "Бескарагайский район"
+    },
+    "observation_datetime": "2023-01-01T20:00:00+06:00",
+    "temperature_c": -8.6,
+    "cloudiness_percent": 100.0,
+    "pressure_mm": 758.0,
+    "humidity_percent": 82.0,
+    "wind_direction": "южный",
+    "wind_speed_ms": 2.0,
+    "precipitation_mm": null,
+    "weather_phenomenon": "",
+    "visibility_km": 2.0
+  },
+  {
+    "id": 3411,
+    "region": {
+      "id": 1,
+      "name": "Бескарагайский район"
+    },
+    "observation_datetime": "2023-01-01T23:00:00+06:00",
+    "temperature_c": -8.4,
+    "cloudiness_percent": 100.0,
+    "pressure_mm": 757.0,
+    "humidity_percent": 87.0,
+    "wind_direction": "южный",
+    "wind_speed_ms": 2.0,
+    "precipitation_mm": null,
+    "weather_phenomenon": "",
+    "visibility_km": 2.0
+  },
+  {
+    "id": 3426,
+    "region": {
+      "id": 1,
+      "name": "Бескарагайский район"
+    },
+    "observation_datetime": "2023-01-02T02:00:00+06:00",
+    "temperature_c": -10.1,
+    "cloudiness_percent": 100.0,
+    "pressure_mm": 757.0,
+    "humidity_percent": 87.0,
+    "wind_direction": "южный",
+    "wind_speed_ms": 2.0,
+    "precipitation_mm": null,
+    "weather_phenomenon": "",
+    "visibility_km": 2.0
+  },
+  {
+    "id": 3425,
+    "region": {
+      "id": 1,
+      "name": "Бескарагайский район"
+    },
+    "observation_datetime": "2023-01-02T05:00:00+06:00",
+    "temperature_c": -12.9,
+    "cloudiness_percent": 100.0,
+    "pressure_mm": 757.0,
+    "humidity_percent": 86.0,
+    "wind_direction": "южный",
+    "wind_speed_ms": 2.0,
+    "precipitation_mm": null,
+    "weather_phenomenon": "",
+    "visibility_km": 2.0
+  },
+  {
+    "id": 3424,
+    "region": {
+      "id": 1,
+      "name": "Бескарагайский район"
+    },
+    "observation_datetime": "2023-01-02T08:00:00+06:00",
+    "temperature_c": -15.5,
+    "cloudiness_percent": 100.0,
+    "pressure_mm": 757.0,
+    "humidity_percent": 83.0,
+    "wind_direction": "юго-восточный",
+    "wind_speed_ms": 2.0,
+    "precipitation_mm": null,
+    "weather_phenomenon": "",
+    "visibility_km": 2.0
+  },
+  {
+    "id": 3423,
+    "region": {
+      "id": 1,
+      "name": "Бескарагайский район"
+    },
+    "observation_datetime": "2023-01-02T11:00:00+06:00",
+    "temperature_c": -11.3,
+    "cloudiness_percent": 70.0,
+    "pressure_mm": 757.0,
+    "humidity_percent": 77.0,
+    "wind_direction": "юго-восточный",
+    "wind_speed_ms": 3.0,
+    "precipitation_mm": null,
+    "weather_phenomenon": "",
+    "visibility_km": 2.0
+  },
+  {
+    "id": 3422,
+    "region": {
+      "id": 1,
+      "name": "Бескарагайский район"
+    },
+    "observation_datetime": "2023-01-02T14:00:00+06:00",
+    "temperature_c": -10.0,
+    "cloudiness_percent": 70.0,
+    "pressure_mm": 756.0,
+    "humidity_percent": 70.0,
+    "wind_direction": "юго-восточный",
+    "wind_speed_ms": 2.0,
+    "precipitation_mm": null,
+    "weather_phenomenon": "",
+    "visibility_km": 2.0
+  },
+  {
+    "id": 3421,
+    "region": {
+      "id": 1,
+      "name": "Бескарагайский район"
+    },
+    "observation_datetime": "2023-01-02T17:00:00+06:00",
+    "temperature_c": -11.8,
+    "cloudiness_percent": 20.0,
+    "pressure_mm": 755.0,
+    "humidity_percent": 80.0,
+    "wind_direction": "юго-восточный",
+    "wind_speed_ms": 2.0,
+    "precipitation_mm": null,
+    "weather_phenomenon": "",
+    "visibility_km": 2.0
+  },
+  {
+    "id": 3420,
+    "region": {
+      "id": 1,
+      "name": "Бескарагайский район"
+    },
+    "observation_datetime": "2023-01-02T20:00:00+06:00",
+    "temperature_c": -8.5,
+    "cloudiness_percent": 0.0,
+    "pressure_mm": 754.0,
+    "humidity_percent": 76.0,
+    "wind_direction": "юго-восточный",
+    "wind_speed_ms": 4.0,
+    "precipitation_mm": null,
+    "weather_phenomenon": "",
+    "visibility_km": 2.0
+  },
+  {
+    "id": 3419,
+    "region": {
+      "id": 1,
+      "name": "Бескарагайский район"
+    },
+    "observation_datetime": "2023-01-02T23:00:00+06:00",
+    "temperature_c": -7.1,
+    "cloudiness_percent": 100.0,
+    "pressure_mm": 752.0,
+    "humidity_percent": 80.0,
+    "wind_direction": "южный",
+    "wind_speed_ms": 4.0,
+    "precipitation_mm": null,
+    "weather_phenomenon": "",
+    "visibility_km": 2.0
+  },
+  {
+    "id": 3434,
+    "region": {
+      "id": 1,
+      "name": "Бескарагайский район"
+    },
+    "observation_datetime": "2023-01-03T02:00:00+06:00",
+    "temperature_c": -7.1,
+    "cloudiness_percent": 60.0,
+    "pressure_mm": 750.0,
+    "humidity_percent": 78.0,
+    "wind_direction": "юго-восточный",
+    "wind_speed_ms": 5.0,
+    "precipitation_mm": null,
+    "weather_phenomenon": "",
+    "visibility_km": 2.0
+  },
+  {
+    "id": 3433,
+    "region": {
+      "id": 1,
+      "name": "Бескарагайский район"
+    },
+    "observation_datetime": "2023-01-03T05:00:00+06:00",
+    "temperature_c": -6.1,
+    "cloudiness_percent": 70.0,
+    "pressure_mm": 748.0,
+    "humidity_percent": 81.0,
+    "wind_direction": "южный",
+    "wind_speed_ms": 4.0,
+    "precipitation_mm": null,
+    "weather_phenomenon": "",
+    "visibility_km": 2.0
+  },
+  {
+    "id": 3432,
+    "region": {
+      "id": 1,
+      "name": "Бескарагайский район"
+    },
+    "observation_datetime": "2023-01-03T08:00:00+06:00",
+    "temperature_c": -6.0,
+    "cloudiness_percent": 100.0,
+    "pressure_mm": 746.0,
+    "humidity_percent": 82.0,
+    "wind_direction": "юго-восточный",
+    "wind_speed_ms": 5.0,
+    "precipitation_mm": null,
+    "weather_phenomenon": "",
+    "visibility_km": 2.0
+  },
+  {
+    "id": 3431,
+    "region": {
+      "id": 1,
+      "name": "Бескарагайский район"
+    },
+    "observation_datetime": "2023-01-03T11:00:00+06:00",
+    "temperature_c": -4.7,
+    "cloudiness_percent": 40.0,
+    "pressure_mm": 744.0,
+    "humidity_percent": 75.0,
+    "wind_direction": "южный",
+    "wind_speed_ms": 5.0,
+    "precipitation_mm": null,
+    "weather_phenomenon": "",
+    "visibility_km": 2.0
+  },
+  {
+    "id": 3430,
+    "region": {
+      "id": 1,
+      "name": "Бескарагайский район"
+    },
+    "observation_datetime": "2023-01-03T14:00:00+06:00",
+    "temperature_c": -4.4,
+    "cloudiness_percent": 60.0,
+    "pressure_mm": 741.0,
+    "humidity_percent": 74.0,
+    "wind_direction": "юго-восточный",
+    "wind_speed_ms": 5.0,
+    "precipitation_mm": null,
+    "weather_phenomenon": "",
+    "visibility_km": 2.0
+  },
+  {
+    "id": 3429,
+    "region": {
+      "id": 1,
+      "name": "Бескарагайский район"
+    },
+    "observation_datetime": "2023-01-03T17:00:00+06:00",
+    "temperature_c": -2.3,
+    "cloudiness_percent": 100.0,
+    "pressure_mm": 737.0,
+    "humidity_percent": 88.0,
+    "wind_direction": "юго-восточный",
+    "wind_speed_ms": 7.0,
+    "precipitation_mm": null,
+    "weather_phenomenon": "",
+    "visibility_km": 1.0
+  },
+  {
+    "id": 3428,
+    "region": {
+      "id": 1,
+      "name": "Бескарагайский район"
+    },
+    "observation_datetime": "2023-01-03T20:00:00+06:00",
+    "temperature_c": -1.5,
+    "cloudiness_percent": 100.0,
+    "pressure_mm": 735.0,
+    "humidity_percent": 90.0,
+    "wind_direction": "южный",
+    "wind_speed_ms": 7.0,
+    "precipitation_mm": null,
+    "weather_phenomenon": "",
+    "visibility_km": 1.0
+  },
+  {
+    "id": 3427,
+    "region": {
+      "id": 1,
+      "name": "Бескарагайский район"
+    },
+    "observation_datetime": "2023-01-03T23:00:00+06:00",
+    "temperature_c": 0.7,
+    "cloudiness_percent": 100.0,
+    "pressure_mm": 736.0,
+    "humidity_percent": 76.0,
+    "wind_direction": "южный",
+    "wind_speed_ms": 5.0,
+    "precipitation_mm": null,
+    "weather_phenomenon": "",
+    "visibility_km": 2.0
+  },
+  {
+    "id": 3442,
+    "region": {
+      "id": 1,
+      "name": "Бескарагайский район"
+    },
+    "observation_datetime": "2023-01-04T02:00:00+06:00",
+    "temperature_c": -2.5,
+    "cloudiness_percent": null,
+    "pressure_mm": 737.0,
+    "humidity_percent": 73.0,
+    "wind_direction": "юго-западный",
+    "wind_speed_ms": 6.0,
+    "precipitation_mm": null,
+    "weather_phenomenon": "",
+    "visibility_km": 2.0
+  },
+  {
+    "id": 3441,
+    "region": {
+      "id": 1,
+      "name": "Бескарагайский район"
+    },
+    "observation_datetime": "2023-01-04T05:00:00+06:00",
+    "temperature_c": -4.2,
+    "cloudiness_percent": 70.0,
+    "pressure_mm": 738.0,
+    "humidity_percent": 61.0,
+    "wind_direction": "южный",
+    "wind_speed_ms": 5.0,
+    "precipitation_mm": 0.5,
+    "weather_phenomenon": "",
+    "visibility_km": 2.0
+  },
+  {
+    "id": 3440,
+    "region": {
+      "id": 1,
+      "name": "Бескарагайский район"
+    },
+    "observation_datetime": "2023-01-04T08:00:00+06:00",
+    "temperature_c": -4.4,
+    "cloudiness_percent": 20.0,
+    "pressure_mm": 739.0,
+    "humidity_percent": 78.0,
+    "wind_direction": "южный",
+    "wind_speed_ms": 6.0,
+    "precipitation_mm": null,
+    "weather_phenomenon": "",
+    "visibility_km": 1.0
+  },
+  {
+    "id": 3439,
+    "region": {
+      "id": 1,
+      "name": "Бескарагайский район"
+    },
+    "observation_datetime": "2023-01-04T11:00:00+06:00",
+    "temperature_c": -4.2,
+    "cloudiness_percent": 100.0,
+    "pressure_mm": 739.0,
+    "humidity_percent": 86.0,
+    "wind_direction": "юго-западный",
+    "wind_speed_ms": 9.0,
+    "precipitation_mm": null,
+    "weather_phenomenon": "",
+    "visibility_km": 1.0
+  },
+  {
+    "id": 3438,
+    "region": {
+      "id": 1,
+      "name": "Бескарагайский район"
+    },
+    "observation_datetime": "2023-01-04T14:00:00+06:00",
+    "temperature_c": -5.5,
+    "cloudiness_percent": 100.0,
+    "pressure_mm": 741.0,
+    "humidity_percent": 88.0,
+    "wind_direction": "юго-западный",
+    "wind_speed_ms": 8.0,
+    "precipitation_mm": null,
+    "weather_phenomenon": "",
+    "visibility_km": 1.0
+  },
+  {
+    "id": 3437,
+    "region": {
+      "id": 1,
+      "name": "Бескарагайский район"
+    },
+    "observation_datetime": "2023-01-04T17:00:00+06:00",
+    "temperature_c": -5.8,
+    "cloudiness_percent": 100.0,
+    "pressure_mm": 743.0,
+    "humidity_percent": 89.0,
+    "wind_direction": "юго-западный",
+    "wind_speed_ms": 8.0,
+    "precipitation_mm": null,
+    "weather_phenomenon": "",
+    "visibility_km": 51.0
+  },
+  {
+    "id": 3436,
+    "region": {
+      "id": 1,
+      "name": "Бескарагайский район"
+    },
+    "observation_datetime": "2023-01-04T20:00:00+06:00",
+    "temperature_c": -5.1,
+    "cloudiness_percent": 100.0,
+    "pressure_mm": 746.0,
+    "humidity_percent": 78.0,
+    "wind_direction": "юго-западный",
+    "wind_speed_ms": 8.0,
+    "precipitation_mm": null,
+    "weather_phenomenon": "",
+    "visibility_km": 2.0
+  },
+  {
+    "id": 3435,
+    "region": {
+      "id": 1,
+      "name": "Бескарагайский район"
+    },
+    "observation_datetime": "2023-01-04T23:00:00+06:00",
+    "temperature_c": -4.0,
+    "cloudiness_percent": 100.0,
+    "pressure_mm": 746.0,
+    "humidity_percent": 74.0,
+    "wind_direction": "южный",
+    "wind_speed_ms": 5.0,
+    "precipitation_mm": null,
+    "weather_phenomenon": "",
+    "visibility_km": 2.0
+  },
+  {
+    "id": 3450,
+    "region": {
+      "id": 1,
+      "name": "Бескарагайский район"
+    },
+    "observation_datetime": "2023-01-05T02:00:00+06:00",
+    "temperature_c": -4.0,
+    "cloudiness_percent": 100.0,
+    "pressure_mm": 744.0,
+    "humidity_percent": 86.0,
+    "wind_direction": "южный",
+    "wind_speed_ms": 6.0,
+    "precipitation_mm": null,
+    "weather_phenomenon": "",
+    "visibility_km": 2.0
+  },
+  {
+    "id": 3449,
+    "region": {
+      "id": 1,
+      "name": "Бескарагайский район"
+    },
+    "observation_datetime": "2023-01-05T05:00:00+06:00",
+    "temperature_c": -2.2,
+    "cloudiness_percent": 100.0,
+    "pressure_mm": 741.0,
+    "humidity_percent": 90.0,
+    "wind_direction": "южный",
+    "wind_speed_ms": 7.0,
+    "precipitation_mm": 1.0,
+    "weather_phenomenon": "",
+    "visibility_km": 1.0
+  },
+  {
+    "id": 3448,
+    "region": {
+      "id": 1,
+      "name": "Бескарагайский район"
+    },
+    "observation_datetime": "2023-01-05T08:00:00+06:00",
+    "temperature_c": 0.0,
+    "cloudiness_percent": 100.0,
+    "pressure_mm": 741.0,
+    "humidity_percent": 87.0,
+    "wind_direction": "южный",
+    "wind_speed_ms": 9.0,
+    "precipitation_mm": null,
+    "weather_phenomenon": "",
+    "visibility_km": 1.0
+  },
+  {
+    "id": 3447,
+    "region": {
+      "id": 1,
+      "name": "Бескарагайский район"
+    },
+    "observation_datetime": "2023-01-05T11:00:00+06:00",
+    "temperature_c": 2.3,
+    "cloudiness_percent": 100.0,
+    "pressure_mm": 741.0,
+    "humidity_percent": 75.0,
+    "wind_direction": "юго-западный",
+    "wind_speed_ms": 8.0,
+    "precipitation_mm": null,
+    "weather_phenomenon": "",
+    "visibility_km": 2.0
+  },
+  {
+    "id": 3446,
+    "region": {
+      "id": 1,
+      "name": "Бескарагайский район"
+    },
+    "observation_datetime": "2023-01-05T14:00:00+06:00",
+    "temperature_c": 1.8,
+    "cloudiness_percent": 100.0,
+    "pressure_mm": 742.0,
+    "humidity_percent": 86.0,
+    "wind_direction": "юго-западный",
+    "wind_speed_ms": 5.0,
+    "precipitation_mm": null,
+    "weather_phenomenon": "",
+    "visibility_km": 2.0
+  },
+  {
+    "id": 3445,
+    "region": {
+      "id": 1,
+      "name": "Бескарагайский район"
+    },
+    "observation_datetime": "2023-01-05T17:00:00+06:00",
+    "temperature_c": 1.3,
+    "cloudiness_percent": 100.0,
+    "pressure_mm": 743.0,
+    "humidity_percent": 92.0,
+    "wind_direction": "юго-западный",
+    "wind_speed_ms": 4.0,
+    "precipitation_mm": 3.0,
+    "weather_phenomenon": "",
+    "visibility_km": 1.0
+  },
+  {
+    "id": 3444,
+    "region": {
+      "id": 1,
+      "name": "Бескарагайский район"
+    },
+    "observation_datetime": "2023-01-05T20:00:00+06:00",
+    "temperature_c": 1.2,
+    "cloudiness_percent": 100.0,
+    "pressure_mm": 743.0,
+    "humidity_percent": 92.0,
+    "wind_direction": "юго-западный",
+    "wind_speed_ms": 4.0,
+    "precipitation_mm": null,
+    "weather_phenomenon": "",
+    "visibility_km": 2.0
+  },
+  {
+    "id": 3443,
+    "region": {
+      "id": 1,
+      "name": "Бескарагайский район"
+    },
+    "observation_datetime": "2023-01-05T23:00:00+06:00",
+    "temperature_c": 0.3,
+    "cloudiness_percent": 100.0,
+    "pressure_mm": 743.0,
+    "humidity_percent": 94.0,
+    "wind_direction": "южный",
+    "wind_speed_ms": 2.0,
+    "precipitation_mm": null,
+    "weather_phenomenon": "",
+    "visibility_km": 1.0
+  },
+  {
+    "id": 3458,
+    "region": {
+      "id": 1,
+      "name": "Бескарагайский район"
+    },
+    "observation_datetime": "2023-01-06T02:00:00+06:00",
+    "temperature_c": 1.0,
+    "cloudiness_percent": 100.0,
+    "pressure_mm": 741.0,
+    "humidity_percent": 96.0,
+    "wind_direction": "южный",
+    "wind_speed_ms": 3.0,
+    "precipitation_mm": null,
+    "weather_phenomenon": "",
+    "visibility_km": 1.0
+  },
+  {
+    "id": 3457,
+    "region": {
+      "id": 1,
+      "name": "Бескарагайский район"
+    },
+    "observation_datetime": "2023-01-06T05:00:00+06:00",
+    "temperature_c": 0.6,
+    "cloudiness_percent": 100.0,
+    "pressure_mm": 740.0,
+    "humidity_percent": 95.0,
+    "wind_direction": "южный",
+    "wind_speed_ms": 5.0,
+    "precipitation_mm": 5.0,
+    "weather_phenomenon": "",
+    "visibility_km": 1.0
+  },
+  {
+    "id": 3456,
+    "region": {
+      "id": 1,
+      "name": "Бескарагайский район"
+    },
+    "observation_datetime": "2023-01-06T08:00:00+06:00",
+    "temperature_c": 1.0,
+    "cloudiness_percent": 100.0,
+    "pressure_mm": 739.0,
+    "humidity_percent": 91.0,
+    "wind_direction": "южный",
+    "wind_speed_ms": 8.0,
+    "precipitation_mm": null,
+    "weather_phenomenon": "",
+    "visibility_km": 1.0
+  },
+  {
+    "id": 3455,
+    "region": {
+      "id": 1,
+      "name": "Бескарагайский район"
+    },
+    "observation_datetime": "2023-01-06T11:00:00+06:00",
+    "temperature_c": 1.4,
+    "cloudiness_percent": 100.0,
+    "pressure_mm": 738.0,
+    "humidity_percent": 82.0,
+    "wind_direction": "южный",
+    "wind_speed_ms": 7.0,
+    "precipitation_mm": null,
+    "weather_phenomenon": "",
+    "visibility_km": 1.0
+  },
+  {
+    "id": 3454,
+    "region": {
+      "id": 1,
+      "name": "Бескарагайский район"
+    },
+    "observation_datetime": "2023-01-06T14:00:00+06:00",
+    "temperature_c": 0.7,
+    "cloudiness_percent": 100.0,
+    "pressure_mm": 739.0,
+    "humidity_percent": 92.0,
+    "wind_direction": "юго-западный",
+    "wind_speed_ms": 5.0,
+    "precipitation_mm": null,
+    "weather_phenomenon": "",
+    "visibility_km": 2.0
+  },
+  {
+    "id": 3453,
+    "region": {
+      "id": 1,
+      "name": "Бескарагайский район"
+    },
+    "observation_datetime": "2023-01-06T17:00:00+06:00",
+    "temperature_c": -0.2,
+    "cloudiness_percent": 90.0,
+    "pressure_mm": 743.0,
+    "humidity_percent": 90.0,
+    "wind_direction": "западный",
+    "wind_speed_ms": 5.0,
+    "precipitation_mm": 4.0,
+    "weather_phenomenon": "",
+    "visibility_km": 2.0
+  },
+  {
+    "id": 3452,
+    "region": {
+      "id": 1,
+      "name": "Бескарагайский район"
+    },
+    "observation_datetime": "2023-01-06T20:00:00+06:00",
+    "temperature_c": -0.9,
+    "cloudiness_percent": 100.0,
+    "pressure_mm": 746.0,
+    "humidity_percent": 86.0,
+    "wind_direction": "западный",
+    "wind_speed_ms": 4.0,
+    "precipitation_mm": null,
+    "weather_phenomenon": "",
+    "visibility_km": 2.0
+  },
+  {
+    "id": 3451,
+    "region": {
+      "id": 1,
+      "name": "Бескарагайский район"
+    },
+    "observation_datetime": "2023-01-06T23:00:00+06:00",
+    "temperature_c": -1.9,
+    "cloudiness_percent": 100.0,
+    "pressure_mm": 748.0,
+    "humidity_percent": 87.0,
+    "wind_direction": "юго-западный",
+    "wind_speed_ms": 3.0,
+    "precipitation_mm": null,
+    "weather_phenomenon": "",
+    "visibility_km": 2.0
+  },
+  {
+    "id": 3466,
+    "region": {
+      "id": 1,
+      "name": "Бескарагайский район"
+    },
+    "observation_datetime": "2023-01-07T02:00:00+06:00",
+    "temperature_c": -4.2,
+    "cloudiness_percent": 60.0,
+    "pressure_mm": 749.0,
+    "humidity_percent": 89.0,
+    "wind_direction": "юго-западный",
+    "wind_speed_ms": 2.0,
+    "precipitation_mm": null,
+    "weather_phenomenon": "",
+    "visibility_km": 2.0
+  },
+  {
+    "id": 3465,
+    "region": {
+      "id": 1,
+      "name": "Бескарагайский район"
+    },
+    "observation_datetime": "2023-01-07T05:00:00+06:00",
+    "temperature_c": -3.8,
+    "cloudiness_percent": 100.0,
+    "pressure_mm": 749.0,
+    "humidity_percent": 91.0,
+    "wind_direction": "южный",
+    "wind_speed_ms": 1.0,
+    "precipitation_mm": null,
+    "weather_phenomenon": "",
+    "visibility_km": 2.0
+  }
+]

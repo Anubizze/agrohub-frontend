@@ -28,6 +28,19 @@ export const ResearchCatalogWidget: React.FC<ResearchCatalogWidgetProps> = ({
   className = "",
 }) => {
   const t = useTranslations();
+
+  const translateSafely = (key: string, fallback: string): string => {
+    try {
+      const translated = t(key);
+      if (typeof translated === "string" && translated.trim() && translated !== key) {
+        return translated;
+      }
+    } catch (error) {
+      // ignore and return fallback
+    }
+    return fallback;
+  };
+
   const handlePurchase = (research: Research) => {
     // TODO: Реализовать логику покупки исследования
     // Здесь можно добавить интеграцию с платежной системой
@@ -42,10 +55,13 @@ export const ResearchCatalogWidget: React.FC<ResearchCatalogWidgetProps> = ({
         <div className="flex items-center justify-between">
           <div>
             <h1 className="text-3xl font-bold text-gray-900 mb-2">
-              {t("science.catalog.title")}
+              {translateSafely("science.catalog.title", "Аналитические исследования")}
             </h1>
             <p className="text-lg text-gray-600">
-              {t("science.catalog.subtitle")}
+              {translateSafely(
+                "science.catalog.subtitle",
+                "Экспертные отчеты и прогнозы для принятия решений",
+              )}
             </p>
           </div>
 
@@ -55,7 +71,7 @@ export const ResearchCatalogWidget: React.FC<ResearchCatalogWidgetProps> = ({
             className="flex items-center gap-2 bg-gradient-to-r from-orange-500 to-orange-600 text-white border-0 px-4 py-2"
           >
             <Star className="w-4 h-4" />
-            {t("science.catalog.premium")}
+            {translateSafely("science.catalog.premium", "Премиум доступ")}
           </Badge>
         </div>
       </div>
@@ -74,10 +90,13 @@ export const ResearchCatalogWidget: React.FC<ResearchCatalogWidgetProps> = ({
       {/* Дополнительная информация */}
       <div className="bg-gray-50 rounded-lg p-6 mt-8">
         <h3 className="text-lg font-semibold text-gray-900 mb-3">
-          {t("science.catalog.aboutTitle")}
+          {translateSafely("science.catalog.aboutTitle", "О сервисе аналитики")}
         </h3>
         <p className="text-gray-600 leading-relaxed">
-          {t("science.catalog.aboutText")}
+          {translateSafely(
+            "science.catalog.aboutText",
+            "Получайте доступ к отраслевым исследованиям и прогнозам, подготовленным экспертами агропромышленного комплекса.",
+          )}
         </p>
       </div>
     </div>

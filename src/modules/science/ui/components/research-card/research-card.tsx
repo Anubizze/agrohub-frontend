@@ -47,6 +47,29 @@ export const ResearchCard: React.FC<ResearchCardProps> = ({
   const CategoryIcon =
     categoryIcons[research.category as keyof typeof categoryIcons] || FileText;
 
+  const translateSafely = (
+    key: string,
+    fallback: string,
+    values?: Record<string, unknown>,
+  ): string => {
+    try {
+      const translated = t(key, values ?? {});
+      if (typeof translated === "string" && translated.trim() && translated !== key) {
+        return translated;
+      }
+    } catch {
+      // ignore and use fallback
+    }
+
+    if (values) {
+      return fallback
+        .replace("{price}", String(values.price ?? ""))
+        .replace("{count}", String(values.count ?? ""));
+    }
+
+    return fallback;
+  };
+
   const formatPrice = (price: number): string => {
     const nfLocale = locale === "kk" ? "kk-KZ" : "ru-RU";
     return new Intl.NumberFormat(nfLocale, {
@@ -60,9 +83,9 @@ export const ResearchCard: React.FC<ResearchCardProps> = ({
   const titleKey = `science.research.${research.id}.title` as const;
   const categoryKey = `science.research.${research.id}.category` as const;
   const descriptionKey = `science.research.${research.id}.description` as const;
-  const localizedTitle = t(titleKey);
-  const localizedCategory = t(categoryKey);
-  const localizedDescription = t(descriptionKey);
+  const localizedTitle = translateSafely(titleKey, research.title);
+  const localizedCategory = translateSafely(categoryKey, research.category);
+  const localizedDescription = translateSafely(descriptionKey, research.description);
   const finalTitle = localizedTitle !== titleKey ? localizedTitle : research.title;
   const finalCategory =
     localizedCategory !== categoryKey ? localizedCategory : research.category;
@@ -93,7 +116,7 @@ export const ResearchCard: React.FC<ResearchCardProps> = ({
             className="flex items-center gap-1 bg-orange-100 text-orange-800 border-orange-200"
           >
             <Star className="w-3 h-3" />
-            {t("science.catalog.premium")}
+            {translateSafely("science.catalog.premium", "Премиум доступ")}
           </Badge>
         )}
       </div>
@@ -103,7 +126,12 @@ export const ResearchCard: React.FC<ResearchCardProps> = ({
         <div className="text-2xl font-semibold text-green-600 mb-1">
           {formatPrice(research.price)}
         </div>
-        <div className="text-sm text-gray-500">{research.pages} {t("science.catalog.pages", { count: research.pages })}</div>
+        <div className="text-sm text-gray-500">
+          {research.pages}{" "}
+          {translateSafely("science.catalog.pages", "стр.", {
+            count: research.pages,
+          })}
+        </div>
       </div>
 
       {/* Заголовок исследования */}
@@ -118,14 +146,18 @@ export const ResearchCard: React.FC<ResearchCardProps> = ({
 
       {/* Дата публикации */}
       <div className="text-sm text-gray-500 mb-4">
-        {t("science.catalog.published")}: {research.publishedAt}
+        {translateSafely("science.catalog.published", "Опубликовано")}:{" "}
+        {research.publishedAt}
       </div>
 
       {/* Статус покупки */}
       {research.requiresPurchases && (
         <div className="flex items-center gap-2 text-sm text-gray-600 mb-4">
           <Lock className="w-4 h-4" />
-          {t("science.catalog.requiresPurchase")}
+          {translateSafely(
+            "science.catalog.requiresPurchase",
+            "Доступно после покупки",
+          )}
         </div>
       )}
 
@@ -136,7 +168,9 @@ export const ResearchCard: React.FC<ResearchCardProps> = ({
         disabled={!research.requiresPurchases}
       >
         <Lock className="w-4 h-4" />
-        {t("science.catalog.buyFor", { price: formatPrice(research.price) })}
+        {translateSafely("science.catalog.buyFor", "Купить за {price}", {
+          price: formatPrice(research.price),
+        })}
       </Button>
     </div>
   );

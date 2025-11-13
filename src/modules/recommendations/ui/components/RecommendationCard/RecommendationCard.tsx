@@ -54,6 +54,22 @@ export const RecommendationCard: React.FC<RecommendationCardProps> = ({
   const t = useTranslations("recommendation");
   const tCard = useTranslations("recommendation.card");
 
+  const translateSafely = (
+    translator: ReturnType<typeof useTranslations>,
+    key: string,
+    fallback: string,
+  ): string => {
+    try {
+      const translated = translator(key);
+      if (typeof translated === "string" && translated.trim() && translated !== key) {
+        return translated;
+      }
+    } catch (error) {
+      // ignored, fallback
+    }
+    return fallback;
+  };
+
   const handleViewDetails = () => {
     onViewDetails?.(recommendation);
   };
@@ -62,11 +78,11 @@ export const RecommendationCard: React.FC<RecommendationCardProps> = ({
   const getPriorityLabel = () => {
     switch (recommendation.priority) {
       case "high":
-        return t("priority.high");
+        return translateSafely(t, "priority.high", priorityConfig.label);
       case "medium":
-        return t("priority.medium");
+        return translateSafely(t, "priority.medium", priorityConfig.label);
       case "low":
-        return t("priority.low");
+        return translateSafely(t, "priority.low", priorityConfig.label);
       default:
         return priorityConfig.label;
     }
@@ -96,7 +112,7 @@ export const RecommendationCard: React.FC<RecommendationCardProps> = ({
           className="gap-2"
           onClick={handleViewDetails}
         >
-          {tCard("viewDetails")}
+          {translateSafely(tCard, "viewDetails", "Подробный план")}
         </Button>
       </div>
     </Card>

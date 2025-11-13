@@ -51,6 +51,8 @@ export default defineConfig({
   resolve: {
     alias: {
       "@": path.resolve(dirname, "./src"),
+      "@messages": path.resolve(dirname, "./messages"),
+      "@i18": path.resolve(dirname, "./src/shared/configs/i18"),
     },
   },
 });
